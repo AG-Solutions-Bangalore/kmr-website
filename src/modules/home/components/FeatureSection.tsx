@@ -86,7 +86,7 @@ export function FeatureSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full pt-10 pb-8 lg:pt-14 lg:pb-10 overflow-hidden bg-white"
+      className="relative w-full py-10 overflow-hidden bg-white"
     >
       {/* Background Banner Image */}
       <div className="absolute inset-0 z-0">
