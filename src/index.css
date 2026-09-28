@@ -10,6 +10,7 @@
   --font-sans: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, -apple-system,
     "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   --font-display: "Plus Jakarta Sans", "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-script: "Caveat", "Segoe Script", "Bradley Hand", cursive;
 
   /* ---------- Primary / KMR Brand Blue ---------- */
   /* Buttons, active nav pill, links, "Smarter Decisions" heading, Send Message */
@@ -176,89 +177,9 @@
 
 @layer components {
   /* Reusable layout + typography matching the design */
-  .container-app {
-    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  .container {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-28;
   }
 
-  .section-pad {
-    @apply py-12 md:py-16 lg:py-20;
-  }
-
-  .eyebrow {
-    @apply inline-flex items-center gap-2 text-[11px] font-bold tracking-[0.18em] uppercase;
-  }
-
-  .eyebrow-blue {
-    @apply text-[var(--color-info-600)];
-  }
-
-  .eyebrow-green {
-    @apply text-[var(--color-success-600)];
-  }
-
-  .eyebrow-orange {
-    @apply text-[var(--color-warning-600)];
-  }
-
-  .h-section {
-    @apply text-2xl font-extrabold leading-tight text-[var(--color-navy-800)] md:text-3xl lg:text-[2rem];
-  }
-
-  .p-section {
-    @apply mt-2 max-w-2xl text-sm leading-relaxed text-[var(--color-muted-600)] md:text-[15px];
-  }
-
-  .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg bg-[var(--color-primary-600)] px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-[var(--color-primary-700)] active:bg-[var(--color-primary-active)];
-    box-shadow: var(--shadow-cta);
-  }
-
-  .btn-outline {
-    @apply inline-flex items-center justify-center gap-2 rounded-lg border border-[var(--color-mist-300)] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--color-navy-800)] transition hover:border-[var(--color-primary-400)] hover:text-[var(--color-primary-700)];
-  }
-
-  .card {
-    background: var(--color-cloud);
-    border: 1px solid var(--color-border-light);
-    border-radius: var(--radius-card);
-    box-shadow: var(--shadow-card);
-  }
-
-  .card-hover {
-    @apply transition duration-300 hover:-translate-y-1;
-  }
-  .card-hover:hover {
-    box-shadow: var(--shadow-card-hover);
-  }
-
-  .icon-tile-green {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-success-50)] text-[var(--color-success-600)];
-  }
-  .icon-tile-blue {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-info-50)] text-[var(--color-info-600)];
-  }
-  .icon-tile-orange {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent-orange-50)] text-[var(--color-accent-orange-600)];
-  }
-  .icon-tile-violet {
-    @apply flex h-11 w-11 items-center justify-center rounded-xl bg-[var(--color-accent-violet-50)] text-[var(--color-accent-violet-600)];
-  }
-
-  .ticker-bar {
-    background: var(--color-navy-900);
-  }
-  .ticker-up {
-    color: var(--color-ticker-up);
-  }
-  .ticker-down {
-    color: var(--color-ticker-down);
-  }
-
-  .footer-gradient {
-    background: linear-gradient(
-      180deg,
-      var(--color-footer-start) 0%,
-      var(--color-footer-end) 130%
-    );
-  }
+ 
 }

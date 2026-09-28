@@ -1,6 +1,6 @@
 export function AboutPage() {
   return (
-    <section className="container-app section-pad">
+    <section className="container section-pad">
       <p className="eyebrow eyebrow-blue">About Us</p>
       <h1 className="h-section mt-3">Your Trusted Partner in Commodity Market Information</h1>
       <p className="p-section">

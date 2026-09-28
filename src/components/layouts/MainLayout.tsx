@@ -19,7 +19,7 @@ export function MainLayout() {
 
       {/* Temporary shell header — replace with real Navbar */}
       <header className="border-b border-[var(--color-border-light)] bg-white">
-        <nav className="container-app flex h-16 items-center justify-between">
+        <nav className="container flex h-16 items-center justify-between">
           <Link to={PATHS.home} className="text-lg font-extrabold text-[var(--color-navy-800)]">
             KMR <span className="text-primary-600">LIVE</span>
           </Link>
@@ -46,7 +46,7 @@ export function MainLayout() {
 
       {/* Temporary shell footer — replace with real Footer */}
       <footer className="footer-gradient mt-auto">
-        <div className="container-app flex flex-col items-center justify-between gap-2 py-6 text-xs text-[var(--color-footer-text)] sm:flex-row">
+        <div className="container flex flex-col items-center justify-between gap-2 py-6 text-xs text-[var(--color-footer-text)] sm:flex-row">
           <p>© 2025 KMR LIVE. All rights reserved.</p>
           <p>Privacy Policy | Terms & Conditions</p>
         </div>
