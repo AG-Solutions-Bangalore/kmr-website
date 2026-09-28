@@ -5,6 +5,8 @@ import { FeatureSection } from '../components/FeatureSection';
 import { MarketInsightsSection } from '../components/MarketInsightsSection';
 import { AppPromoSection } from '../components/AppPromoSection';
 import { FaqSection } from '../components/FaqSection';
+import ContactSection from '../components/ContactSection';
+import FooterSection from '../components/FooterSection';
 
 export function HomePage() {
   return (
@@ -16,6 +18,8 @@ export function HomePage() {
       <MarketInsightsSection />
       <AppPromoSection />
       <FaqSection />
+      <ContactSection />
+      <FooterSection />
     </>
   );
 }
