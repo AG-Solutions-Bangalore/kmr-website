@@ -1,6 +1,7 @@
 import HeroSection from '../components/HeroSection';
 import { HeroAboutSection } from '../components/HeroAboutSection';
 import { CategorySection } from '../components/CategorySection';
+import { FeatureSection } from '../components/FeatureSection';
 
 export function HomePage() {
   return (
@@ -8,6 +9,7 @@ export function HomePage() {
       <HeroSection />
       <HeroAboutSection />
       <CategorySection />
+      <FeatureSection />
     </>
   );
 }
