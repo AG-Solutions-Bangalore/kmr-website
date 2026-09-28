@@ -1,12 +1,65 @@
+import { useRef } from "react";
 import heroBanner from "@/assets/home/hero_banner_with_phone.png";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { TRUST_ITEMS } from "../data";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
+import { MarketTicker } from "./MarketTicker";
+
+gsap.registerPlugin(useGSAP);
 
 function HeroSection() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
+  useGSAP(
+    () => {
+      // Create a master timeline for perfectly orchestrated choreography
+      const tl = gsap.timeline({ defaults: { ease: "power4.out" } });
+
+      // 1. Cinematic reveal of the main text block
+      tl.from(".hero-item", {
+        y: 35,
+        opacity: 0,
+        filter: "blur(10px)",
+        duration: 0.9,
+        stagger: 0.08,
+        delay: 0.1,
+      })
+        // 2. Trust icons gracefully scale and drop in, slightly overlapping
+        .from(
+          ".hero-icon-item",
+          {
+            y: 20,
+            scale: 0.9,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.06,
+            ease: "back.out(1.4)", // Adds a tiny, elegant bounce at the end
+          },
+          "-=0.6",
+        )
+        // 3. The handwritten note staggering slowly, line by line
+        .from(
+          ".tagline-word",
+          {
+            x: 20,
+            opacity: 0,
+            filter: "blur(6px)",
+            duration: 0.9,
+            stagger: 0.4, // Slow stagger so they come one by one
+            ease: "power3.out",
+          },
+          "-=0.5",
+        );
+    },
+    { scope: containerRef },
+  );
+
   return (
     <section
       id="home"
+      ref={containerRef}
       style={{ backgroundImage: `url(${heroBanner})` }}
       className="relative overflow-hidden bg-cover bg-center bg-no-repeat"
     >
@@ -16,28 +69,26 @@ function HeroSection() {
         className="pointer-events-none absolute inset-y-0 left-0 w-full bg-linear-to-r from-white via-white/85 to-transparent md:w-[75%] lg:w-[60%] lg:from-white lg:via-white/90 lg:to-transparent"
       />
 
-      {/* handwritten tagline — right side, like the design */}
+      {/* handwritten tagline — right side, personal touch */}
       <p
         aria-hidden="true"
-        className="absolute right-10 top-10 z-10 hidden -rotate-10 text-right font-script text-3xl font-bold leading-[0.8] drop-shadow-sm md:block lg:right-14 lg:text-4xl xl:right-12"
+        className="hero-tagline absolute right-10 top-10 z-10 hidden -rotate-10 text-right font-script text-3xl font-bold leading-[0.8] drop-shadow-sm md:block lg:right-14 lg:text-4xl xl:right-12"
       >
-        From
-        <br />
-        Markets
-        <br />
-        to Opportunities
+        <span className="tagline-word block">From</span>
+        <span className="tagline-word block">Markets</span>
+        <span className="tagline-word block">to Opportunities</span>
       </p>
 
       <div className="container relative flex min-h-[90vh] items-center py-14 lg:py-20">
         <div className="max-w-xl">
           {/* eyebrow pill */}
-          <p className="inline-flex items-center gap-2 rounded-full bg-success-500/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-700 border border-mist-200">
+          <p className="hero-item inline-flex items-center gap-2 rounded-full bg-success-500/10 px-3.5 py-1.5 text-[11px] font-bold uppercase tracking-[0.14em] text-muted-700 border border-mist-200">
             <span className="h-1.5 w-1.5 rounded-full animate-pulse bg-success-500" />
             Real Market Information
           </p>
 
           {/* heading */}
-          <h1 className="mt-4 text-4xl font-extrabold leading-[1.08] tracking-tight text-navy-800 sm:text-5xl lg:text-[3.4rem]">
+          <h1 className="hero-item mt-4 text-4xl font-extrabold leading-[1.08] tracking-tight text-navy-800 sm:text-5xl lg:text-[4.1rem]">
             Market Trends
             <br />
             Real Insights
@@ -46,23 +97,23 @@ function HeroSection() {
           </h1>
 
           {/* subtext */}
-          <p className="mt-4 max-w-md text-[15px] leading-relaxed font-semibold text-muted-600">
+          <p className="hero-item mt-4 max-w-md text-[15px] leading-relaxed font-semibold text-muted-600">
             Get real-time commodity prices, market trends and expert insights to
             make informed business decisions.
           </p>
 
           {/* CTA buttons */}
-          <div className="mt-6 flex flex-wrap items-center gap-3">
-            <Button size="lg" asChild>
+          <div className="hero-item mt-6 flex flex-wrap items-center gap-3">
+            <Button size="lg" asChild className="group">
               <a href="#categories">
                 Explore Categories
-                <ArrowRight />
+                <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild>
+            <Button size="lg" variant="outline" asChild className="group">
               <a href="#app">
                 Download App
-                <Download />
+                <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />
               </a>
             </Button>
           </div>
@@ -72,10 +123,12 @@ function HeroSection() {
             {TRUST_ITEMS.map((item) => (
               <div
                 key={item.label}
-                className="flex flex-col items-center gap-3 text-center"
+                className="hero-icon-item flex flex-col items-center gap-3 text-center"
               >
                 <dt className="sr-only">{item.label}</dt>
-                <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white text-navy-800 md:h-[52px] md:w-[52px]">
+                <span
+                  className={`flex h-12 w-12 items-center justify-center rounded-full shadow-sm md:h-[52px] md:w-[52px] ${item.bgClass} ${item.colorClass}`}
+                >
                   {item.icon}
                 </span>
                 <dd className="text-[10px] font-semibold leading-tight text-navy-800 sm:text-[11px]">

@@ -1,7 +1,8 @@
-
 export const TRUST_ITEMS = [
   {
     label: 'Real-Time Prices',
+    colorClass: 'text-sky-600',
+    bgClass: 'bg-sky-50',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-6 w-6 md:h-[26px] md:w-[26px]">
         <circle cx="12" cy="12" r="8.5" />
@@ -11,6 +12,8 @@ export const TRUST_ITEMS = [
   },
   {
     label: 'Expert Insights',
+    colorClass: 'text-indigo-600',
+    bgClass: 'bg-indigo-50',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-6 w-6 md:h-[26px] md:w-[26px]">
         <circle cx="12" cy="9" r="5.5" />
@@ -20,6 +23,8 @@ export const TRUST_ITEMS = [
   },
   {
     label: 'Trusted by Traders',
+    colorClass: 'text-emerald-600',
+    bgClass: 'bg-emerald-50',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-6 w-6 md:h-[26px] md:w-[26px]">
         <path d="M7 11 4.5 13.5c-.6.6-.6 1.6 0 2.2l2.2 2.2c.6.6 1.6.6 2.2 0L12 14.5" strokeLinecap="round" strokeLinejoin="round" />
@@ -31,6 +36,8 @@ export const TRUST_ITEMS = [
   },
   {
     label: 'Available on Mobile',
+    colorClass: 'text-violet-600',
+    bgClass: 'bg-violet-50',
     icon: (
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} className="h-6 w-6 md:h-[26px] md:w-[26px]">
         <rect x="7" y="3" width="10" height="18" rx="2.5" />
