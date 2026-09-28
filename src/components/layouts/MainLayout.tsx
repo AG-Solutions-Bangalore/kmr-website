@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Outlet, useLocation } from "react-router";
 import Navbar from "./header/Navbar";
+import Footer from "./footer/Footer";
 
 function ScrollToTop() {
   const { pathname } = useLocation();
@@ -22,6 +23,8 @@ export function MainLayout() {
       <main className="flex-1">
         <Outlet />
       </main>
+
+      <Footer />
     </div>
   );
 }

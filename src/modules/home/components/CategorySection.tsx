@@ -166,14 +166,14 @@ export function CategorySection() {
               key={idx}
               className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-3 py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[140px]"
             >
-              <div className="relative flex h-[80px] w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-3 group-hover:scale-110">
+              <div className="relative mb-2 flex h-[70px] w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <h3 className="absolute bottom-4 text-center text-[14px] font-extrabold text-navy-900 opacity-0 translate-y-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:translate-y-0 group-hover:opacity-100 group-hover:text-[#145eb5]">
+              <h3 className="text-center text-[14px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
                 {cat.name}
               </h3>
             </div>

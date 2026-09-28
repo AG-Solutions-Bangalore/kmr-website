@@ -23,7 +23,7 @@ function Navbar() {
 
   useGSAP(() => {
     // Professional Apple-like ease
-    const customEase = [0.16, 1, 0.3, 1];
+    const customEase = "power3.out";
     const tl = gsap.timeline({ defaults: { ease: customEase } });
 
     // 1. Cinematic drop of the navbar container (faster)
@@ -59,7 +59,7 @@ function Navbar() {
 
   return (
     <header ref={navRef} className="sticky top-0 z-50 w-full bg-white/95 backdrop-blur-md shadow-sm">
-      <div className="mx-auto flex h-19.25 w-full max-w-7xl items-center justify-between px-4 lg:px-8">
+      <div className="mx-auto flex h-19.25 w-full max-w-7xl items-center justify-between px-4">
         {/* Left: Logo */}
         <div className="flex w-1/4 items-center">
           <Link to="/" className="nav-logo flex-shrink-0">

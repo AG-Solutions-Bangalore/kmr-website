@@ -1,12 +1,11 @@
-import HeroSection from '../components/HeroSection';
-import { HeroAboutSection } from '../components/HeroAboutSection';
-import { CategorySection } from '../components/CategorySection';
-import { FeatureSection } from '../components/FeatureSection';
-import { MarketInsightsSection } from '../components/MarketInsightsSection';
-import { AppPromoSection } from '../components/AppPromoSection';
-import { FaqSection } from '../components/FaqSection';
-import ContactSection from '../components/ContactSection';
-import FooterSection from '../components/FooterSection';
+import HeroSection from "../components/HeroSection";
+import { HeroAboutSection } from "../components/HeroAboutSection";
+import { CategorySection } from "../components/CategorySection";
+import { FeatureSection } from "../components/FeatureSection";
+import { MarketInsightsSection } from "../components/MarketInsightsSection";
+import { AppPromoSection } from "../components/AppPromoSection";
+import { FaqSection } from "../components/FaqSection";
+import ContactSection from "../components/ContactSection";
 
 export function HomePage() {
   return (
@@ -19,7 +18,6 @@ export function HomePage() {
       <AppPromoSection />
       <FaqSection />
       <ContactSection />
-      <FooterSection />
     </>
   );
 }

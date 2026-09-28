@@ -92,7 +92,7 @@ export function HeroAboutSection() {
       className="relative w-full bg-white py-6 overflow-hidden"
     >
       {/* Right Image: Absolutely positioned to bleed to the right edge and sit behind the ticker */}
-      <div className="about-image absolute right-0 -top-2.5 h-full w-full max-w-[32%] z-0 flex items-start justify-end pointer-events-none hidden md:flex">
+      <div className="about-image absolute -right-6 -top-2.5 h-full w-full max-w-[32%] z-0 flex items-start justify-end pointer-events-none hidden md:flex">
         <img
           src={aboutHeroImage}
           alt="Empowering Markets Enriching Lives"
@@ -105,7 +105,7 @@ export function HeroAboutSection() {
         <MarketTicker />
       </div>
 
-      <div className="container relative z-10 flex flex-col lg:flex-row items-stretch justify-start gap-8 lg:gap-10">
+      <div className="container relative z-10 flex flex-col lg:flex-row items-stretch justify-start">
         {/* Left: About Content */}
         <div className="about-content flex w-full lg:w-[35%] flex-col justify-center items-start">
           <div className="flex items-center gap-2 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] mb-4">
@@ -113,7 +113,7 @@ export function HeroAboutSection() {
             ABOUT US
           </div>
 
-          <h2 className="text-3xl lg:text-[2.2rem] xl:text-[2.5rem] font-extrabold leading-[1.15] text-navy-900 mb-5 tracking-tight">
+          <h2 className="text-3xl lg:text-[2.2rem] font-extrabold leading-[1.15] text-navy-900 mb-5 tracking-tight">
             Your Trusted Partner
             <br />
             in Commodity Market Information
@@ -136,7 +136,7 @@ export function HeroAboutSection() {
         </div>
 
         {/* Middle: 3 Cards */}
-        <div className="flex w-full lg:w-[42%] xl:w-[45%] items-center justify-start gap-3 lg:gap-4">
+        <div className="flex w-full lg:w-[40%] items-center justify-start gap-2">
           {CARDS.map((card, idx) => (
             <div
               key={idx}

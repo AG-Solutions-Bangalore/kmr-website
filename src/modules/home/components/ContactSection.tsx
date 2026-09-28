@@ -28,7 +28,7 @@ const ContactSection: React.FC = () => {
         }
       );
 
-      // Continuous leaf floating animations
+      // Continuous leaf floating animation
       gsap.to(leftLeafRef.current, {
         y: "-=15",
         rotation: "-=5",
@@ -38,15 +38,21 @@ const ContactSection: React.FC = () => {
         ease: "sine.inOut",
       });
 
-      gsap.to(rightLeafRef.current, {
-        y: "-=15",
-        rotation: "+=5",
-        duration: 3.5,
-        yoyo: true,
-        repeat: -1,
-        ease: "sine.inOut",
-        delay: 0.5,
-      });
+      // Spices bowl entrance animation (animates only once)
+      gsap.fromTo(
+        rightLeafRef.current,
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 1.2,
+          ease: "expo.out",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 80%",
+          },
+        }
+      );
     }, sectionRef);
 
     return () => ctx.revert();
@@ -55,7 +61,7 @@ const ContactSection: React.FC = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-12 border border-t bg-white overflow-x-clip z-20"
+      className="relative w-full py-12 border-t bg-white overflow-x-clip z-20"
     >
       {/* Decorative Leaves */}
       <img
@@ -68,7 +74,7 @@ const ContactSection: React.FC = () => {
         ref={rightLeafRef}
         src={leaf6}
         alt="Decorative Spices"
-        className="absolute right-0 bottom-2 w-40 md:w-56 lg:w-72 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
+        className="absolute right-0 bottom-0 w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
       />
 
       <div className="container relative z-10">
