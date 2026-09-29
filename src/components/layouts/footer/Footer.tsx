@@ -11,13 +11,13 @@ const InstagramIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="16" 
 
 const Footer: React.FC = () => {
   return (
-    <footer className="relative z-50 w-full bg-[#002f6c] text-white mt-18 pb-6">
+    <footer className="relative z-50 w-full bg-[#002f6c] text-white mt-12 sm:mt-16 lg:mt-18 pb-6">
       {/* Animated Wave SVG Divider */}
       <div className="absolute bottom-full left-0 w-full overflow-hidden leading-none translate-y-[1px]">
         <svg 
           viewBox="0 0 1000 200" 
           preserveAspectRatio="none" 
-          className="relative block w-full h-[60px] md:h-[100px] lg:h-[150px]"
+          className="relative block w-full h-[50px] sm:h-[80px] md:h-[100px] lg:h-[150px]"
         >
           <path
             d="M0,200 L0.0,100.0 C 6.3,101.8 18.8,105.3 25.0,107.1 C 31.3,108.7 43.8,112.0 50.0,113.6 C 56.3,114.9 68.8,117.5 75.0,118.8 C 81.3,119.7 93.8,121.5 100.0,122.4 C 106.3,122.8 118.8,123.5 125.0,123.9 C 131.3,123.8 143.8,123.5 150.0,123.4 C 156.3,122.7 168.8,121.4 175.0,120.7 C 181.3,119.6 193.8,117.3 200.0,116.2 C 206.3,114.7 218.8,111.8 225.0,110.3 C 231.3,108.6 243.8,105.1 250.0,103.4 C 256.3,101.6 268.8,98.0 275.0,96.2 C 281.3,94.5 293.8,91.1 300.0,89.4 C 306.3,87.9 318.8,85.0 325.0,83.5 C 331.3,82.4 343.8,80.2 350.0,79.1 C 356.3,78.4 368.8,77.2 375.0,76.5 C 381.3,76.4 393.8,76.2 400.0,76.1 C 406.3,76.5 418.8,77.4 425.0,77.8 C 431.3,78.7 443.8,80.6 450.0,81.5 C 456.3,82.8 468.8,85.5 475.0,86.8 C 481.3,88.4 493.8,91.7 500.0,93.3 C 506.3,95.1 518.8,98.6 525.0,100.4 C 531.3,102.2 543.8,105.7 550.0,107.5 C 556.3,109.1 568.8,112.3 575.0,113.9 C 581.3,115.2 593.8,117.7 600.0,119.0 C 606.3,119.9 618.8,121.6 625.0,122.5 C 631.3,122.9 643.8,123.6 650.0,124.0 C 656.3,123.8 668.8,123.5 675.0,123.3 C 681.3,122.6 693.8,121.2 700.0,120.5 C 706.3,119.3 718.8,117.1 725.0,115.9 C 731.3,114.4 743.8,111.4 750.0,109.9 C 756.3,108.2 768.8,104.7 775.0,103.0 C 781.3,101.2 793.8,97.6 800.0,95.8 C 806.3,94.1 818.8,90.7 825.0,89.0 C 831.3,87.5 843.8,84.7 850.0,83.2 C 856.3,82.1 868.8,80.0 875.0,78.9 C 881.3,78.3 893.8,77.1 900.0,76.5 C 906.3,76.4 918.8,76.2 925.0,76.1 C 931.3,76.5 943.8,77.5 950.0,77.9 C 956.3,78.9 968.8,80.8 975.0,81.7 C 981.3,83.0 993.8,85.8 1000.0,87.1 C 1006.3,88.8 1018.8,92.0 1025.0,93.7 L1000.0,200.0 L0,200.0Z"
@@ -36,15 +36,15 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="container relative z-10">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8">
+        <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           
-          {/* Column 1: Brand & About (Takes 4 cols) */}
-          <div className="lg:col-span-4 flex flex-col items-center sm:items-start text-center sm:text-left">
+          {/* Column 1: Brand & About (Takes full width on small screens, 4 cols on lg) */}
+          <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-4 flex flex-col items-start text-left">
             <div className="bg-white p-2 rounded-xl inline-block mb-4">
               <img src={logo} alt="KMR LIVE Logo" className="h-10 object-contain" />
             </div>
             
-            <p className="text-[13px] md:text-[14px] leading-relaxed text-blue-100 font-medium mb-6 max-w-[320px]">
+            <p className="text-[13px] md:text-[14px] leading-relaxed text-blue-100 font-medium mb-6 max-w-xl lg:max-w-[320px]">
               KMR LIVE provides real-time commodity market information, trends and insights to help you make smarter business decisions.
             </p>
 
@@ -67,10 +67,10 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 2: Quick Links (Takes 2 cols) */}
-          <div className="lg:col-span-2 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <h4 className="text-[16px] font-bold text-white mb-5">Quick Links</h4>
-            <ul className="flex flex-col gap-1">
+          {/* Column 2: Quick Links (Takes 1 col, 2 cols on lg) */}
+          <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
+            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+            <ul className="flex flex-col gap-1.5">
               {['Home', 'About Us', 'Category', 'Features', 'FAQ', 'Contact Us'].map((link) => (
                 <li key={link}>
                   <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
@@ -81,11 +81,11 @@ const Footer: React.FC = () => {
             </ul>
           </div>
 
-          {/* Column 3: Categories (Takes 3 cols) */}
-          <div className="lg:col-span-3 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <h4 className="text-[16px] font-bold text-white mb-5">Categories</h4>
-            <div className="flex gap-8 sm:gap-12 text-left">
-              <ul className="flex flex-col gap-1">
+          {/* Column 3: Categories (Takes 1 col, 3 cols on lg) */}
+          <div className="col-span-1 lg:col-span-3 flex flex-col items-start text-left">
+            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Categories</h4>
+            <div className="flex gap-6 sm:gap-10 text-left">
+              <ul className="flex flex-col gap-1.5">
                 {['Edible Oil', 'Coconut Oil', 'Pulses', 'GN Seed', 'Rice & Paddy', 'Kirana'].map((cat) => (
                   <li key={cat}>
                     <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                   </li>
                 ))}
               </ul>
-              <ul className="flex flex-col gap-1">
+              <ul className="flex flex-col gap-1.5">
                 {['Spices', 'Dry Fruits', 'Arecanut', 'Jaggery'].map((cat) => (
                   <li key={cat}>
                     <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
@@ -106,13 +106,13 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Column 4: Download App (Takes 3 cols) */}
-          <div className="lg:col-span-3 flex flex-col items-center sm:items-start text-center sm:text-left">
-            <h4 className="text-[16px] font-bold text-white mb-5">Download App</h4>
+          {/* Column 4: Download App (Takes full width on small screens, 3 cols on lg) */}
+          <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-3 flex flex-col items-start text-left">
+            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Download App</h4>
             
-            <div className="flex flex-col gap-3 w-full max-w-[180px]">
+            <div className="flex flex-row flex-wrap sm:flex-col gap-3 w-full max-w-sm lg:max-w-[180px]">
               {/* App Store Button */}
-              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2 text-white hover:bg-gray-900 transition-colors border border-gray-800">
+              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800">
                 <img src={appStoreIcon} alt="App Store" className="h-6 w-6" />
                 <div className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">Download on the</span>
@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
               </button>
 
               {/* Play Store Button */}
-              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2 text-white hover:bg-gray-900 transition-colors border border-gray-800">
+              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800">
                 <img src={playStoreIcon} alt="Google Play" className="h-5 w-5" />
                 <div className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">GET IT ON</span>
@@ -133,7 +133,7 @@ const Footer: React.FC = () => {
 
         </div>
 
-        <div className="mt-12 pt-8 border-t border-blue-800/50 flex flex-col md:flex-row items-center justify-between gap-4 text-center text-blue-200 text-[13px]">
+        <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-blue-800/50 flex flex-col sm:flex-row items-center sm:justify-between gap-4 text-center sm:text-left text-blue-200 text-[13px]">
           <p>© {new Date().getFullYear()} KMR LIVE. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>

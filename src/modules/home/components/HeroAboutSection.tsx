@@ -113,13 +113,13 @@ export function HeroAboutSection() {
             ABOUT US
           </div>
 
-          <h2 className="text-3xl lg:text-[2.2rem] font-extrabold leading-[1.15] text-navy-900 mb-5 tracking-tight">
+          <h2 className="text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold leading-[1.18] lg:leading-[1.15] text-navy-900 mb-4 sm:mb-5 tracking-tight">
             Your Trusted Partner
             <br />
             in Commodity Market Information
           </h2>
 
-          <p className="text-[13.5px] leading-[1.7] text-muted-500 mb-8 font-medium max-w-md">
+          <p className="text-[13px] sm:text-[13.5px] leading-[1.7] text-muted-500 mb-6 sm:mb-8 font-medium max-w-md">
             KMR LIVE provides real-time commodity market information, trends and
             insights to help traders, businesses and individuals make smarter
             decisions. Our goal is to bring transparency, reliability and timely
@@ -128,7 +128,7 @@ export function HeroAboutSection() {
 
           <Button
             size="lg"
-            className="group bg-[#145eb5] hover:bg-[#145eb5]/90 text-white font-bold px-7 h-[46px] rounded-lg shadow-md transition-all"
+            className="group bg-[#145eb5] hover:bg-[#145eb5]/90 text-white font-bold px-7 h-[46px] rounded-lg shadow-md transition-all w-full sm:w-auto justify-center"
           >
             Know More About Us
             <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
@@ -136,18 +136,18 @@ export function HeroAboutSection() {
         </div>
 
         {/* Middle: 3 Cards */}
-        <div className="flex w-full lg:w-[40%] items-center justify-start gap-2">
+        <div className="flex flex-col sm:flex-row lg:flex-row w-full lg:w-[40%] items-stretch lg:items-center justify-start gap-3.5 sm:gap-2 mt-8 lg:mt-0">
           {CARDS.map((card, idx) => (
             <div
               key={idx}
-              className={`about-card flex flex-1 flex-col items-center text-center rounded-[1.25rem] bg-white p-5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border ${card.border} transition-transform hover:-translate-y-1.5 duration-300 min-h-[220px]`}
+              className={`about-card flex flex-1 flex-col items-center text-center rounded-[1.25rem] bg-white p-5 shadow-[0_8px_30px_rgb(0,0,0,0.06)] border ${card.border} transition-transform hover:-translate-y-1.5 duration-300 min-h-[200px] sm:min-h-[220px]`}
             >
               <div
-                className={`mb-4 flex h-[56px] w-[56px] items-center justify-center rounded-full ${card.iconBg}`}
+                className={`mb-4 flex h-[52px] w-[52px] sm:h-[56px] sm:w-[56px] items-center justify-center rounded-full ${card.iconBg}`}
               >
                 {card.icon}
               </div>
-              <h3 className="mb-2.5 text-[14px] font-bold text-navy-900">
+              <h3 className="mb-2 text-[14px] font-bold text-navy-900">
                 {card.title}
               </h3>
               <p className="text-[11px] leading-[1.6] text-muted-500 font-medium px-1 whitespace-pre-line">

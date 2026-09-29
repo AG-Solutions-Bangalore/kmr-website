@@ -68,65 +68,65 @@ const ContactSection: React.FC = () => {
         ref={leftLeafRef}
         src={leaf5}
         alt="Decorative Leaf"
-        className="absolute left-0 bottom-0 w-32 md:w-48 lg:w-64 z-10 translate-y-1/3 -translate-x-1/4 drop-shadow-2xl"
+        className="pointer-events-none absolute left-0 bottom-0 w-28 sm:w-32 md:w-48 lg:w-64 z-10 translate-y-1/3 -translate-x-1/4 drop-shadow-2xl"
       />
       <img
         ref={rightLeafRef}
         src={leaf6}
         alt="Decorative Spices"
-        className="absolute right-0 bottom-0 w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
+        className="pointer-events-none absolute right-0 bottom-0 w-32 sm:w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
       />
 
       <div className="container relative z-10">
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start">
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
           
           {/* Left Column: Info */}
           <div className="w-full lg:w-[60%] flex flex-col">
-            <div className="contact-element mb-4 flex items-center gap-2 rounded-full border border-[#145eb5]/30 bg-[#145eb5]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] w-fit">
+            <div className="contact-element mb-3 sm:mb-4 flex items-center gap-2 rounded-full border border-[#145eb5]/30 bg-[#145eb5]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] w-fit">
               <span className="h-1.5 w-1.5 rounded-full bg-[#145eb5]"></span>
               CONTACT US
             </div>
 
-            <h2 className="contact-element mb-4 text-[36px] font-extrabold tracking-tight text-navy-900 lg:text-[44px]">
+            <h2 className="contact-element mb-3 sm:mb-4 text-3xl sm:text-[36px] font-extrabold tracking-tight text-navy-900 lg:text-[44px]">
               Get in Touch
             </h2>
 
-            <p className="contact-element text-[15px] font-medium leading-[1.6] text-muted-500 mb-8 max-w-md">
+            <p className="contact-element text-[14px] sm:text-[15px] font-medium leading-[1.6] text-muted-500 mb-6 sm:mb-8 max-w-md">
               We'd love to hear from you. Reach out to us for any queries, suggestions or support.
             </p>
 
             <div className="contact-element flex flex-col sm:flex-row gap-3 mb-6">
               {/* Card 1 */}
-              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col xl:flex-row items-start gap-3">
+              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-3.5 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-row sm:flex-col xl:flex-row items-center sm:items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#145eb5] text-white">
                   <Phone className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-1">Call Us</h4>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Call Us</h4>
                   <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43210</p>
                   <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43211</p>
                 </div>
               </div>
 
               {/* Card 2 */}
-              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col xl:flex-row items-start gap-3">
+              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-3.5 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-row sm:flex-col xl:flex-row items-center sm:items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#145eb5] text-white">
                   <Mail className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-1">Email Us</h4>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Email Us</h4>
                   <p className="text-[12px] text-muted-500 font-medium break-all">support@kmrlive.in</p>
                   <p className="text-[12px] text-muted-500 font-medium break-all">info@kmrlive.in</p>
                 </div>
               </div>
 
               {/* Card 3 */}
-              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-col xl:flex-row items-start gap-3">
+              <div className="flex-1 bg-white border border-gray-100 rounded-2xl p-3.5 sm:p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)] flex flex-row sm:flex-col xl:flex-row items-center sm:items-start gap-3">
                 <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#145eb5] text-white">
                   <MapPin className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-1">Our Office</h4>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Our Office</h4>
                   <p className="text-[12px] text-muted-500 font-medium">Bengaluru, India</p>
                 </div>
               </div>
@@ -135,7 +135,7 @@ const ContactSection: React.FC = () => {
 
           {/* Right Column: Form */}
           <div className="contact-element w-full lg:w-[40%]">
-            <div className="bg-white rounded-3xl p-6 sm:p-8 md:p-10 shadow-[0_20px_50px_rgb(0,0,0,0.08)] border border-gray-100 relative overflow-hidden">
+            <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_20px_50px_rgb(0,0,0,0.08)] border border-gray-100 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50 z-0"></div>
               
               <form className="relative z-10 flex flex-col gap-5">

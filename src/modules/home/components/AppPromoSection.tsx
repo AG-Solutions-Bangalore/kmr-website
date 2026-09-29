@@ -98,7 +98,7 @@ export function AppPromoSection() {
           className="w-full h-full object-cover object-center"
         />
         {/* Strong white gradient overlay on the left to ensure text readability */}
-        <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-[45%]"></div>
+        <div className="absolute inset-0 bg-white/90 sm:bg-white/80 md:bg-transparent md:bg-gradient-to-r md:from-white md:via-white/95 md:to-transparent w-full md:w-[45%]"></div>
         {/* Subtle white gradient on the right to make the icons pop over the farm image */}
         <div className="absolute inset-0 bg-gradient-to-l from-white/90 via-white/60 to-transparent w-full md:w-[30%] left-auto right-0 hidden lg:block"></div>
 
@@ -119,7 +119,7 @@ export function AppPromoSection() {
               KMR LIVE APP
             </div>
 
-            <h2 className="promo-element mb-2 text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem] leading-[1.1]">
+            <h2 className="promo-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem] leading-[1.15] lg:leading-[1.1]">
               Your Market.
               <br />
               In Your Pocket.
@@ -144,9 +144,9 @@ export function AppPromoSection() {
               ))}
             </ul>
 
-            <div className="promo-element flex flex-wrap items-center gap-3 mt-2">
+            <div className="promo-element flex flex-col sm:flex-row items-stretch sm:items-center gap-3 mt-2 w-full sm:w-auto">
               {/* App Store Button */}
-              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95">
+              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto">
                 <img
                   src={appStoreIcon}
                   alt="Apple Logo"
@@ -163,7 +163,7 @@ export function AppPromoSection() {
               </button>
 
               {/* Google Play Button */}
-              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95">
+              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto">
                 <img
                   src={playStoreIcon}
                   alt="Google Play Logo"

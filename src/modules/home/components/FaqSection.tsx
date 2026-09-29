@@ -90,35 +90,35 @@ export function FaqSection() {
       className="relative w-full bg-gradient-to-b py-8 from-[#f8fbff] to-white overflow-hidden"
     >
       <div className="container mx-auto px-4 lg:px-8 max-w-[1200px] relative z-10">
-        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-12">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-6 sm:gap-8 lg:gap-12">
           {/* Zone 1: 3D Chat Icon */}
-          <div className="faq-element w-48 sm:w-56 lg:w-[32%] shrink-0 flex justify-center">
+          <div className="faq-element w-36 sm:w-48 lg:w-[32%] shrink-0 flex justify-center">
             <img
               ref={imageRef}
               src={chatImage}
               alt="FAQ 3D Chat"
-              className="w-full h-[150%] drop-shadow-xl"
+              className="w-full h-auto max-w-[200px] lg:max-w-none drop-shadow-xl"
             />
           </div>
 
           {/* Zone 2: Text Content */}
-          <div className="faq-element flex flex-col items-center lg:items-start text-center lg:text-left flex-1 min-w-[280px]">
-            <div className="mb-4 flex items-center gap-2 rounded-full border border-[#145eb5]/30 bg-[#145eb5]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] whitespace-nowrap">
+          <div className="faq-element flex flex-col items-center lg:items-start text-center lg:text-left flex-1 min-w-0 lg:min-w-[280px]">
+            <div className="mb-3 sm:mb-4 flex items-center gap-2 rounded-full border border-[#145eb5]/30 bg-[#145eb5]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] whitespace-nowrap">
               <span className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#145eb5]"></span>
               FREQUENTLY ASKED QUESTIONS
             </div>
 
-            <h2 className="mb-4 text-[36px] font-extrabold tracking-tight text-navy-900 lg:text-[44px]">
+            <h2 className="mb-3 sm:mb-4 text-3xl sm:text-[36px] font-extrabold tracking-tight text-navy-900 lg:text-[44px]">
               FAQ
             </h2>
 
-            <p className="max-w-[280px] text-[15px] font-medium leading-[1.6] text-muted-500">
+            <p className="max-w-[280px] text-[14px] sm:text-[15px] font-medium leading-[1.6] text-muted-500">
               Find answers to common questions about KMR LIVE.
             </p>
           </div>
 
           {/* Right Column (Accordion) */}
-          <div className="faq-accordion w-full lg:w-[50%] shrink-0 rounded-[24px] bg-white p-6 md:p-8 shadow-[0_12px_40px_rgb(0,0,0,0.06)] border border-navy-900/5">
+          <div className="faq-accordion w-full lg:w-[50%] shrink-0 rounded-2xl sm:rounded-[24px] bg-white p-4 sm:p-6 md:p-8 shadow-[0_12px_40px_rgb(0,0,0,0.06)] border border-navy-900/5">
             <div className="flex flex-col divide-y divide-gray-100">
               {FAQS.map((faq, index) => {
                 const isOpen = openIndex === index;

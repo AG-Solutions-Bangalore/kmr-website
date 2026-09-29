@@ -164,12 +164,14 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    overflow-x: clip;
   }
 
   body {
     @apply bg-white text-[var(--color-ink)] antialiased;
     font-family: var(--font-sans);
     text-rendering: optimizeLegibility;
+    overflow-x: clip;
   }
 
   ::selection {

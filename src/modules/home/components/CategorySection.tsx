@@ -114,7 +114,7 @@ export function CategorySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-gradient-to-b from-[#f5fafe] to-white py-16"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#f5fafe] to-white py-12 sm:py-16"
     >
       {/* Decorative Leaves - Flushed to corners with blur layering */}
       <img
@@ -135,16 +135,16 @@ export function CategorySection() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 max-w-[1300px]">
         {/* Header Row */}
-        <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+        <div className="mb-8 md:mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
           <div className="flex flex-col items-start">
-            <div className="category-header-element mb-4 flex items-center gap-2 rounded-full border border-emerald-200/50 bg-emerald-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-emerald-600">
+            <div className="category-header-element mb-3 sm:mb-4 flex items-center gap-2 rounded-full border border-emerald-200/50 bg-emerald-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-emerald-600">
               <span className="h-1.5 w-1.5 rounded-full bg-emerald-500"></span>
               OUR CATEGORIES
             </div>
-            <h2 className="category-header-element mb-3 text-3xl font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem]">
+            <h2 className="category-header-element mb-2 sm:mb-3 text-2xl sm:text-3xl lg:text-[2.2rem] font-extrabold tracking-tight text-navy-900">
               Explore Our Categories
             </h2>
-            <p className="category-header-element font-medium text-muted-500 text-[14px]">
+            <p className="category-header-element font-medium text-muted-500 text-[13px] sm:text-[14px]">
               Get detailed market information across a wide range of
               commodities.
             </p>
@@ -160,33 +160,33 @@ export function CategorySection() {
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
           {CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
-              className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-3 py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[140px]"
+              className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]"
             >
-              <div className="relative mb-2 flex h-[70px] w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
+              <div className="relative mb-2 flex h-[60px] sm:h-[70px] w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
                 <img
                   src={cat.image}
                   alt={cat.name}
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <h3 className="text-center text-[14px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
+              <h3 className="text-center text-[13px] sm:text-[14px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
                 {cat.name}
               </h3>
             </div>
           ))}
 
           {/* Special "View All" Card */}
-          <div className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-3 py-5 shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[140px]">
-            <div className="relative mb-3 flex w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1">
-              <div className="flex h-[56px] w-[56px] items-center justify-center rounded-full bg-blue-50 text-[#145eb5] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[#145eb5] group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/30">
-                <Plus strokeWidth={3} className="h-7 w-7" />
+          <div className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]">
+            <div className="relative mb-2 sm:mb-3 flex w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1">
+              <div className="flex h-12 w-12 sm:h-[56px] sm:w-[56px] items-center justify-center rounded-full bg-blue-50 text-[#145eb5] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[#145eb5] group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/30">
+                <Plus strokeWidth={3} className="h-6 w-6 sm:h-7 sm:w-7" />
               </div>
             </div>
-            <h3 className="text-center text-[13px] font-extrabold leading-tight text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
+            <h3 className="text-center text-[12px] sm:text-[13px] font-extrabold leading-tight text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
               View All
               <br />
               Categories

@@ -43,11 +43,11 @@ export function MarketTicker() {
   return (
     <div
       ref={containerRef}
-      className="container relative flex items-center overflow-hidden rounded-xl bg-navy-800 px-3 py-4 text-[13px] text-white shadow-2xl ring-1 ring-white/10 md:px-5"
+      className="container relative flex items-center overflow-hidden rounded-xl bg-navy-800 px-2.5 py-3 sm:px-3 sm:py-4 text-xs sm:text-[13px] text-white shadow-2xl ring-1 ring-white/10 md:px-5"
     >
       {/* Fixed Left Section */}
-      <div className="z-10 flex shrink-0 items-center gap-3 bg-navy-800 pr-2 md:pr-4 md:gap-4 relative">
-        <div className="flex items-center gap-1.5 rounded-full bg-red-600 px-2.5 py-0.5 text-[11px] font-bold tracking-wider text-white">
+      <div className="z-10 flex shrink-0 items-center gap-2 sm:gap-3 bg-navy-800 pr-2 md:pr-4 md:gap-4 relative">
+        <div className="flex items-center gap-1 sm:gap-1.5 rounded-full bg-red-600 px-2 sm:px-2.5 py-0.5 text-[10px] sm:text-[11px] font-bold tracking-wider text-white">
           <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-white" />
           LIVE
         </div>
@@ -66,7 +66,7 @@ export function MarketTicker() {
       <div className="flex flex-1 overflow-hidden pointer-events-none">
         <div
           ref={trackRef}
-          className="flex w-fit items-center gap-6 whitespace-nowrap pl-4"
+          className="flex w-fit items-center gap-4 sm:gap-6 whitespace-nowrap pl-2 sm:pl-4"
         >
           {[...TICKER_DATA, ...TICKER_DATA].map((item, i) => (
             <div key={i} className="flex items-center gap-2">
@@ -92,10 +92,10 @@ export function MarketTicker() {
       </div>
 
       {/* Right Action */}
-      <div className="z-10 ml-auto flex shrink-0 items-center pl-3 bg-navy-800 relative">
-        <div className="absolute left-0 top-0 bottom-0 w-8 bg-gradient-to-l from-navy-800 to-transparent -translate-x-full pointer-events-none" />
-        <button className="group flex h-[28px] w-[28px] items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
-          <ArrowRight className="h-3.5 w-3.5 text-white transition-transform group-hover:translate-x-0.5" />
+      <div className="z-10 ml-auto flex shrink-0 items-center pl-2 sm:pl-3 bg-navy-800 relative">
+        <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-navy-800 to-transparent -translate-x-full pointer-events-none" />
+        <button className="group flex h-[26px] w-[26px] sm:h-[28px] sm:w-[28px] items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+          <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white transition-transform group-hover:translate-x-0.5" />
         </button>
       </div>
     </div>

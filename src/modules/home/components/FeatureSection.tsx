@@ -98,7 +98,7 @@ export function FeatureSection() {
         {/* Pure white overlay on the left fading to transparent on the right */}
         <div className="absolute inset-0 bg-gradient-to-r from-white via-white/95 to-transparent w-full md:w-[70%]"></div>
         {/* Secondary subtle overlay for the whole width to ensure text readability */}
-        <div className="absolute inset-0 bg-white/30 md:hidden"></div>
+        <div className="absolute inset-0 bg-white/40 md:hidden"></div>
       </div>
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 max-w-[1300px]">
@@ -108,7 +108,7 @@ export function FeatureSection() {
             <span className="h-1.5 w-1.5 rounded-full bg-[#145eb5]"></span>
             FEATURES
           </div>
-          <h2 className="feature-header-element mb-2 text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2rem] leading-[1.2]">
+          <h2 className="feature-header-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2rem] leading-[1.2]">
             Everything You Need
             <br className="hidden sm:block" />
             for Better Market Decisions

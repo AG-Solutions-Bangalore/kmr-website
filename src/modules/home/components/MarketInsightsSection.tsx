@@ -121,7 +121,7 @@ export function MarketInsightsSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-16 overflow-hidden bg-gradient-to-b from-[#f0f7ff] to-white"
+      className="relative w-full py-12 sm:py-16 overflow-hidden bg-gradient-to-b from-[#f0f7ff] to-white"
     >
       {/* Decorative Leaves */}
       {/* User mentioned "bottom left", but arrow points right. I'll add subtle leaves to both sides for balance */}
@@ -138,16 +138,16 @@ export function MarketInsightsSection() {
 
       <div className="container relative z-10 mx-auto px-4 md:px-8 max-w-[1300px]">
         {/* Header Row */}
-        <div className="mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end lg:mb-14">
+        <div className="mb-8 sm:mb-10 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end lg:mb-14">
           <div className="flex flex-col items-start max-w-2xl">
-            <div className="insight-header-element mb-4 flex items-center gap-2 rounded-full border border-blue-200/50 bg-blue-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5]">
+            <div className="insight-header-element mb-3 sm:mb-4 flex items-center gap-2 rounded-full border border-blue-200/50 bg-blue-500/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5]">
               <span className="h-1.5 w-1.5 rounded-full bg-[#145eb5]"></span>
               MARKET INSIGHTS
             </div>
-            <h2 className="insight-header-element mb-3 text-3xl font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem]">
+            <h2 className="insight-header-element mb-2 sm:mb-3 text-2xl sm:text-3xl font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem]">
               Latest Market Insights
             </h2>
-            <p className="insight-header-element font-medium text-muted-500 text-[14px]">
+            <p className="insight-header-element font-medium text-muted-500 text-[13px] sm:text-[14px]">
               Stay informed with expert analysis, news and trends from the
               commodity market.
             </p>
@@ -179,7 +179,7 @@ export function MarketInsightsSection() {
               </div>
 
               {/* Content Container */}
-              <div className="flex flex-1 flex-col p-6">
+              <div className="flex flex-1 flex-col p-5 sm:p-6">
                 <div className="mb-4 flex items-center justify-between">
                   <span className="rounded-full bg-teal-50 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-teal-600 border border-teal-100">
                     {insight.tag}
