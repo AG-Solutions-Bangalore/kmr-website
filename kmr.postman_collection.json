@@ -95,52 +95,7 @@
       },
       "response": []
     },
-    {
-      "name": "getFAQBySlug",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://kmrlive.in/crmapi/public/api/getFAQBySlug/home",
-          "protocol": "https",
-          "host": [
-            "kmrlive",
-            "in"
-          ],
-          "path": [
-            "crmapi",
-            "public",
-            "api",
-            "getFAQBySlug",
-            "home"
-          ]
-        }
-      },
-      "response": []
-    },
-    {
-      "name": "getTestimonial",
-      "request": {
-        "method": "GET",
-        "header": [],
-        "url": {
-          "raw": "https://kmrlive.in/crmapi/public/api/getTestimonial/home",
-          "protocol": "https",
-          "host": [
-            "kmrlive",
-            "in"
-          ],
-          "path": [
-            "crmapi",
-            "public",
-            "api",
-            "getTestimonial",
-            "home"
-          ]
-        }
-      },
-      "response": []
-    },
+
     {
       "name": "getClient",
       "request": {
@@ -209,3 +164,55 @@
     }
   ]
 }
+
+
+
+
+
+
+    {
+      "name": "getFAQBySlug",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getFAQBySlug/home",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getFAQBySlug",
+            "home"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getTestimonial",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getTestimonial/home",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getTestimonial",
+            "home"
+          ]
+        }
+      },
+      "response": []
+    },

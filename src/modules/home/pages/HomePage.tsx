@@ -4,7 +4,6 @@ import { CategorySection } from "../components/CategorySection";
 import { FeatureSection } from "../components/FeatureSection";
 import { MarketInsightsSection } from "../components/MarketInsightsSection";
 import { AppPromoSection } from "../components/AppPromoSection";
-import { FaqSection } from "../components/FaqSection";
 import ContactSection from "../components/ContactSection";
 
 export function HomePage() {
@@ -16,7 +15,7 @@ export function HomePage() {
       <FeatureSection />
       <MarketInsightsSection />
       <AppPromoSection />
-      <FaqSection />
+      {/* FAQ now renders globally via MainLayout (dynamic API + home fallback). */}
       <ContactSection />
     </>
   );

@@ -5,6 +5,8 @@ import axios, { type AxiosError, type AxiosInstance, type AxiosResponse } from '
  * Endpoints used:
  *  - POST /createEnquiry
  *  - POST /createNewsletter
+ *  - GET  /getTestimonial/:slug
+ *  - GET  /getFAQBySlug/:slug
  */
 export const API_BASE_URL = 'https://kmrlive.in/crmapi/public/api';
 
