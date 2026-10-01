@@ -1,7 +1,10 @@
 import React from "react";
+import { Link } from "react-router";
+import { BellRing } from "lucide-react";
 import logo from "../../../assets/common/logo.png";
 import appStoreIcon from "../../../assets/icons/App_Store_(iOS).svg";
 import playStoreIcon from "../../../assets/icons/playStore-logo.svg";
+import { NewsletterForm } from "../../../modules/contact/components/NewsletterForm";
 
 const FacebookIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.469h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.469h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>);
 const TwitterIcon = () => (<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 24 24"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>);
@@ -36,6 +39,22 @@ const Footer: React.FC = () => {
       </div>
 
       <div className="container relative z-10">
+        {/* Newsletter strip */}
+        <div className="mb-10 flex flex-col gap-5 border-b border-white/10 pb-8 lg:flex-row lg:items-center lg:justify-between">
+          <div className="flex items-start gap-3">
+            <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-white/10 text-white">
+              <BellRing className="h-5 w-5" />
+            </span>
+            <div>
+              <h4 className="text-[16px] font-bold text-white">Stay updated with daily market prices</h4>
+              <p className="mt-1 max-w-md text-[13px] font-medium leading-relaxed text-blue-200">
+                Join 10,000+ traders getting price trends and insights every morning. No spam, unsubscribe anytime.
+              </p>
+            </div>
+          </div>
+          <NewsletterForm variant="dark" className="w-full lg:max-w-md" />
+        </div>
+
         <div className="grid grid-cols-1 min-[420px]:grid-cols-2 lg:grid-cols-12 gap-8 lg:gap-8">
           
           {/* Column 1: Brand & About (Takes full width on small screens, 4 cols on lg) */}
@@ -71,11 +90,18 @@ const Footer: React.FC = () => {
           <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
             <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
             <ul className="flex flex-col gap-1.5">
-              {['Home', 'About Us', 'Category', 'Features', 'FAQ', 'Contact Us'].map((link) => (
-                <li key={link}>
-                  <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
-                    {link}
-                  </a>
+              {[
+                { label: 'Home', to: '/' },
+                { label: 'About Us', to: '/about' },
+                { label: 'Contact Us', to: '/contact' },
+                { label: 'Category', to: '/#category' },
+                { label: 'Features', to: '/#features' },
+                { label: 'FAQ', to: '/#faq' },
+              ].map((link) => (
+                <li key={link.label}>
+                  <Link to={link.to} className="text-[14px] text-blue-200 hover:text-white transition-colors">
+                    {link.label}
+                  </Link>
                 </li>
               ))}
             </ul>

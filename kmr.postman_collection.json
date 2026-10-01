@@ -1,0 +1,211 @@
+{
+  "info": {
+    "_postman_id": "5a3386ba-8fe9-4673-b0d9-b2dc64980e26",
+    "name": "kmr",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "37493424"
+  },
+  "item": [
+    {
+      "name": "getFrontBlogs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getFrontBlogs",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getFrontBlogs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFeaturedBlogs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getFeaturedBlogs",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getFeaturedBlogs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getBlogs",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getBlogs",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getBlogs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getBlogsBySlug",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getBlogsBySlug/test",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getBlogsBySlug",
+            "test"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getFAQBySlug",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getFAQBySlug/home",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getFAQBySlug",
+            "home"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getTestimonial",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getTestimonial/home",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getTestimonial",
+            "home"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getClient",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getClient",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getClient"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getSitemap",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getSitemap",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getSitemap"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "getCategory",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "https://kmrlive.in/crmapi/public/api/getCategory",
+          "protocol": "https",
+          "host": [
+            "kmrlive",
+            "in"
+          ],
+          "path": [
+            "crmapi",
+            "public",
+            "api",
+            "getCategory"
+          ]
+        }
+      },
+      "response": []
+    }
+  ]
+}

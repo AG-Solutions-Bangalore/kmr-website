@@ -14,7 +14,7 @@ const NAV_LINKS = [
   { label: "Category", path: "#category" },
   { label: "Features", path: "#features" },
   { label: "FAQ", path: "#faq" },
-  { label: "Contact Us", path: "#contact" },
+  { label: "Contact Us", path: "/contact" },
 ];
 
 function Navbar() {
