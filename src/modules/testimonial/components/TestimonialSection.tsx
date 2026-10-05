@@ -1,5 +1,5 @@
-import { useEffect, useRef, useState } from 'react';
-import { ChevronLeft, ChevronRight, Quote, Star } from 'lucide-react';
+import { useRef } from 'react';
+import { BadgeCheck, Quote, Star } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
@@ -18,7 +18,7 @@ interface TestimonialSectionProps {
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center justify-center gap-1" aria-label={`${rating} out of 5 stars`}>
+    <div className="flex items-center gap-1" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
@@ -36,7 +36,7 @@ function Avatar({ testimonial }: { testimonial: Testimonial }) {
         src={testimonial.image}
         alt={testimonial.name}
         loading="lazy"
-        className="h-12 w-12 rounded-full object-cover ring-2 ring-primary-100"
+        className="h-12 w-12 shrink-0 rounded-full object-cover ring-2 ring-primary-100"
         onError={(e) => {
           e.currentTarget.style.display = 'none';
         }}
@@ -50,16 +50,50 @@ function Avatar({ testimonial }: { testimonial: Testimonial }) {
     .join('')
     .toUpperCase();
   return (
-    <span className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-600 text-[15px] font-extrabold text-white">
+    <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-primary-600 text-[15px] font-extrabold text-white">
       {initials || 'K'}
     </span>
   );
 }
 
+function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
+  return (
+    <figure className="relative flex w-[85vw] max-w-[420px] shrink-0 flex-col rounded-2xl border border-gray-100 bg-white p-5 text-left shadow-[0_12px_30px_rgb(0,0,0,0.08)] sm:p-6">
+      <span className="absolute right-5 top-4 flex h-11 w-11 items-center justify-center rounded-full bg-primary-600 text-white">
+        <Quote className="h-5 w-5" fill="currentColor" />
+      </span>
+      <div className="flex flex-col pt-7">
+        <Stars rating={testimonial.rating} />
+        <blockquote className="mt-3 line-clamp-3 text-[14px] font-medium leading-[1.7] text-navy-800 sm:text-[15px]">
+          &ldquo;{testimonial.message}&rdquo;
+        </blockquote>
+        <figcaption className="mt-4 flex items-center gap-3 border-t border-gray-100 pt-4">
+          <Avatar testimonial={testimonial} />
+          <div className="min-w-0 text-left">
+            <p className="flex items-center gap-1.5 truncate text-[14px] font-extrabold text-navy-900">
+              <span className="truncate">{testimonial.name}</span>
+              <BadgeCheck
+                className="h-4 w-4 shrink-0 text-success-600"
+                aria-label="Verified customer"
+              />
+            </p>
+            {testimonial.role && (
+              <p className="truncate text-[12px] font-medium text-muted-500">
+                {testimonial.role}
+              </p>
+            )}
+          </div>
+        </figcaption>
+      </div>
+    </figure>
+  );
+}
+
 /**
  * Global testimonial section — mount once (e.g. in MainLayout) and it shows
- * on every page. Renders NOTHING while loading, on error, or when the API
- * returns no rows for the current page slug.
+ * on every page. Infinite right-to-left marquee with edge fade overlays.
+ * Renders NOTHING while loading, on error, or when the API returns no rows
+ * for the current page slug.
  */
 export function TestimonialSection({
   slug,
@@ -72,23 +106,12 @@ export function TestimonialSection({
   const { data } = useTestimonials(activeSlug);
 
   const testimonials = data ?? [];
-  const [index, setIndex] = useState(0);
-  const [paused, setPaused] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
 
   const hasData = testimonials.length > 0;
-  // Derived during render — stays in range even when the slug data changes.
-  const safeIndex = hasData ? index % testimonials.length : 0;
-  const active = hasData ? testimonials[safeIndex] : undefined;
-
-  // Autoplay — pauses on hover.
-  useEffect(() => {
-    if (!hasData || paused || testimonials.length < 2) return;
-    const timer = setInterval(() => {
-      setIndex((prev) => (prev + 1) % testimonials.length);
-    }, 6000);
-    return () => clearInterval(timer);
-  }, [hasData, paused, testimonials.length]);
+  const isMarquee = testimonials.length > 1;
+  // Two identical halves → seamless -50% loop. Speed scales with card count.
+  const loop = isMarquee ? [...testimonials, ...testimonials] : testimonials;
 
   useGSAP(
     () => {
@@ -114,11 +137,7 @@ export function TestimonialSection({
   );
 
   // No data (loading / error / empty) → render nothing.
-  if (!active) return null;
-
-  const goTo = (next: number) => {
-    setIndex((next + testimonials.length) % testimonials.length);
-  };
+  if (!hasData) return null;
 
   return (
     <section ref={sectionRef} className="relative w-full overflow-hidden bg-mist-50 py-12 sm:py-16">
@@ -135,91 +154,41 @@ export function TestimonialSection({
             {subtitle}
           </p>
         </div>
+      </div>
 
-        <div
-          className="testimonial-element relative mx-auto mt-8 max-w-3xl"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-        >
-          <div className="relative overflow-hidden rounded-2xl border border-gray-100 bg-white p-6 shadow-[0_20px_50px_rgb(0,0,0,0.08)] sm:rounded-3xl sm:p-10">
-            <span className="absolute -top-1 left-6 flex h-11 w-11 items-center justify-center rounded-full bg-primary-600 text-white shadow-lg sm:left-10">
-              <Quote className="h-5 w-5" fill="currentColor" />
-            </span>
-
-            <div key={active.id} className="flex flex-col items-center pt-6 text-center">
-              <Stars rating={active.rating} />
-              <blockquote className="mt-4 text-[15px] font-medium leading-[1.7] text-navy-800 sm:text-[17px]">
-                &ldquo;{active.message}&rdquo;
-              </blockquote>
-              <div className="mt-6 flex items-center gap-3">
-                <Avatar testimonial={active} />
-                <div className="text-left">
-                  <p className="text-[14px] font-extrabold text-navy-900">{active.name}</p>
-                  {active.role && (
-                    <p className="text-[12px] font-medium text-muted-500">{active.role}</p>
-                  )}
-                </div>
-              </div>
-            </div>
+      <div className="testimonial-element group relative mt-6 sm:mt-8">
+        {/* py gives the quote badge + card shadow room so nothing clips top/bottom */}
+        <div className="overflow-x-clip py-6">
+          <div
+            className={isMarquee ? 'testimonial-marquee flex w-max gap-5 pr-5 sm:gap-6 sm:pr-6' : 'mx-auto flex w-max max-w-full gap-5 px-4 sm:gap-6'}
+            style={
+              isMarquee
+                ? { animationDuration: `${Math.max(25, testimonials.length * 9)}s` }
+                : undefined
+            }
+          >
+            {loop.map((item, i) => (
+              <TestimonialCard
+                key={`${item.id}-${i}`}
+                testimonial={item}
+              />
+            ))}
           </div>
-
-          {testimonials.length > 1 && (
-            <>
-              <button
-                type="button"
-                aria-label="Previous testimonial"
-                onClick={() => goTo(safeIndex - 1)}
-                className="absolute top-1/2 -left-2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-navy-800 shadow-md transition-all hover:border-primary-600 hover:text-primary-600 sm:flex lg:-left-14"
-              >
-                <ChevronLeft className="h-5 w-5" />
-              </button>
-              <button
-                type="button"
-                aria-label="Next testimonial"
-                onClick={() => goTo(safeIndex + 1)}
-                className="absolute top-1/2 -right-2 hidden h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full border border-gray-200 bg-white text-navy-800 shadow-md transition-all hover:border-primary-600 hover:text-primary-600 sm:flex lg:-right-14"
-              >
-                <ChevronRight className="h-5 w-5" />
-              </button>
-
-              <div className="mt-5 flex items-center justify-center gap-2">
-                {testimonials.map((item, i) => (
-                  <button
-                    key={item.id}
-                    type="button"
-                    aria-label={`Go to testimonial ${i + 1}`}
-                    onClick={() => goTo(i)}
-                    className={`h-2 rounded-full transition-all ${
-                      i === safeIndex
-                        ? 'w-7 bg-primary-600'
-                        : 'w-2 bg-gray-300 hover:bg-gray-400'
-                    }`}
-                  />
-                ))}
-              </div>
-
-              {/* Mobile arrows */}
-              <div className="mt-4 flex items-center justify-center gap-3 sm:hidden">
-                <button
-                  type="button"
-                  aria-label="Previous testimonial"
-                  onClick={() => goTo(safeIndex - 1)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-navy-800 shadow-md"
-                >
-                  <ChevronLeft className="h-5 w-5" />
-                </button>
-                <button
-                  type="button"
-                  aria-label="Next testimonial"
-                  onClick={() => goTo(safeIndex + 1)}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-200 bg-white text-navy-800 shadow-md"
-                >
-                  <ChevronRight className="h-5 w-5" />
-                </button>
-              </div>
-            </>
-          )}
         </div>
+
+        {/* Left + right fade overlays — cards slide underneath */}
+        {isMarquee && (
+          <>
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 left-0 z-10 w-12 bg-gradient-to-r from-mist-50 to-transparent sm:w-28"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-y-0 right-0 z-10 w-12 bg-gradient-to-l from-mist-50 to-transparent sm:w-28"
+            />
+          </>
+        )}
       </div>
     </section>
   );

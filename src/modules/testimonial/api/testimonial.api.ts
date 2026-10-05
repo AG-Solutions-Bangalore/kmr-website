@@ -41,6 +41,7 @@ export function normalizeTestimonialItem(item: TestimonialApiItem, index: number
   const message = firstString(
     item.message,
     item.testimonial_message,
+    item.testimonial_description,
     item.description,
     item.review,
     item.content,
@@ -58,7 +59,7 @@ export function normalizeTestimonialItem(item: TestimonialApiItem, index: number
 
   return {
     id: String(item.id ?? `testimonial-${index}`),
-    name: firstString(item.name, item.testimonial_name, item.client_name, item.title, item.author) || 'Happy Customer',
+    name: firstString(item.name, item.testimonial_name, item.client_name, item.testimonial_client_name, item.title, item.author) || 'Happy Customer',
     role: firstString(
       item.designation,
       item.testimonial_designation,
@@ -68,7 +69,7 @@ export function normalizeTestimonialItem(item: TestimonialApiItem, index: number
     ),
     message,
     image: resolveTestimonialImage(rawImage),
-    rating: parseRating(item.rating, item.star, item.stars),
+    rating: parseRating(item.rating, item.testimonial_rating, item.star, item.stars),
   };
 }
 

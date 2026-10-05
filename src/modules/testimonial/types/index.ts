@@ -9,6 +9,8 @@ export interface TestimonialApiItem {
   name?: string;
   testimonial_name?: string;
   client_name?: string;
+  /** Field name used by the POST /testimonial admin API + getTestimonial rows. */
+  testimonial_client_name?: string;
   title?: string;
   author?: string;
   designation?: string;
@@ -19,6 +21,8 @@ export interface TestimonialApiItem {
   message?: string;
   testimonial_message?: string;
   description?: string;
+  /** Field name used by the POST /testimonial admin API + getTestimonial rows. */
+  testimonial_description?: string;
   review?: string;
   content?: string;
   quote?: string;
@@ -28,6 +32,8 @@ export interface TestimonialApiItem {
   avatar?: string;
   profile_image?: string;
   rating?: number | string;
+  /** Field name used by the POST /testimonial admin API + getTestimonial rows. */
+  testimonial_rating?: number | string;
   star?: number | string;
   stars?: number | string;
   [key: string]: unknown;

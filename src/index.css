@@ -189,6 +189,33 @@
   .container {
     @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-28;
   }
+
+  /* Infinite right-to-left marquee (e.g. testimonials). Track holds two
+     identical halves; translating -50% loops seamlessly. Pauses on hover
+     via `group-hover:[animation-play-state:paused]` on the track. */
+  .testimonial-marquee {
+    animation-name: testimonial-marquee;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+  }
+  .group:hover .testimonial-marquee {
+    animation-play-state: paused;
+  }
+}
+
+@keyframes testimonial-marquee {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .testimonial-marquee {
+    animation: none;
+  }
 }
 
 
