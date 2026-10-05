@@ -15,7 +15,7 @@ interface FeaturedBlogsSectionProps {
 }
 
 /**
- * Featured blogs — GET /getFeaturedBlogs.
+ * Featured blogs — GET /getFeaturedBlogs ONLY.
  * Hero layout: first post large on the left, the rest as a side list.
  * Renders NOTHING while loading, on error, or when the API returns no rows.
  */

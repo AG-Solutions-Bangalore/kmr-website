@@ -1,10 +1,10 @@
-import { useRef } from 'react';
+import { useMemo, useRef } from 'react';
 import { Link } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import { useFrontBlogs } from '../hooks/useBlogs';
+import { useFeaturedBlogs, useFrontBlogs } from '../hooks/useBlogs';
 import { BlogCard } from './BlogCard';
 import leaf1 from '@/assets/category/leaf1.png';
 import leaf3 from '@/assets/category/leaf3.png';
@@ -20,8 +20,9 @@ interface FrontBlogsSectionProps {
 }
 
 /**
- * Front blogs — GET /getFrontBlogs.
- * Drop-in dynamic replacement for the static Market Insights grid on home.
+ * Front blogs — GET /getFrontBlogs ONLY.
+ * Stories already shown in the Featured section (GET /getFeaturedBlogs)
+ * are excluded here so each blog appears once on home.
  * Renders NOTHING while loading, on error, or when the API returns no rows.
  */
 export function FrontBlogsSection({
@@ -31,9 +32,17 @@ export function FrontBlogsSection({
   limit = 3,
 }: FrontBlogsSectionProps) {
   const { data } = useFrontBlogs();
+  const { data: featured } = useFeaturedBlogs();
   const sectionRef = useRef<HTMLElement>(null);
 
-  const blogs = (data ?? []).slice(0, limit);
+  // Strictly front-API data: drop any story already rendered as featured.
+  const featuredSlugs = useMemo(
+    () => new Set((featured ?? []).map((blog) => blog.slug)),
+    [featured],
+  );
+  const blogs = (data ?? [])
+    .filter((blog) => !featuredSlugs.has(blog.slug))
+    .slice(0, limit);
   const hasData = blogs.length > 0;
 
   useGSAP(
