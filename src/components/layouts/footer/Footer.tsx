@@ -93,9 +93,9 @@ const Footer: React.FC = () => {
               {[
                 { label: 'Home', to: '/' },
                 { label: 'About Us', to: '/about' },
+                { label: 'Blogs', to: '/blog' },
                 { label: 'Contact Us', to: '/contact' },
                 { label: 'Category', to: '/#category' },
-                { label: 'Features', to: '/#features' },
                 { label: 'FAQ', to: '/#faq' },
               ].map((link) => (
                 <li key={link.label}>

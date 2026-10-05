@@ -12,7 +12,7 @@ const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
   { label: "Category", path: "#category" },
-  { label: "Features", path: "#features" },
+  { label: "Blogs", path: "/blog" },
   { label: "FAQ", path: "#faq" },
   { label: "Contact Us", path: "/contact" },
 ];
@@ -77,7 +77,7 @@ function Navbar() {
           {NAV_LINKS.map((link) => {
             const isActive =
               location.pathname === link.path ||
-              (location.pathname === "/" && link.path === "/");
+              (link.path === "/blog" && location.pathname.startsWith("/blog"));
 
             return (
               <Link
@@ -133,7 +133,7 @@ function Navbar() {
           {NAV_LINKS.map((link) => {
             const isActive =
               location.pathname === link.path ||
-              (location.pathname === "/" && link.path === "/");
+              (link.path === "/blog" && location.pathname.startsWith("/blog"));
 
             return (
               <Link
