@@ -11,7 +11,6 @@ gsap.registerPlugin(useGSAP);
 const NAV_LINKS = [
   { label: "Home", path: "/" },
   { label: "About Us", path: "/about" },
-  { label: "Category", path: "#category" },
   { label: "Blogs", path: "/blog" },
   { label: "FAQ", path: "#faq" },
   { label: "Contact Us", path: "/contact" },
