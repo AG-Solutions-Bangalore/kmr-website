@@ -9,32 +9,19 @@ import { useRef } from "react";
 import leaf1 from "@/assets/category/leaf1.png";
 import leaf2 from "@/assets/category/laef2.png";
 import leaf3 from "@/assets/category/leaf3.png";
-import edibleOil from "@/assets/category/edible_oil_image.png";
-import coconutOil from "@/assets/category/coconut_oil_image.png";
-import pulses from "@/assets/category/pulses_image.png";
-import gnSeed from "@/assets/category/GN_Seed_image.png";
-import ricePaddy from "@/assets/category/richAndpaddy_image.png";
-import kirana from "@/assets/category/kirana_image.png";
-import spices from "@/assets/category/spices_image.png";
-import dryFruits from "@/assets/category/dryFruits_image.png";
-import arecanut from "@/assets/category/Arcanut_image.png";
+import { FALLBACK_CATEGORIES, useCategories } from "@/modules/category";
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CATEGORIES = [
-  { name: "Edible Oil", image: edibleOil },
-  { name: "Coconut Oil", image: coconutOil },
-  { name: "Pulses", image: pulses },
-  { name: "GN Seed", image: gnSeed },
-  { name: "Rice & Paddy", image: ricePaddy },
-  { name: "Kirana", image: kirana },
-  { name: "Spices", image: spices },
-  { name: "Dry Fruits", image: dryFruits },
-  { name: "Arecanut", image: arecanut },
-];
-
 export function CategorySection() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // Real data wins when the API returns rows; otherwise the static fallback
+  // (loading / error / empty) keeps the section exactly as before.
+  const { data } = useCategories();
+  const apiCategories = data ?? [];
+  const CATEGORIES =
+    apiCategories.length > 0 ? apiCategories : FALLBACK_CATEGORIES;
 
   useGSAP(
     () => {
@@ -108,7 +95,7 @@ export function CategorySection() {
         "-=1.2",
       );
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [CATEGORIES.length] },
   );
 
   return (

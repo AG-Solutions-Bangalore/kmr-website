@@ -8,10 +8,14 @@ export interface FaqApiItem {
   id?: number | string;
   question?: string;
   faq_question?: string;
+  /** Field name used by the POST /faq admin API + getFAQBySlug rows. */
+  faq_que?: string;
   title?: string;
   faq_title?: string;
   answer?: string;
   faq_answer?: string;
+  /** Field name used by the POST /faq admin API + getFAQBySlug rows. */
+  faq_ans?: string;
   description?: string;
   content?: string;
   [key: string]: unknown;

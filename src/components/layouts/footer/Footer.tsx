@@ -95,7 +95,6 @@ const Footer: React.FC = () => {
                 { label: 'About Us', to: '/about' },
                 { label: 'Blogs', to: '/blog' },
                 { label: 'Contact Us', to: '/contact' },
-                { label: 'FAQ', to: '/#faq' },
               ].map((link) => (
                 <li key={link.label}>
                   <Link to={link.to} className="text-[14px] text-blue-200 hover:text-white transition-colors">

@@ -4,6 +4,8 @@ import type {
   BlogApiItem,
   BlogDetail,
   BlogDetailApiItem,
+  BlogFaq,
+  BlogFaqApiItem,
   BlogFeaturedMini,
   BlogImageUrlEntry,
   GetBlogBySlugResponse,
@@ -178,6 +180,36 @@ export async function getBlogs(): Promise<Blog[]> {
 }
 
 /**
+ * Normalize one raw FAQ row from the detail response into UI-ready shape.
+ * Accepts both the POST /faq field names (`faq_que` / `faq_ans`) and the
+ * GET /getFAQBySlug variants. Returns null when unusable.
+ */
+export function normalizeBlogFaqItem(
+  item: BlogFaqApiItem,
+  index: number,
+): BlogFaq | null {
+  const question = firstString(
+    item.faq_que,
+    item.question,
+    item.faq_question,
+    item.title,
+  );
+  const answer = firstString(
+    item.faq_ans,
+    item.answer,
+    item.faq_answer,
+    item.description,
+    item.content,
+  );
+  if (!question || !answer) return null;
+  return {
+    id: String(item.id ?? `blog-faq-${index}`),
+    question,
+    answer,
+  };
+}
+
+/**
  * GET /getBlogsBySlug/:slug — single blog detail with prev/next + featured sidebar.
  * Returns `null` when the slug has no row (API returns `{ data: null }`).
  */
@@ -197,6 +229,12 @@ export async function getBlogBySlug(slug: string): Promise<BlogDetail | null> {
         .filter((item) => item.slug !== main.slug)
     : [];
 
+  const faqs = Array.isArray(data.faq)
+    ? data.faq
+        .map((item, index) => normalizeBlogFaqItem(item, index))
+        .filter((item): item is BlogFaq => item !== null)
+    : [];
+
   return {
     ...main,
     previous:
@@ -208,6 +246,7 @@ export async function getBlogBySlug(slug: string): Promise<BlogDetail | null> {
         ? { slug: data.next.blog_slug, title: data.next.blog_title }
         : null,
     featured,
+    faqs,
   };
 }
 

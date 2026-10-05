@@ -10,8 +10,20 @@ function firstString(...values: unknown[]): string {
 
 /** Normalize one raw API item into UI-ready shape. Returns null when unusable. */
 export function normalizeFaqItem(item: FaqApiItem, index: number): Faq | null {
-  const question = firstString(item.question, item.faq_question, item.title, item.faq_title);
-  const answer = firstString(item.answer, item.faq_answer, item.description, item.content);
+  const question = firstString(
+    item.question,
+    item.faq_question,
+    item.faq_que,
+    item.title,
+    item.faq_title,
+  );
+  const answer = firstString(
+    item.answer,
+    item.faq_answer,
+    item.faq_ans,
+    item.description,
+    item.content,
+  );
   if (!question || !answer) return null;
   return {
     id: String(item.id ?? `faq-${index}`),

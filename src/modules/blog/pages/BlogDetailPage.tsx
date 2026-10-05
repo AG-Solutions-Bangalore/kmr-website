@@ -6,9 +6,11 @@ import {
   CalendarDays,
   Check,
   ChevronRight,
+  ChevronUp,
   Clock,
   Link2,
   Newspaper,
+  Plus,
 } from 'lucide-react';
 import { useBlogBySlug } from '../hooks/useBlogs';
 import { BlogCard } from '../components/BlogCard';
@@ -19,6 +21,7 @@ export function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: blog, isLoading, isError } = useBlogBySlug(slug);
   const [copied, setCopied] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   const copyLink = async () => {
     try {
@@ -234,6 +237,57 @@ export function BlogDetailPage() {
               )}
             </div>
           </div>
+
+          {/* Per-blog FAQs (detail response `faq` array) — renders only when present. */}
+          {blog.faqs.length > 0 && (
+            <div className="mt-10 rounded-3xl bg-white p-5 ring-1 ring-navy-900/10 sm:p-8">
+              <div className="mb-2 flex w-fit items-center gap-2 rounded-full border border-primary-600/30 bg-primary-600/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-600">
+                <span className="h-1.5 w-1.5 rounded-full bg-primary-600" />
+                FAQs
+              </div>
+              <h2 className="text-xl font-extrabold tracking-tight text-navy-900 sm:text-2xl">
+                Frequently asked questions
+              </h2>
+              <div className="mt-4 flex flex-col divide-y divide-gray-100">
+                {blog.faqs.map((faq, index) => {
+                  const isOpen = openFaqIndex === index;
+                  return (
+                    <div key={faq.id} className="py-4 first:pt-2 last:pb-0">
+                      <button
+                        type="button"
+                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                        className="group flex w-full items-center justify-between gap-4 text-left outline-none"
+                      >
+                        <span
+                          className={`text-[15px] font-bold transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+                        >
+                          {faq.question}
+                        </span>
+                        <span
+                          className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+                        >
+                          {isOpen ? (
+                            <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
+                          ) : (
+                            <Plus className="h-5 w-5" strokeWidth={2.5} />
+                          )}
+                        </span>
+                      </button>
+                      <div
+                        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'mt-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                      >
+                        <div className="overflow-hidden">
+                          <p className="pb-1 pr-8 text-[14px] font-medium leading-relaxed text-muted-500">
+                            {faq.answer}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
 
           {/* Prev / Next */}
           {(blog.previous || blog.next) && (

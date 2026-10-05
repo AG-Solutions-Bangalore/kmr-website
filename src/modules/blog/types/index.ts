@@ -71,6 +71,21 @@ export interface BlogFeaturedMini {
   [key: string]: unknown;
 }
 
+/** Raw FAQ row inside the getBlogsBySlug detail response (kept permissive). */
+export interface BlogFaqApiItem {
+  id?: number | string;
+  faq_que?: string;
+  faq_ans?: string;
+  faq_question?: string;
+  faq_answer?: string;
+  question?: string;
+  answer?: string;
+  title?: string;
+  content?: string;
+  description?: string;
+  [key: string]: unknown;
+}
+
 /** Raw detail response shape. */
 export interface GetBlogBySlugResponse {
   data?: BlogDetailApiItem | null;
@@ -78,7 +93,7 @@ export interface GetBlogBySlugResponse {
   previous?: BlogSlugNav | null;
   next?: BlogSlugNav | null;
   featured?: BlogFeaturedMini[] | null;
-  faq?: unknown[];
+  faq?: BlogFaqApiItem[] | null;
   status?: boolean | number | string;
   success?: boolean;
   message?: string;
@@ -103,9 +118,18 @@ export interface Blog {
   isFeatured: boolean;
 }
 
+/** Normalized per-blog FAQ shown on the detail page. */
+export interface BlogFaq {
+  id: string;
+  question: string;
+  answer: string;
+}
+
 /** Normalized blog detail with prev/next + sidebar data. */
 export interface BlogDetail extends Blog {
   previous: { slug: string; title: string } | null;
   next: { slug: string; title: string } | null;
   featured: Blog[];
+  /** Per-blog FAQs from the detail response (`faq` array). */
+  faqs: BlogFaq[];
 }
