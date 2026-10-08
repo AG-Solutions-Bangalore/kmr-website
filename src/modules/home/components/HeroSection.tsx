@@ -103,13 +103,13 @@ function HeroSection() {
 
           {/* CTA buttons */}
           <div className="hero-item mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
-            <Button size="lg" asChild className="group w-full sm:w-auto justify-center">
+            <Button size="lg" asChild className="group rounded-full w-full sm:w-auto justify-center">
               <a href="#categories">
                 Explore Categories
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
               </a>
             </Button>
-            <Button size="lg" variant="outline" asChild className="group w-full sm:w-auto justify-center">
+            <Button size="lg" variant="outline" asChild className="group rounded-full w-full sm:w-auto justify-center">
               <a href="#app">
                 Download App
                 <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />
