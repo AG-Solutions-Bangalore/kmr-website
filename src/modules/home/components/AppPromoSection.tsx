@@ -1,7 +1,11 @@
-import leaf4 from "@/assets/category/leaf4.webp";
-import appBanner from "@/assets/home/kmr_live_app_banner.webp";
-import appStoreIcon from "@/assets/icons/App_Store_(iOS).svg";
-import playStoreIcon from "@/assets/icons/playStore-logo.svg";
+import { webImage } from "@/lib/web-images";
+
+// App banner served from `web_images/` (same folder structure as local).
+const appBanner = webImage("home/kmr_live_app_banner.webp");
+
+// Store badges served from `web_images/` (same filenames as local).
+const appStoreIcon = webImage("icons/App_Store_(iOS).svg");
+const playStoreIcon = webImage("icons/playStore-logo.svg");
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +13,9 @@ import { CheckCircle2 } from "lucide-react";
 import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Remote decorative asset (web_images/) — banner stays local for LCP.
+const leaf4 = webImage("category/leaf4.webp");
 
 const BULLETS = [
   "Live commodity prices",
@@ -106,6 +113,8 @@ export function AppPromoSection() {
         <img
           src={leaf4}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="promo-leaf absolute -left-12 bottom-0 h-auto w-32 md:w-48 lg:w-56 object-contain mix-blend-multiply pointer-events-none blur-[0.5px]"
         />
       </div>

@@ -1,13 +1,15 @@
-import edibleOil from '@/assets/category/edible_oil_image.webp';
-import coconutOil from '@/assets/category/coconut_oil_image.webp';
-import pulses from '@/assets/category/pulses_image.webp';
-import gnSeed from '@/assets/category/GN_Seed_image.webp';
-import ricePaddy from '@/assets/category/richAndpaddy_image.webp';
-import kirana from '@/assets/category/kirana_image.webp';
-import spices from '@/assets/category/spices_image.webp';
-import dryFruits from '@/assets/category/dryFruits_image.webp';
-import arecanut from '@/assets/category/Arcanut_image.webp';
+import { webImage } from '@/lib/web-images';
 import type { Category } from '../types';
+
+const edibleOil = webImage('category/edible_oil_image.webp');
+const coconutOil = webImage('category/coconut_oil_image.webp');
+const pulses = webImage('category/pulses_image.webp');
+const gnSeed = webImage('category/GN_Seed_image.webp');
+const ricePaddy = webImage('category/richAndpaddy_image.webp');
+const kirana = webImage('category/kirana_image.webp');
+const spices = webImage('category/spices_image.webp');
+const dryFruits = webImage('category/dryFruits_image.webp');
+const arecanut = webImage('category/Arcanut_image.webp');
 
 /**
  * Static categories shown when the getCategory API has no rows

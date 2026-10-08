@@ -1,5 +1,8 @@
 import { useRef } from "react";
-import heroBanner from "@/assets/home/hero_banner_with_phone.webp";
+import { webImage } from "@/lib/web-images";
+
+// Hero banner served from `web_images/` (same folder structure as local).
+const heroBanner = webImage("home/hero_banner_with_phone.webp");
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { TRUST_ITEMS } from "../data";

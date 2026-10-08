@@ -15,7 +15,8 @@ import {
 import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { useCompany, formatIndianMobile, COMPANY_FALLBACK } from "@/modules/company";
-import logo from "@/assets/common/logo.webp";
+// Logo served from `public/logo.webp` (stable URL, cached by the browser).
+const logo = "/logo.webp";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 

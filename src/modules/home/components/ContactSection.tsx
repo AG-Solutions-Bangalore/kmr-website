@@ -6,8 +6,11 @@ import {
   formatIndianMobile,
   COMPANY_FALLBACK,
 } from "@/modules/company";
-import leaf5 from "../../../assets/category/leaf5.webp";
-import leaf6 from "../../../assets/category/leaf6.webp";
+import { webImage } from "@/lib/web-images";
+
+// Remote decorative assets (web_images/).
+const leaf5 = webImage("category/leaf5.webp");
+const leaf6 = webImage("category/leaf6.webp");
 
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
@@ -74,12 +77,16 @@ const ContactSection: React.FC = () => {
         ref={leftLeafRef}
         src={leaf5}
         alt="Decorative Leaf"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute left-0 bottom-0 w-28 sm:w-32 md:w-48 lg:w-64 z-10 translate-y-1/3 -translate-x-1/4 drop-shadow-2xl"
       />
       <img
         ref={rightLeafRef}
         src={leaf6}
         alt="Decorative Spices"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute right-0 bottom-0 w-32 sm:w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
       />
 

@@ -6,8 +6,10 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useFeaturedBlogs, useFrontBlogs } from '../hooks/useBlogs';
 import { BlogCard } from './BlogCard';
-import leaf1 from '@/assets/category/leaf1.webp';
-import leaf3 from '@/assets/category/leaf3.webp';
+import { webImage } from '@/lib/web-images';
+
+const leaf1 = webImage('category/leaf1.webp');
+const leaf3 = webImage('category/leaf3.webp');
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -106,12 +108,16 @@ export function FrontBlogsSection({
         src={leaf3}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="front-blog-leaf pointer-events-none absolute -left-28 top-10 h-auto w-48 object-contain mix-blend-multiply blur-[0.5px] md:w-64 lg:w-80"
       />
       <img
         src={leaf1}
         alt=""
         aria-hidden="true"
+        loading="lazy"
+        decoding="async"
         className="front-blog-leaf pointer-events-none absolute -bottom-10 -right-20 h-auto w-52 object-contain mix-blend-multiply blur-[1px] md:w-64 lg:w-80"
       />
 

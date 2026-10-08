@@ -3,7 +3,9 @@ import { Plus, ChevronUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import chatImage from '@/assets/home/3d_chat_image.webp';
+import { webImage } from '@/lib/web-images';
+
+const chatImage = webImage('home/3d_chat_image.webp');
 import { usePageFaqSlug, useFaqs } from '../hook/useFaqs';
 import { groupFaqsByHeading, shouldShowFaqHeadings } from '../utils/faqGroups';
 import { HOME_FALLBACK_FAQS } from '../data/fallbackFaqs';
@@ -171,6 +173,8 @@ export function FaqSection({
               ref={imageRef}
               src={chatImage}
               alt="FAQ 3D Chat"
+              loading="lazy"
+              decoding="async"
               className="w-full h-auto max-w-[200px] lg:max-w-none drop-shadow-xl"
             />
           </div>

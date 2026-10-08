@@ -3,7 +3,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import featureBanner from "@/assets/home/hero_feature_banner.webp";
+import { webImage } from "@/lib/web-images";
+
+// Feature banner served from `web_images/` (same folder structure as local).
+const featureBanner = webImage("home/hero_feature_banner.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 

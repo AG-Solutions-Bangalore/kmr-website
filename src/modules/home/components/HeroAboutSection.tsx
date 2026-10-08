@@ -5,7 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import aboutHeroImage from "@/assets/home/hero_abou-use_image.webp";
+import { webImage } from "@/lib/web-images";
+
+// About hero image served from `web_images/` (same folder structure as local).
+const aboutHeroImage = webImage("home/hero_abou-use_image.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 

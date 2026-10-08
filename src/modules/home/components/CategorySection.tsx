@@ -5,10 +5,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
-// Asset imports
-import leaf1 from "@/assets/category/leaf1.webp";
-import leaf2 from "@/assets/category/laef2.webp";
-import leaf3 from "@/assets/category/leaf3.webp";
+// Remote decorative assets (web_images/) — banners stay local for LCP.
+import { webImage } from "@/lib/web-images";
+
+const leaf1 = webImage("category/leaf1.webp");
+const leaf2 = webImage("category/laef2.webp");
+const leaf3 = webImage("category/leaf3.webp");
 import { FALLBACK_CATEGORIES, useCategories } from "@/modules/category";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -107,16 +109,22 @@ export function CategorySection() {
       <img
         src={leaf3}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute -left-28 blur-[0.5px] bottom-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf2}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute -left-20 blur-[0.1px] top-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf1}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute right-0 blur-[0.2px] top-0 h-auto w-52 object-contain object-right-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
 
@@ -149,6 +157,8 @@ export function CategorySection() {
                 <img
                   src={cat.image}
                   alt={cat.name}
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
