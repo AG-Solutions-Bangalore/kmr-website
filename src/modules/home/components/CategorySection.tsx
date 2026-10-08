@@ -11,19 +11,16 @@ import { webImage } from "@/lib/web-images";
 const leaf1 = webImage("category/leaf1.webp");
 const leaf2 = webImage("category/laef2.webp");
 const leaf3 = webImage("category/leaf3.webp");
-import { FALLBACK_CATEGORIES, useCategories } from "@/modules/category";
+import { useCategories } from "@/modules/category";
 
 gsap.registerPlugin(ScrollTrigger);
 
 export function CategorySection() {
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Real data wins when the API returns rows; otherwise the static fallback
-  // (loading / error / empty) keeps the section exactly as before.
-  const { data } = useCategories();
-  const apiCategories = data ?? [];
-  const CATEGORIES =
-    apiCategories.length > 0 ? apiCategories : FALLBACK_CATEGORIES;
+  // API-only: no static fallback. Skeletons show while loading.
+  const { data, isLoading } = useCategories();
+  const CATEGORIES = data ?? [];
 
   useGSAP(
     () => {
@@ -148,7 +145,17 @@ export function CategorySection() {
 
         {/* Grid Container */}
         <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
-          {CATEGORIES.map((cat, idx) => (
+          {isLoading
+            ? Array.from({ length: 8 }).map((_, idx) => (
+                <div
+                  key={`skeleton-${idx}`}
+                  className="category-card flex min-h-[130px] sm:min-h-[140px] flex-col items-center justify-center rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5"
+                >
+                  <div className="mb-2 h-[60px] sm:h-[70px] w-full max-w-[90px] animate-pulse rounded-xl bg-mist-100" />
+                  <div className="h-3.5 w-2/3 animate-pulse rounded-full bg-mist-100" />
+                </div>
+              ))
+            : CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
               className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]"
