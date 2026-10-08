@@ -1,17 +1,15 @@
-import { ArrowRight, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
 // Remote decorative assets (web_images/) — banners stay local for LCP.
 import { webImage } from "@/lib/web-images";
+import { useCategories } from "@/modules/category";
 
 const leaf1 = webImage("category/leaf1.webp");
 const leaf2 = webImage("category/laef2.webp");
 const leaf3 = webImage("category/leaf3.webp");
-import { useCategories } from "@/modules/category";
 
 gsap.registerPlugin(ScrollTrigger);
 
