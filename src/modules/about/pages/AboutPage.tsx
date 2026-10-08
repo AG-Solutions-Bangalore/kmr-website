@@ -82,7 +82,7 @@ export function AboutPage() {
             <span className="text-primary-600">About Us</span>
           </nav>
           <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl lg:text-[44px] lg:leading-[1.1]">
-            Your Trusted Partner in Commodity Market Information
+            Your Trusted Partner in <br/> Commodity Market Information
           </h1>
           <p className="mt-3 max-w-xl text-[14px] font-medium leading-relaxed text-muted-500 sm:text-[15px]">
             {company.name} provides real-time commodity market information, trends
@@ -92,8 +92,58 @@ export function AboutPage() {
         </div>
       </section>
 
-      {/* Company profile */}
+      {/* Our story — brand history from kmrlive.in */}
       <section className="container py-10 sm:py-14">
+        <div className="mb-3 flex w-fit items-center gap-2 rounded-full border border-primary-600/30 bg-primary-600/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-600">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary-600" />
+          Our Story
+        </div>
+        <h2 className="max-w-2xl text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">
+          Karnataka Market Reports — a trusted name in commodity reporting
+        </h2>
+        <div className="mt-4 grid max-w-3xl gap-4 text-[14px] font-medium leading-[1.7] text-muted-500 sm:text-[15px]">
+          <p>
+            Karnataka Market Reports (KMR) is a well known brand name in
+            commodities reporting in India. From a humble start as area
+            reporting over WhatsApp, it has grown into a large organisation
+            with the support of its pursuers and readers — reporting in Edible
+            Oils, Coconuts, Coconut Oils, Copra, Pulses, Spices, Provisions
+            and Cashew. It is the first of its kind in South India.
+          </p>
+          <p>
+            Our reports serve the trading community in many ways. Today,
+            manufacturers, retailers, dealers, companies and wholesalers
+            count among our satisfied customers. KMR forms the link between
+            manufacturers, wholesalers, distributors and retailers — its
+            wide reach and readership also help manufacturers and brands
+            advertise and publish their brand rates.
+          </p>
+        </div>
+
+        {/* Coverage chips */}
+        <div className="mt-6 flex flex-wrap gap-2">
+          {[
+            'Edible Oils',
+            'Coconuts',
+            'Coconut Oils',
+            'Copra',
+            'Pulses',
+            'Spices',
+            'Provisions',
+            'Cashew',
+          ].map((item) => (
+            <span
+              key={item}
+              className="rounded-full border border-primary-600/20 bg-primary-600/5 px-3.5 py-1.5 text-[12px] font-bold text-navy-900"
+            >
+              {item}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      {/* Company profile */}
+      <section className="container pb-10 sm:pb-14">
         <div className="mb-3 flex w-fit items-center gap-2 rounded-full border border-primary-600/30 bg-primary-600/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-600">
           <span className="h-1.5 w-1.5 rounded-full bg-primary-600" />
           About Us
