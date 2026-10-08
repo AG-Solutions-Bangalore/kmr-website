@@ -1,32 +1,40 @@
 import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { useCompany, formatIndianMobile, COMPANY_FALLBACK } from '@/modules/company';
 
-const CARDS = [
-  {
-    icon: Phone,
-    title: 'Call Us',
-    lines: ['+91 98765 43210', '+91 98765 43211'],
-  },
-  {
-    icon: Mail,
-    title: 'Email Us',
-    lines: ['support@kmrlive.in', 'info@kmrlive.in'],
-  },
-  {
-    icon: MapPin,
-    title: 'Our Office',
-    lines: ['Bengaluru, Karnataka, India'],
-  },
-  {
-    icon: Clock,
-    title: 'Working Hours',
-    lines: ['Mon – Sat: 9:00 AM – 7:00 PM', 'Sunday: Closed'],
-  },
-];
-
+/**
+ * Contact info cards — phone / email / address come live from
+ * GET /getCompany (falls back to last-known-good data while loading).
+ * Working hours are static (no API field exists for them).
+ */
 export function ContactInfo() {
+  const { data: company = COMPANY_FALLBACK } = useCompany();
+
+  const cards = [
+    {
+      icon: Phone,
+      title: 'Call Us',
+      lines: company.phones.map(formatIndianMobile),
+    },
+    {
+      icon: Mail,
+      title: 'Email Us',
+      lines: [company.email],
+    },
+    {
+      icon: MapPin,
+      title: 'Our Office',
+      lines: [company.address],
+    },
+    {
+      icon: Clock,
+      title: 'Working Hours',
+      lines: ['Mon – Sat: 9:00 AM – 7:00 PM', 'Sunday: Closed'],
+    },
+  ];
+
   return (
     <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      {CARDS.map(({ icon: Icon, title, lines }) => (
+      {cards.map(({ icon: Icon, title, lines }) => (
         <div
           key={title}
           className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-white p-4 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"

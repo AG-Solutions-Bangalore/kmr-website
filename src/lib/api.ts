@@ -5,6 +5,7 @@ import axios, { type AxiosError, type AxiosInstance, type AxiosResponse } from '
  * Endpoints used:
  *  - POST /createEnquiry
  *  - POST /createNewsletter
+ *  - GET  /getCompany
  *  - GET  /getTestimonial/:slug
  *  - GET  /getFAQBySlug/:slug
  */

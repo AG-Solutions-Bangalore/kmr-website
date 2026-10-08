@@ -1,5 +1,6 @@
 import { Link } from 'react-router';
 import { ChevronRight, MessageCircle, BellRing } from 'lucide-react';
+import { useCompany, companyMapEmbedUrl, COMPANY_FALLBACK } from '@/modules/company';
 import { ContactForm } from '../components/ContactForm';
 import { ContactInfo } from '../components/ContactInfo';
 import { NewsletterForm } from '../components/NewsletterForm';
@@ -7,8 +8,11 @@ import { NewsletterForm } from '../components/NewsletterForm';
 /**
  * /contact — full Contact page.
  * Left: heading + info cards + newsletter. Right: enquiry form (POST /createEnquiry).
+ * Map + company details come live from GET /getCompany.
  */
 export function ContactPage() {
+  const { data: company = COMPANY_FALLBACK } = useCompany();
+  const mapSrc = companyMapEmbedUrl(company);
   return (
     <>
       {/* Breadcrumb hero */}
@@ -86,8 +90,8 @@ export function ContactPage() {
       <section className="container pb-12 sm:pb-16">
         <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
           <iframe
-            title="KMR Live — Bengaluru office map"
-            src="https://www.google.com/maps?q=Bengaluru,Karnataka,India&output=embed"
+            title={`${company.name} — ${company.place} office map`}
+            src={mapSrc}
             className="h-[320px] w-full border-0 sm:h-[380px]"
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"

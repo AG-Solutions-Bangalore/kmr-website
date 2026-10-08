@@ -1,6 +1,7 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
+import { useCompany, formatIndianMobile, COMPANY_FALLBACK } from "@/modules/company";
 import leaf5 from "../../../assets/category/leaf5.webp";
 import leaf6 from "../../../assets/category/leaf6.webp";
 
@@ -8,6 +9,7 @@ const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const leftLeafRef = useRef<HTMLImageElement>(null);
   const rightLeafRef = useRef<HTMLImageElement>(null);
+  const { data: company = COMPANY_FALLBACK } = useCompany();
 
   useEffect(() => {
     // Entrance animations
@@ -103,8 +105,11 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Call Us</h4>
-                  <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43210</p>
-                  <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43211</p>
+                  {company.phones.map((phone) => (
+                    <p key={phone} className="text-[12px] text-muted-500 font-medium whitespace-nowrap">
+                      {formatIndianMobile(phone)}
+                    </p>
+                  ))}
                 </div>
               </div>
 
@@ -115,8 +120,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Email Us</h4>
-                  <p className="text-[12px] text-muted-500 font-medium break-all">support@kmrlive.in</p>
-                  <p className="text-[12px] text-muted-500 font-medium break-all">info@kmrlive.in</p>
+                  <p className="text-[12px] text-muted-500 font-medium break-all">{company.email}</p>
                 </div>
               </div>
 
@@ -127,7 +131,7 @@ const ContactSection: React.FC = () => {
                 </div>
                 <div>
                   <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Our Office</h4>
-                  <p className="text-[12px] text-muted-500 font-medium">Bengaluru, India</p>
+                  <p className="text-[12px] text-muted-500 font-medium">{company.address}</p>
                 </div>
               </div>
             </div>

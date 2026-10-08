@@ -1,12 +1,132 @@
+import { Link } from 'react-router';
+import { ChevronRight, Phone, Mail, MapPin, Building2 } from 'lucide-react';
+import {
+  useCompany,
+  formatIndianMobile,
+  indianMobileTelHref,
+  COMPANY_FALLBACK,
+} from '@/modules/company';
+
+/**
+ * /about — company profile, live from GET /getCompany.
+ * Name, phones, email and address render from the API (with
+ * last-known-good fallback while loading), never hardcoded.
+ */
 export function AboutPage() {
+  const { data: company = COMPANY_FALLBACK } = useCompany();
+
+  const profileCards = [
+    {
+      icon: Phone,
+      title: 'Call Us',
+      body: company.phones.map((phone) => (
+        <a
+          key={phone}
+          href={`tel:${indianMobileTelHref(phone)}`}
+          className="block text-[14px] font-medium text-muted-500 transition-colors hover:text-primary-600"
+        >
+          {formatIndianMobile(phone)}
+        </a>
+      )),
+    },
+    {
+      icon: Mail,
+      title: 'Email Us',
+      body: (
+        <a
+          href={`mailto:${company.email}`}
+          className="block break-all text-[14px] font-medium text-muted-500 transition-colors hover:text-primary-600"
+        >
+          {company.email}
+        </a>
+      ),
+    },
+    {
+      icon: MapPin,
+      title: 'Our Office',
+      body: (
+        <span className="block text-[14px] font-medium leading-relaxed text-muted-500">
+          {company.address}
+        </span>
+      ),
+    },
+    {
+      icon: Building2,
+      title: 'Company',
+      body: (
+        <>
+          <span className="block text-[14px] font-bold text-navy-900">
+            {company.name}
+            {company.shortName ? ` (${company.shortName})` : ''}
+          </span>
+          <span className="block text-[14px] font-medium text-muted-500">
+            {company.place}, India
+          </span>
+        </>
+      ),
+    },
+  ];
+
   return (
-    <section className="container section-pad">
-      <p className="eyebrow eyebrow-blue">About Us</p>
-      <h1 className="h-section mt-3">Your Trusted Partner in Commodity Market Information</h1>
-      <p className="p-section">
-        KMR LIVE provides real-time commodity market information, trends and insights to help
-        traders, businesses and individuals make smarter decisions.
-      </p>
-    </section>
+    <>
+      {/* Breadcrumb hero */}
+      <section className="relative overflow-hidden bg-mist-100">
+        <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-primary-100 blur-3xl opacity-60" />
+        <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-success-100 blur-3xl opacity-50" />
+        <div className="container relative py-10 sm:py-14">
+          <nav className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.12em] text-muted-500">
+            <Link to="/" className="hover:text-primary-600 transition-colors">
+              Home
+            </Link>
+            <ChevronRight className="h-3.5 w-3.5" />
+            <span className="text-primary-600">About Us</span>
+          </nav>
+          <h1 className="mt-3 text-3xl font-extrabold tracking-tight text-navy-900 sm:text-4xl lg:text-[44px] lg:leading-[1.1]">
+            Your Trusted Partner in Commodity Market Information
+          </h1>
+          <p className="mt-3 max-w-xl text-[14px] font-medium leading-relaxed text-muted-500 sm:text-[15px]">
+            {company.name} provides real-time commodity market information, trends
+            and insights to help traders, businesses and individuals make smarter
+            decisions.
+          </p>
+        </div>
+      </section>
+
+      {/* Company profile */}
+      <section className="container py-10 sm:py-14">
+        <div className="mb-3 flex w-fit items-center gap-2 rounded-full border border-primary-600/30 bg-primary-600/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-primary-600">
+          <span className="h-1.5 w-1.5 rounded-full bg-primary-600" />
+          About Us
+        </div>
+        <h2 className="text-2xl font-extrabold tracking-tight text-navy-900 sm:text-3xl">
+          {company.name}
+        </h2>
+        <p className="mt-2 max-w-2xl text-[14px] font-medium leading-[1.6] text-muted-500">
+          Reach us directly on any of the channels below — our team typically
+          replies within one business day.
+        </p>
+
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:grid-cols-2">
+          {profileCards.map(({ icon: Icon, title, body }) => (
+            <div
+              key={title}
+              className="flex items-start gap-3 rounded-2xl border border-gray-100 bg-white p-5 shadow-[0_8px_30px_rgb(0,0,0,0.04)]"
+            >
+              <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-primary-600 text-white">
+                <Icon className="h-5 w-5" />
+              </span>
+              <span>
+                <span className="mb-1 block text-[14px] font-bold text-navy-900">
+                  {title}
+                </span>
+                {body}
+              </span>
+            </div>
+          ))}
+        </div>
+      </section>
+    </>
   );
 }
+
+export default AboutPage;
