@@ -83,6 +83,13 @@ export interface BlogFaqApiItem {
   title?: string;
   content?: string;
   description?: string;
+  /** Group label for the FAQ (e.g. "General", "App", "Market Data"). */
+  faq_heading?: string;
+  heading?: string;
+  /** Manual ordering value from the CRM (`faq_sort`: "1", "2", ...). */
+  faq_sort?: string | number;
+  sort?: string | number;
+  order?: string | number;
   [key: string]: unknown;
 }
 
@@ -123,6 +130,8 @@ export interface BlogFaq {
   id: string;
   question: string;
   answer: string;
+  /** Group label from `faq_heading` ("" when the API provides none). */
+  heading: string;
 }
 
 /** Normalized blog detail with prev/next + sidebar data. */

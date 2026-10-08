@@ -5,10 +5,57 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import chatImage from '@/assets/home/3d_chat_image.webp';
 import { usePageFaqSlug, useFaqs } from '../hook/useFaqs';
+import { groupFaqsByHeading, shouldShowFaqHeadings } from '../utils/faqGroups';
 import { HOME_FALLBACK_FAQS } from '../data/fallbackFaqs';
 import type { Faq } from '../types';
 
 gsap.registerPlugin(ScrollTrigger);
+
+function FaqAccordionRow({
+  faq,
+  isOpen,
+  onToggle,
+  wrapperClassName,
+}: {
+  faq: Faq;
+  isOpen: boolean;
+  onToggle: () => void;
+  wrapperClassName?: string;
+}) {
+  return (
+    <div className={wrapperClassName}>
+      <button
+        onClick={onToggle}
+        className="group flex w-full cursor-pointer items-center justify-between gap-4 text-left outline-none transition-colors"
+      >
+        <span
+          className={`text-[16px] font-bold transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+        >
+          {faq.question}
+        </span>
+        <div
+          className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+        >
+          {isOpen ? (
+            <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
+          ) : (
+            <Plus className="h-5 w-5" strokeWidth={2.5} />
+          )}
+        </div>
+      </button>
+
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">
+          <p className="text-[14px] leading-relaxed text-muted-500 font-medium pb-1 pr-8">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 interface FaqSectionProps {
   /** CRM slug to fetch. Defaults to the slug derived from the current route. */
@@ -49,6 +96,12 @@ export function FaqSection({
   const apiFaqs = data ?? [];
   const faqs = apiFaqs.length > 0 ? apiFaqs : activeSlug === 'home' ? fallbackFaqs : [];
   const hasFaqs = faqs.length > 0;
+
+  // Group by `faq_heading` ("General", "App", ...). A single group renders
+  // flat with no labels — identical to the old look.
+  const groups = groupFaqsByHeading(faqs);
+  const showHeadings = shouldShowFaqHeadings(faqs);
+  let accordionIndex = -1;
 
   useGSAP(
     () => {
@@ -140,45 +193,60 @@ export function FaqSection({
 
           {/* Right Column (Accordion) */}
           <div className="faq-accordion w-full lg:w-[50%] shrink-0 rounded-2xl sm:rounded-[24px] bg-white p-4 sm:p-6 md:p-8 shadow-[0_12px_40px_rgb(0,0,0,0.06)] border border-navy-900/5">
-            <div className="flex flex-col divide-y divide-gray-100">
-              {faqs.map((faq, index) => {
-                const isOpen = openIndex === index;
-
-                return (
-                  <div key={faq.id} className="py-5 first:pt-0 last:pb-0">
-                    <button
-                      onClick={() => setOpenIndex(isOpen ? null : index)}
-                      className="group flex w-full items-center justify-between gap-4 text-left outline-none transition-colors"
-                    >
-                      <span
-                        className={`text-[16px] font-bold transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
-                      >
-                        {faq.question}
-                      </span>
-                      <div
-                        className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
-                      >
-                        {isOpen ? (
-                          <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
-                        ) : (
-                          <Plus className="h-5 w-5" strokeWidth={2.5} />
-                        )}
-                      </div>
-                    </button>
-
+            {!showHeadings ? (
+              <div className="flex flex-col divide-y divide-gray-100">
+                {faqs.map((faq, index) => (
+                  <FaqAccordionRow
+                    key={faq.id}
+                    faq={faq}
+                    isOpen={openIndex === index}
+                    onToggle={() =>
+                      setOpenIndex(openIndex === index ? null : index)
+                    }
+                    wrapperClassName="py-5 first:pt-0 last:pb-0"
+                  />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col">
+                {groups.map((group, groupIndex) => (
+                  <div
+                    key={group.heading || 'general'}
+                    className={groupIndex === 0 ? '' : 'mt-7'}
+                  >
+                    {group.heading && (
+                      <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] bg-[#145eb5] w-fit px-2 py-1 text-white rounded-full">
+                        {group.heading}
+                      </p>
+                    )}
                     <div
-                      className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0'}`}
+                      className={
+                        group.heading
+                          ? 'mt-3 border-t border-gray-100'
+                          : 'border-t border-gray-100 first:border-t-0'
+                      }
                     >
-                      <div className="overflow-hidden">
-                        <p className="text-[14px] leading-relaxed text-muted-500 font-medium pb-1 pr-8">
-                          {faq.answer}
-                        </p>
-                      </div>
+                      {group.items.map((faq) => {
+                        accordionIndex += 1;
+                        const index = accordionIndex;
+                        const isOpen = openIndex === index;
+                        return (
+                          <FaqAccordionRow
+                            key={faq.id}
+                            faq={faq}
+                            isOpen={isOpen}
+                            onToggle={() =>
+                              setOpenIndex(isOpen ? null : index)
+                            }
+                            wrapperClassName="border-b border-gray-100 py-5"
+                          />
+                        );
+                      })}
                     </div>
                   </div>
-                );
-              })}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

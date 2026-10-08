@@ -1,4 +1,5 @@
 import { apiClient } from '@/lib/api';
+import { sortFaqsBySortValue } from '../utils/faqGroups';
 import type { Faq, FaqApiItem, GetFaqResponse } from '../types';
 
 function firstString(...values: unknown[]): string {
@@ -29,6 +30,7 @@ export function normalizeFaqItem(item: FaqApiItem, index: number): Faq | null {
     id: String(item.id ?? `faq-${index}`),
     question,
     answer,
+    heading: firstString(item.faq_heading, item.heading),
   };
 }
 
@@ -43,14 +45,15 @@ export function extractFaqItems(response: GetFaqResponse | FaqApiItem[]): FaqApi
 
 /**
  * GET /getFAQBySlug/:slug — e.g. `home`, `about`, `contact`.
- * Always resolves to a (possibly empty) normalized array — never throws
- * malformed-data errors, so the section can simply render nothing when empty.
+ * Rows are ordered by `faq_sort` and always resolve to a (possibly empty)
+ * normalized array — never throws malformed-data errors, so the section
+ * can simply render nothing when empty.
  */
 export async function getFaqs(slug: string): Promise<Faq[]> {
   const { data } = await apiClient.get<GetFaqResponse>(
     `/getFAQBySlug/${encodeURIComponent(slug)}`,
   );
-  return extractFaqItems(data)
+  return sortFaqsBySortValue(extractFaqItems(data))
     .map((item, index) => normalizeFaqItem(item, index))
     .filter((item): item is Faq => item !== null);
 }

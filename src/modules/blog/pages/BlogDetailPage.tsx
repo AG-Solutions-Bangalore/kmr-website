@@ -13,8 +13,56 @@ import {
   Plus,
 } from 'lucide-react';
 import { useBlogBySlug } from '../hooks/useBlogs';
+import { groupFaqsByHeading, shouldShowFaqHeadings } from '@/modules/faq/utils/faqGroups';
 import { BlogCard } from '../components/BlogCard';
 import { getInitials, getReadTimeMinutes } from '../utils';
+import type { BlogFaq } from '../types';
+
+function BlogFaqAccordionRow({
+  faq,
+  isOpen,
+  onToggle,
+  wrapperClassName,
+}: {
+  faq: BlogFaq;
+  isOpen: boolean;
+  onToggle: () => void;
+  wrapperClassName?: string;
+}) {
+  return (
+    <div className={wrapperClassName}>
+      <button
+        type="button"
+        onClick={onToggle}
+        className="group flex w-full cursor-pointer items-center justify-between gap-4 text-left outline-none"
+      >
+        <span
+          className={`text-[15px] font-bold transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+        >
+          {faq.question}
+        </span>
+        <span
+          className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
+        >
+          {isOpen ? (
+            <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
+          ) : (
+            <Plus className="h-5 w-5" strokeWidth={2.5} />
+          )}
+        </span>
+      </button>
+      <div
+        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'mt-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+      >
+        <div className="overflow-hidden">
+          <p className="pb-1 pr-8 text-[14px] font-medium leading-relaxed text-muted-500">
+            {faq.answer}
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+}
 
 /** Blog detail — GET /getBlogsBySlug/:slug with prev/next + more stories. */
 export function BlogDetailPage() {
@@ -248,44 +296,64 @@ export function BlogDetailPage() {
               <h2 className="text-xl font-extrabold tracking-tight text-navy-900 sm:text-2xl">
                 Frequently asked questions
               </h2>
-              <div className="mt-4 flex flex-col divide-y divide-gray-100">
-                {blog.faqs.map((faq, index) => {
-                  const isOpen = openFaqIndex === index;
-                  return (
-                    <div key={faq.id} className="py-4 first:pt-2 last:pb-0">
-                      <button
-                        type="button"
-                        onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                        className="group flex w-full items-center justify-between gap-4 text-left outline-none"
-                      >
-                        <span
-                          className={`text-[15px] font-bold transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
-                        >
-                          {faq.question}
-                        </span>
-                        <span
-                          className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
-                        >
-                          {isOpen ? (
-                            <ChevronUp className="h-5 w-5" strokeWidth={2.5} />
-                          ) : (
-                            <Plus className="h-5 w-5" strokeWidth={2.5} />
-                          )}
-                        </span>
-                      </button>
+              {!shouldShowFaqHeadings(blog.faqs) ? (
+                <div className="mt-4 flex flex-col divide-y divide-gray-100">
+                  {blog.faqs.map((faq, index) => (
+                    <BlogFaqAccordionRow
+                      key={faq.id}
+                      faq={faq}
+                      isOpen={openFaqIndex === index}
+                      onToggle={() =>
+                        setOpenFaqIndex(openFaqIndex === index ? null : index)
+                      }
+                      wrapperClassName="py-4 first:pt-2 last:pb-0"
+                    />
+                  ))}
+                </div>
+              ) : (
+                <div className="mt-4 flex flex-col">
+                  {(() => {
+                    const groups = groupFaqsByHeading(blog.faqs);
+                    let faqIndex = -1;
+                    return groups.map((group, groupIndex) => (
                       <div
-                        className={`grid transition-all duration-300 ease-in-out ${isOpen ? 'mt-3 grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}
+                        key={group.heading || 'general'}
+                        className={groupIndex === 0 ? '' : 'mt-6'}
                       >
-                        <div className="overflow-hidden">
-                          <p className="pb-1 pr-8 text-[14px] font-medium leading-relaxed text-muted-500">
-                            {faq.answer}
+                        {group.heading && (
+                          <p className="text-[11px] font-extrabold uppercase tracking-[0.18em] text-[#145eb5]">
+                            {group.heading}
                           </p>
+                        )}
+                        <div
+                          className={
+                            group.heading
+                              ? 'mt-3 border-t border-gray-100'
+                              : 'border-t border-gray-100 first:border-t-0'
+                          }
+                        >
+                          {group.items.map((faq) => {
+                            faqIndex += 1;
+                            const index = faqIndex;
+                            const isOpen = openFaqIndex === index;
+                            return (
+                              <BlogFaqAccordionRow
+                                key={faq.id}
+                                faq={faq}
+                                isOpen={isOpen}
+                                onToggle={() =>
+                                  setOpenFaqIndex(isOpen ? null : index)
+                                }
+                                wrapperClassName="border-b border-gray-100 py-4"
+                              />
+                            );
+                          })}
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
+                    ));
+                  })()}
+                </div>
+              )}
             </div>
           )}
 

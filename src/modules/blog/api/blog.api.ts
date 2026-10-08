@@ -1,4 +1,5 @@
 import { apiClient } from '@/lib/api';
+import { sortFaqsBySortValue } from '@/modules/faq/utils/faqGroups';
 import type {
   Blog,
   BlogApiItem,
@@ -206,6 +207,7 @@ export function normalizeBlogFaqItem(
     id: String(item.id ?? `blog-faq-${index}`),
     question,
     answer,
+    heading: firstString(item.faq_heading, item.heading),
   };
 }
 
@@ -230,7 +232,7 @@ export async function getBlogBySlug(slug: string): Promise<BlogDetail | null> {
     : [];
 
   const faqs = Array.isArray(data.faq)
-    ? data.faq
+    ? sortFaqsBySortValue(data.faq)
         .map((item, index) => normalizeBlogFaqItem(item, index))
         .filter((item): item is BlogFaq => item !== null)
     : [];
