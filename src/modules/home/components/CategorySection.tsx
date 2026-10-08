@@ -98,7 +98,8 @@ export function CategorySection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full overflow-hidden bg-gradient-to-b from-[#f5fafe] to-white py-12 sm:py-16"
+      id="categories"
+      className="relative w-full overflow-hidden bg-gradient-to-b from-[#f5fafe] to-white py-12 sm:py-16 scroll-mt-20"
     >
       {/* Decorative Leaves - Flushed to corners with blur layering */}
       <img

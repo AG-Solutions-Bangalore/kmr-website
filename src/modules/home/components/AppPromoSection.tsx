@@ -95,7 +95,8 @@ export function AppPromoSection() {
   return (
     <section
       ref={sectionRef}
-      className="relative w-full py-8 lg:py-10 overflow-hidden bg-white flex items-center"
+      id="app"
+      className="relative w-full py-8 lg:py-10 overflow-hidden bg-white flex items-center scroll-mt-20"
     >
       {/* Background Banner Image */}
       <div className="absolute inset-0 z-0">
@@ -175,7 +176,12 @@ export function AppPromoSection() {
               </button>
 
               {/* Google Play Button */}
-              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.kmr.agsolutions&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto"
+              >
                 <img
                   src={playStoreIcon}
                   alt="Google Play Logo"
@@ -189,7 +195,7 @@ export function AppPromoSection() {
                     Google Play
                   </span>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
         </div>

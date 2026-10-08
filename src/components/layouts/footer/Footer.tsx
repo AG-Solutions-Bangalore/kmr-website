@@ -98,7 +98,8 @@ const Footer: React.FC = () => {
               {[
                 { label: 'Home', to: '/' },
                 { label: 'About Us', to: '/about' },
-                { label: 'Blogs', to: '/blog' },
+                { label: 'Category', to: '/#categories' },
+                { label: 'App', to: '/#app' },
                 { label: 'Contact Us', to: '/contact' },
               ].map((link) => (
                 <li key={link.label}>
@@ -150,13 +151,18 @@ const Footer: React.FC = () => {
               </button>
 
               {/* Play Store Button */}
-              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800">
+              <a
+                href="https://play.google.com/store/apps/details?id=com.kmr.agsolutions&pcampaignid=web_share"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800"
+              >
                 <img src={playStoreIcon} alt="Google Play" className="h-5 w-5" />
                 <div className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">GET IT ON</span>
                   <span className="text-[14px] font-semibold">Google Play</span>
                 </div>
-              </button>
+              </a>
             </div>
           </div>
 

@@ -5,10 +5,11 @@ import {
   ChevronRight,
   Download,
   Home,
+  LayoutGrid,
   Mail,
   Menu,
-  Newspaper,
   Phone,
+  Smartphone,
   Users,
   X,
 } from "lucide-react";
@@ -23,14 +24,22 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const NAV_LINKS = [
-  { label: "Home", path: "/", icon: Home },
-  { label: "About Us", path: "/about", icon: Users },
-  { label: "Blogs", path: "/blog", icon: Newspaper },
-  { label: "Contact Us", path: "/contact", icon: Mail },
+  { label: "Home", to: "/", icon: Home },
+  { label: "About Us", to: "/about", icon: Users },
+  { label: "Category", to: "/#categories", icon: LayoutGrid },
+  { label: "App", to: "/#app", icon: Smartphone },
+  { label: "Contact Us", to: "/contact", icon: Mail },
 ];
 
-function isPathActive(pathname: string, path: string) {
-  return pathname === path || (path === "/blog" && pathname.startsWith("/blog"));
+function isLinkActive(pathname: string, hash: string, to: string) {
+  const [toPath, toHash] = to.split("#");
+  // Section links (/#categories, /#app) are active only on home with matching hash.
+  if (toHash) {
+    return pathname === (toPath || "/") && hash === `#${toHash}`;
+  }
+  // Home is active only on exact "/" without a section hash.
+  if (to === "/") return pathname === "/" && !hash;
+  return pathname === to;
 }
 
 function Navbar() {
@@ -151,14 +160,16 @@ function Navbar() {
         {/* Center: Navigation Links (Desktop) */}
         <nav className="hidden md:flex flex-1 items-center justify-center h-full">
           {NAV_LINKS.map((link) => {
-            const isActive =
-              location.pathname === link.path ||
-              (link.path === "/blog" && location.pathname.startsWith("/blog"));
+            const isActive = isLinkActive(
+              location.pathname,
+              location.hash,
+              link.to,
+            );
 
             return (
               <Link
                 key={link.label}
-                to={link.path}
+                to={link.to}
                 className={`nav-link relative flex h-full items-center px-4 text-[13px] font-bold tracking-wide transition-colors lg:px-5 ${
                   isActive
                     ? "text-primary-600"
@@ -173,9 +184,14 @@ function Navbar() {
 
         {/* Right: Actions */}
         <div className="nav-actions-wrapper flex items-center justify-end gap-3 sm:gap-5 md:w-1/4">
-          <Button className="hidden sm:flex h-[42px] px-6 text-sm font-bold bg-[#145eb5] hover:bg-[#145eb5]/90 text-white shadow-md rounded-full">
-            Download App
-            <Download className="ml-2 h-[18px] w-[18px]" strokeWidth={2.5} />
+          <Button
+            asChild
+            className="hidden sm:flex h-[42px] px-6 text-sm font-bold bg-[#145eb5] hover:bg-[#145eb5]/90 text-white shadow-md rounded-full"
+          >
+            <Link to="/#app" className="flex items-center">
+              Download App
+              <Download className="ml-2 h-[18px] w-[18px]" strokeWidth={2.5} />
+            </Link>
           </Button>
 
           {/* Mobile Menu Toggle Button */}
@@ -232,12 +248,16 @@ function Navbar() {
             {/* Links */}
             <nav className="flex flex-1 flex-col overflow-x-hidden overflow-y-auto overscroll-contain px-4 py-2">
               {NAV_LINKS.map((link, i) => {
-                const isActive = isPathActive(location.pathname, link.path);
+                const isActive = isLinkActive(
+                  location.pathname,
+                  location.hash,
+                  link.to,
+                );
                 const Icon = link.icon;
                 return (
                   <Link
                     key={link.label}
-                    to={link.path}
+                    to={link.to}
                     onClick={closeMenu}
                     tabIndex={mobileMenuOpen ? 0 : -1}
                     style={{
@@ -276,10 +296,14 @@ function Navbar() {
                 className="h-[48px] w-full rounded-full bg-[#145eb5] text-sm font-bold text-white shadow-md hover:bg-[#145eb5]/90"
                 onClick={closeMenu}
               >
-                <a href="#app" className="flex items-center justify-center">
+                <Link
+                  to="/#app"
+                  onClick={closeMenu}
+                  className="flex items-center justify-center"
+                >
                   Download App
                   <Download className="ml-2 h-[18px] w-[18px]" strokeWidth={2.5} />
-                </a>
+                </Link>
               </Button>
               <div className="mt-4 flex flex-col gap-2.5">
                 {company.phones.slice(0, 1).map((phone) => (
