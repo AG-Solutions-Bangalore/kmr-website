@@ -1,4 +1,5 @@
 import { useRef } from "react";
+import { Link } from "react-router";
 import { webImage } from "@/lib/web-images";
 
 // Hero banner served from `web_images/` (same folder structure as local).
@@ -107,16 +108,16 @@ function HeroSection() {
           {/* CTA buttons */}
           <div className="hero-item mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Button size="lg" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <a href="#categories">
+              <Link to="/#categories">
                 Explore Categories
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
-              </a>
+              </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <a href="#app">
+              <Link to="/#app">
                 Download App
                 <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />
-              </a>
+              </Link>
             </Button>
           </div>
 
