@@ -1,40 +1,24 @@
-import { ArrowRight, Plus } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
-// Asset imports
-import leaf1 from "@/assets/category/leaf1.png";
-import leaf2 from "@/assets/category/laef2.png";
-import leaf3 from "@/assets/category/leaf3.png";
-import edibleOil from "@/assets/category/edible_oil_image.png";
-import coconutOil from "@/assets/category/coconut_oil_image.png";
-import pulses from "@/assets/category/pulses_image.png";
-import gnSeed from "@/assets/category/GN_Seed_image.png";
-import ricePaddy from "@/assets/category/richAndpaddy_image.png";
-import kirana from "@/assets/category/kirana_image.png";
-import spices from "@/assets/category/spices_image.png";
-import dryFruits from "@/assets/category/dryFruits_image.png";
-import arecanut from "@/assets/category/Arcanut_image.png";
+// Remote decorative assets (web_images/) — banners stay local for LCP.
+import { webImage } from "@/lib/web-images";
+import { useCategories } from "@/modules/category";
+
+const leaf1 = webImage("category/leaf1.webp");
+const leaf2 = webImage("category/laef2.webp");
+const leaf3 = webImage("category/leaf3.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 
-const CATEGORIES = [
-  { name: "Edible Oil", image: edibleOil },
-  { name: "Coconut Oil", image: coconutOil },
-  { name: "Pulses", image: pulses },
-  { name: "GN Seed", image: gnSeed },
-  { name: "Rice & Paddy", image: ricePaddy },
-  { name: "Kirana", image: kirana },
-  { name: "Spices", image: spices },
-  { name: "Dry Fruits", image: dryFruits },
-  { name: "Arecanut", image: arecanut },
-];
-
 export function CategorySection() {
   const sectionRef = useRef<HTMLElement>(null);
+
+  // API-only: no static fallback. Skeletons show while loading.
+  const { data, isLoading } = useCategories();
+  const CATEGORIES = data ?? [];
 
   useGSAP(
     () => {
@@ -81,8 +65,8 @@ export function CategorySection() {
               ease: "sine.inOut",
               stagger: {
                 amount: 1,
-                from: "random"
-              }
+                from: "random",
+              },
             });
           },
         },
@@ -108,7 +92,7 @@ export function CategorySection() {
         "-=1.2",
       );
     },
-    { scope: sectionRef },
+    { scope: sectionRef, dependencies: [CATEGORIES.length] },
   );
 
   return (
@@ -120,16 +104,22 @@ export function CategorySection() {
       <img
         src={leaf3}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute -left-28 blur-[0.5px] bottom-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf2}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute -left-20 blur-[0.1px] top-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf1}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="category-leaf absolute right-0 blur-[0.2px] top-0 h-auto w-52 object-contain object-right-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
 
@@ -149,19 +139,21 @@ export function CategorySection() {
               commodities.
             </p>
           </div>
-
-          <Button
-            variant="outline"
-            className="category-header-element group hidden h-[42px] rounded-lg border-[#145eb5]/30 px-6 font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:flex"
-          >
-            View All Categories
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-          </Button>
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
-          {CATEGORIES.map((cat, idx) => (
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+          {isLoading
+            ? Array.from({ length: 8 }).map((_, idx) => (
+                <div
+                  key={`skeleton-${idx}`}
+                  className="category-card flex min-h-[130px] sm:min-h-[140px] flex-col items-center justify-center rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5"
+                >
+                  <div className="mb-2 h-[60px] sm:h-[70px] w-full max-w-[90px] animate-pulse rounded-xl bg-mist-100" />
+                  <div className="h-3.5 w-2/3 animate-pulse rounded-full bg-mist-100" />
+                </div>
+              ))
+            : CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
               className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]"
@@ -170,6 +162,8 @@ export function CategorySection() {
                 <img
                   src={cat.image}
                   alt={cat.name}
+                  loading="lazy"
+                  decoding="async"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
@@ -178,30 +172,7 @@ export function CategorySection() {
               </h3>
             </div>
           ))}
-
-          {/* Special "View All" Card */}
-          <div className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]">
-            <div className="relative mb-2 sm:mb-3 flex w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1">
-              <div className="flex h-12 w-12 sm:h-[56px] sm:w-[56px] items-center justify-center rounded-full bg-blue-50 text-[#145eb5] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[#145eb5] group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/30">
-                <Plus strokeWidth={3} className="h-6 w-6 sm:h-7 sm:w-7" />
-              </div>
-            </div>
-            <h3 className="text-center text-[12px] sm:text-[13px] font-extrabold leading-tight text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
-              View All
-              <br />
-              Categories
-            </h3>
-          </div>
         </div>
-
-        {/* Mobile button */}
-        <Button
-          variant="outline"
-          className="group mt-8 h-[46px] w-full rounded-lg border-[#145eb5] font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:hidden"
-        >
-          View All Categories
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-        </Button>
       </div>
     </section>
   );

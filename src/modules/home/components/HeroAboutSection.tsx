@@ -5,7 +5,10 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import aboutHeroImage from "@/assets/home/hero_abou-use_image.png";
+import { webImage } from "@/lib/web-images";
+
+// About hero image served from `web_images/` (same folder structure as local).
+const aboutHeroImage = webImage("home/hero_abou-use_image.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -120,10 +123,10 @@ export function HeroAboutSection() {
           </h2>
 
           <p className="text-[13px] sm:text-[13.5px] leading-[1.7] text-muted-500 mb-6 sm:mb-8 font-medium max-w-md">
-            KMR LIVE provides real-time commodity market information, trends and
-            insights to help traders, businesses and individuals make smarter
-            decisions. Our goal is to bring transparency, reliability and timely
-            market updates to the agricultural and commodity industry.
+            KMR offers live market updates, spot market analysis, and daily
+            price trends for groceries like Edible Oil, Coconut Oil, Copra,
+            Rice, Pulses, Kirana, GN Seed and Dryfruits Etc.. Stay informed with
+            latest news and insights, helping you make smart market decisions.
           </p>
 
           <Button

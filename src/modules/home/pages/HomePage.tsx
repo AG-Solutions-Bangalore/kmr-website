@@ -2,9 +2,9 @@ import HeroSection from "../components/HeroSection";
 import { HeroAboutSection } from "../components/HeroAboutSection";
 import { CategorySection } from "../components/CategorySection";
 import { FeatureSection } from "../components/FeatureSection";
-import { MarketInsightsSection } from "../components/MarketInsightsSection";
+import { MarketPlanSection } from "../components/MarketPlanSection";
+import { FeaturedBlogsSection, FrontBlogsSection } from "@/modules/blog";
 import { AppPromoSection } from "../components/AppPromoSection";
-import { FaqSection } from "../components/FaqSection";
 import ContactSection from "../components/ContactSection";
 
 export function HomePage() {
@@ -14,9 +14,13 @@ export function HomePage() {
       <HeroAboutSection />
       <CategorySection />
       <FeatureSection />
-      <MarketInsightsSection />
+      {/* Dynamic blogs — GET /getFeaturedBlogs + GET /getFrontBlogs. Each renders nothing when empty. */}
+      <FeaturedBlogsSection />
+      <FrontBlogsSection />
+      {/* All-commodity market plan (live-site copy). */}
+      <MarketPlanSection />
       <AppPromoSection />
-      <FaqSection />
+      {/* FAQ now renders globally via MainLayout (dynamic API + home fallback). */}
       <ContactSection />
     </>
   );

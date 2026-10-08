@@ -3,36 +3,39 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import featureBanner from "@/assets/home/hero_feature_banner.png";
+import { webImage } from "@/lib/web-images";
+
+// Feature banner served from `web_images/` (same folder structure as local).
+const featureBanner = webImage("home/hero_feature_banner.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 
 const FEATURES = [
   {
     icon: <BarChart3 className="h-6 w-6 text-emerald-500" strokeWidth={2.5} />,
-    title: "Real-time Market Data",
-    desc: "Get the latest prices from major markets across India.",
+    title: "Live Market Updates",
+    desc: "Get real-time price movements and trends for various grocery commodities.",
     iconBg: "bg-emerald-50",
     hoverBorder: "hover:border-emerald-200",
   },
   {
     icon: <LineChart className="h-6 w-6 text-blue-500" strokeWidth={2.5} />,
-    title: "Market Trends",
-    desc: "Track historical data and identify market movements.",
+    title: "Spot Market Analysis",
+    desc: "Accurate, up-to-date spot prices for rice, pulses, grains, dry fruits and edible oils.",
     iconBg: "bg-blue-50",
     hoverBorder: "hover:border-blue-200",
   },
   {
     icon: <FileText className="h-6 w-6 text-amber-500" strokeWidth={2.5} />,
-    title: "Expert Insights",
-    desc: "Stay informed with news and analysis from the industry.",
+    title: "Daily Price Trends",
+    desc: "Regular reports on market trends, demand shifts and pricing strategies.",
     iconBg: "bg-amber-50",
     hoverBorder: "hover:border-amber-200",
   },
   {
     icon: <Bell className="h-6 w-6 text-purple-500" strokeWidth={2.5} />,
-    title: "Instant Updates",
-    desc: "Never miss important market changes with timely notifications.",
+    title: "Latest News & Insights",
+    desc: "Breaking news, policy changes and expert analysis that move the market.",
     iconBg: "bg-purple-50",
     hoverBorder: "hover:border-purple-200",
   },
@@ -109,12 +112,14 @@ export function FeatureSection() {
             FEATURES
           </div>
           <h2 className="feature-header-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2rem] leading-[1.2]">
-            Everything You Need
+            Live Market Updates,
             <br className="hidden sm:block" />
-            for Better Market Decisions
+            Spot Analysis & Daily Trends
           </h2>
           <p className="feature-header-element font-medium text-muted-500 text-[13px]">
-            Accurate data, timely insights and easy access - all in one place.
+            KMR offers live market updates, spot market analysis and daily
+            price trends for Edible Oil, Coconut Oil, Copra, Rice, Pulses,
+            Kirana, GN Seed, Dry Fruits and more.
           </p>
         </div>
 

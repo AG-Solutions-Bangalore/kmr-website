@@ -5,9 +5,11 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
-// Asset imports
-import leaf1 from "@/assets/category/leaf1.png";
-import leaf3 from "@/assets/category/leaf3.png";
+// Remote decorative assets (web_images/) — banners stay local for LCP.
+import { webImage } from "@/lib/web-images";
+
+const leaf1 = webImage("category/leaf1.webp");
+const leaf3 = webImage("category/leaf3.webp");
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -128,11 +130,15 @@ export function MarketInsightsSection() {
       <img
         src={leaf3}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="insight-leaf absolute -left-28 top-10 h-auto w-48 object-contain mix-blend-multiply md:w-64 lg:w-80 pointer-events-none blur-[0.5px]"
       />
       <img
         src={leaf1}
         alt=""
+        loading="lazy"
+        decoding="async"
         className="insight-leaf absolute -right-20 -bottom-10 h-auto w-52 object-contain mix-blend-multiply md:w-64 lg:w-80 pointer-events-none blur-[1px]"
       />
 

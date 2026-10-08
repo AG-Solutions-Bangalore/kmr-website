@@ -1,7 +1,11 @@
-import leaf4 from "@/assets/category/leaf4.png";
-import appBanner from "@/assets/home/kmr_live_app_banner.png";
-import appStoreIcon from "@/assets/icons/App_Store_(iOS).svg";
-import playStoreIcon from "@/assets/icons/playStore-logo.svg";
+import { webImage } from "@/lib/web-images";
+
+// App banner served from `web_images/` (same folder structure as local).
+const appBanner = webImage("home/kmr_live_app_banner.webp");
+
+// Store badges served from `web_images/` (same filenames as local).
+const appStoreIcon = webImage("icons/App_Store_(iOS).svg");
+const playStoreIcon = webImage("icons/playStore-logo.svg");
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
@@ -9,6 +13,9 @@ import { CheckCircle2 } from "lucide-react";
 import { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
+
+// Remote decorative asset (web_images/) — banner stays local for LCP.
+const leaf4 = webImage("category/leaf4.webp");
 
 const BULLETS = [
   "Live commodity prices",
@@ -106,6 +113,8 @@ export function AppPromoSection() {
         <img
           src={leaf4}
           alt=""
+          loading="lazy"
+          decoding="async"
           className="promo-leaf absolute -left-12 bottom-0 h-auto w-32 md:w-48 lg:w-56 object-contain mix-blend-multiply pointer-events-none blur-[0.5px]"
         />
       </div>
@@ -120,14 +129,17 @@ export function AppPromoSection() {
             </div>
 
             <h2 className="promo-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem] leading-[1.15] lg:leading-[1.1]">
-              Your Market.
+              One App,
               <br />
-              In Your Pocket.
+              Unlimited Trade.
             </h2>
 
-            <p className="promo-element mb-4 max-w-[380px] text-[13px] font-medium leading-[1.5] text-muted-500">
-              Get real-time market information, trends and insights wherever
-              your business takes you.
+            <p className="promo-element mb-4 max-w-[420px] text-[13px] font-medium leading-[1.6] text-muted-500">
+              Staying updated with real-time market trends, price fluctuations
+              and industry news is essential. Our app is a one-stop digital
+              platform for traders, farmers, exporters and buyers — live
+              market updates, current rates, spot trends and the latest
+              industry news, all at your fingertips.
             </p>
 
             <ul className="mb-5 flex flex-col gap-2">

@@ -1,6 +1,9 @@
 export const PATHS = {
   home: '/',
   about: '/about',
+  contact: '/contact',
+  blog: '/blog',
+  blogDetail: '/blog/:slug',
   notFound: '*',
 } as const;
 

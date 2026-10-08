@@ -1,13 +1,22 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-import leaf5 from "../../../assets/category/leaf5.png";
-import leaf6 from "../../../assets/category/leaf6.png";
+import {
+  useCompany,
+  formatIndianMobile,
+  COMPANY_FALLBACK,
+} from "@/modules/company";
+import { webImage } from "@/lib/web-images";
+
+// Remote decorative assets (web_images/).
+const leaf5 = webImage("category/leaf5.webp");
+const leaf6 = webImage("category/leaf6.webp");
 
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const leftLeafRef = useRef<HTMLImageElement>(null);
   const rightLeafRef = useRef<HTMLImageElement>(null);
+  const { data: company = COMPANY_FALLBACK } = useCompany();
 
   useEffect(() => {
     // Entrance animations
@@ -25,7 +34,7 @@ const ContactSection: React.FC = () => {
             trigger: sectionRef.current,
             start: "top 80%",
           },
-        }
+        },
       );
 
       // Continuous leaf floating animation
@@ -51,7 +60,7 @@ const ContactSection: React.FC = () => {
             trigger: sectionRef.current,
             start: "top 80%",
           },
-        }
+        },
       );
     }, sectionRef);
 
@@ -68,18 +77,21 @@ const ContactSection: React.FC = () => {
         ref={leftLeafRef}
         src={leaf5}
         alt="Decorative Leaf"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute left-0 bottom-0 w-28 sm:w-32 md:w-48 lg:w-64 z-10 translate-y-1/3 -translate-x-1/4 drop-shadow-2xl"
       />
       <img
         ref={rightLeafRef}
         src={leaf6}
         alt="Decorative Spices"
+        loading="lazy"
+        decoding="async"
         className="pointer-events-none absolute right-0 bottom-0 w-32 sm:w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
       />
 
       <div className="container relative z-10">
         <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-start">
-          
           {/* Left Column: Info */}
           <div className="w-full lg:w-[60%] flex flex-col">
             <div className="contact-element mb-3 sm:mb-4 flex items-center gap-2 rounded-full border border-[#145eb5]/30 bg-[#145eb5]/10 px-3 py-1 text-[10px] font-bold uppercase tracking-[0.15em] text-[#145eb5] w-fit">
@@ -92,7 +104,8 @@ const ContactSection: React.FC = () => {
             </h2>
 
             <p className="contact-element text-[14px] sm:text-[15px] font-medium leading-[1.6] text-muted-500 mb-6 sm:mb-8 max-w-md">
-              We'd love to hear from you. Reach out to us for any queries, suggestions or support.
+              We'd love to hear from you. Reach out to us for any queries,
+              suggestions or support.
             </p>
 
             <div className="contact-element flex flex-col sm:flex-row gap-3 mb-6">
@@ -102,9 +115,17 @@ const ContactSection: React.FC = () => {
                   <Phone className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Call Us</h4>
-                  <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43210</p>
-                  <p className="text-[12px] text-muted-500 font-medium whitespace-nowrap">+91 98765 43211</p>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                    Call Us
+                  </h4>
+                  {company.phones.map((phone) => (
+                    <p
+                      key={phone}
+                      className="text-[12px] text-muted-500 font-medium whitespace-nowrap"
+                    >
+                      {formatIndianMobile(phone)}
+                    </p>
+                  ))}
                 </div>
               </div>
 
@@ -114,9 +135,12 @@ const ContactSection: React.FC = () => {
                   <Mail className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Email Us</h4>
-                  <p className="text-[12px] text-muted-500 font-medium break-all">support@kmrlive.in</p>
-                  <p className="text-[12px] text-muted-500 font-medium break-all">info@kmrlive.in</p>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                    Email Us
+                  </h4>
+                  <p className="text-[12px] text-muted-500 font-medium break-all">
+                    {company.email}
+                  </p>
                 </div>
               </div>
 
@@ -126,8 +150,12 @@ const ContactSection: React.FC = () => {
                   <MapPin className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">Our Office</h4>
-                  <p className="text-[12px] text-muted-500 font-medium">Bengaluru, India</p>
+                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                    Our Office
+                  </h4>
+                  <p className="text-[12px] text-muted-500 font-medium">
+                    {company.address}
+                  </p>
                 </div>
               </div>
             </div>
@@ -137,35 +165,35 @@ const ContactSection: React.FC = () => {
           <div className="contact-element w-full lg:w-[40%]">
             <div className="bg-white rounded-2xl sm:rounded-3xl p-5 sm:p-8 md:p-10 shadow-[0_20px_50px_rgb(0,0,0,0.08)] border border-gray-100 relative overflow-hidden">
               <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 opacity-50 z-0"></div>
-              
+
               <form className="relative z-10 flex flex-col gap-5">
                 <div className="flex flex-col sm:flex-row gap-5">
-                  <input 
-                    type="text" 
-                    placeholder="Full Name" 
+                  <input
+                    type="text"
+                    placeholder="Full Name"
                     className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3.5 text-[14px] font-medium text-navy-900 placeholder:text-gray-400 focus:border-[#145eb5] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#145eb5]/10 transition-all"
                   />
-                  <input 
-                    type="email" 
-                    placeholder="Email Address" 
+                  <input
+                    type="email"
+                    placeholder="Email Address"
                     className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3.5 text-[14px] font-medium text-navy-900 placeholder:text-gray-400 focus:border-[#145eb5] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#145eb5]/10 transition-all"
                   />
                 </div>
-                
-                <input 
-                  type="text" 
-                  placeholder="Subject" 
+
+                <input
+                  type="text"
+                  placeholder="Subject"
                   className="w-full rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3.5 text-[14px] font-medium text-navy-900 placeholder:text-gray-400 focus:border-[#145eb5] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#145eb5]/10 transition-all"
                 />
-                
-                <textarea 
+
+                <textarea
                   rows={4}
-                  placeholder="Your Message" 
+                  placeholder="Your Message"
                   className="w-full resize-none rounded-xl border border-gray-200 bg-gray-50/50 px-4 py-3.5 text-[14px] font-medium text-navy-900 placeholder:text-gray-400 focus:border-[#145eb5] focus:bg-white focus:outline-none focus:ring-4 focus:ring-[#145eb5]/10 transition-all"
                 ></textarea>
 
                 <div className="mt-2 flex justify-end">
-                  <button 
+                  <button
                     type="button"
                     className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#145eb5] px-8 py-3.5 font-bold text-white transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#145eb5]/30 w-full sm:w-auto"
                   >
@@ -177,7 +205,6 @@ const ContactSection: React.FC = () => {
               </form>
             </div>
           </div>
-
         </div>
       </div>
     </section>
