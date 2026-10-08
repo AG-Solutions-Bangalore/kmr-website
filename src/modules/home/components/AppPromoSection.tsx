@@ -129,14 +129,17 @@ export function AppPromoSection() {
             </div>
 
             <h2 className="promo-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem] leading-[1.15] lg:leading-[1.1]">
-              Your Market.
+              One App,
               <br />
-              In Your Pocket.
+              Unlimited Trade.
             </h2>
 
-            <p className="promo-element mb-4 max-w-[380px] text-[13px] font-medium leading-[1.5] text-muted-500">
-              Get real-time market information, trends and insights wherever
-              your business takes you.
+            <p className="promo-element mb-4 max-w-[420px] text-[13px] font-medium leading-[1.6] text-muted-500">
+              Staying updated with real-time market trends, price fluctuations
+              and industry news is essential. Our app is a one-stop digital
+              platform for traders, farmers, exporters and buyers — live
+              market updates, current rates, spot trends and the latest
+              industry news, all at your fingertips.
             </p>
 
             <ul className="mb-5 flex flex-col gap-2">
