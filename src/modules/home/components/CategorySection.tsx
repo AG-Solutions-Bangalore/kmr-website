@@ -6,9 +6,9 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
 // Asset imports
-import leaf1 from "@/assets/category/leaf1.png";
-import leaf2 from "@/assets/category/laef2.png";
-import leaf3 from "@/assets/category/leaf3.png";
+import leaf1 from "@/assets/category/leaf1.webp";
+import leaf2 from "@/assets/category/laef2.webp";
+import leaf3 from "@/assets/category/leaf3.webp";
 import { FALLBACK_CATEGORIES, useCategories } from "@/modules/category";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -68,8 +68,8 @@ export function CategorySection() {
               ease: "sine.inOut",
               stagger: {
                 amount: 1,
-                from: "random"
-              }
+                from: "random",
+              },
             });
           },
         },
@@ -136,18 +136,10 @@ export function CategorySection() {
               commodities.
             </p>
           </div>
-
-          <Button
-            variant="outline"
-            className="category-header-element group hidden h-[42px] rounded-lg border-[#145eb5]/30 px-6 font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:flex"
-          >
-            View All Categories
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-          </Button>
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4 lg:grid-cols-5 lg:gap-5">
+        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
           {CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
@@ -165,30 +157,7 @@ export function CategorySection() {
               </h3>
             </div>
           ))}
-
-          {/* Special "View All" Card */}
-          <div className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 shadow-[0_4px_20px_rgb(0,0,0,0.04)] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]">
-            <div className="relative mb-2 sm:mb-3 flex w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-1">
-              <div className="flex h-12 w-12 sm:h-[56px] sm:w-[56px] items-center justify-center rounded-full bg-blue-50 text-[#145eb5] transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110 group-hover:bg-[#145eb5] group-hover:text-white group-hover:shadow-lg group-hover:shadow-blue-500/30">
-                <Plus strokeWidth={3} className="h-6 w-6 sm:h-7 sm:w-7" />
-              </div>
-            </div>
-            <h3 className="text-center text-[12px] sm:text-[13px] font-extrabold leading-tight text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
-              View All
-              <br />
-              Categories
-            </h3>
-          </div>
         </div>
-
-        {/* Mobile button */}
-        <Button
-          variant="outline"
-          className="group mt-8 h-[46px] w-full rounded-lg border-[#145eb5] font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:hidden"
-        >
-          View All Categories
-          <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1" />
-        </Button>
       </div>
     </section>
   );

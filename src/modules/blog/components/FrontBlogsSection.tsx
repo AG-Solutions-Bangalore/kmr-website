@@ -6,8 +6,8 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
 import { useFeaturedBlogs, useFrontBlogs } from '../hooks/useBlogs';
 import { BlogCard } from './BlogCard';
-import leaf1 from '@/assets/category/leaf1.png';
-import leaf3 from '@/assets/category/leaf3.png';
+import leaf1 from '@/assets/category/leaf1.webp';
+import leaf3 from '@/assets/category/leaf3.webp';
 
 gsap.registerPlugin(ScrollTrigger);
 

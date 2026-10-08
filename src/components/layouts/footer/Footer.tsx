@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "react-router";
 import { BellRing } from "lucide-react";
-import logo from "../../../assets/common/logo.png";
+import logo from "../../../assets/common/logo.webp";
 import appStoreIcon from "../../../assets/icons/App_Store_(iOS).svg";
 import playStoreIcon from "../../../assets/icons/playStore-logo.svg";
 import { NewsletterForm } from "../../../modules/contact/components/NewsletterForm";

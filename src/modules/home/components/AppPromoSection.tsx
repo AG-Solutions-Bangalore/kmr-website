@@ -1,5 +1,5 @@
-import leaf4 from "@/assets/category/leaf4.png";
-import appBanner from "@/assets/home/kmr_live_app_banner.png";
+import leaf4 from "@/assets/category/leaf4.webp";
+import appBanner from "@/assets/home/kmr_live_app_banner.webp";
 import appStoreIcon from "@/assets/icons/App_Store_(iOS).svg";
 import playStoreIcon from "@/assets/icons/playStore-logo.svg";
 import { useGSAP } from "@gsap/react";

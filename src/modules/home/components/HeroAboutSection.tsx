@@ -5,7 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
-import aboutHeroImage from "@/assets/home/hero_abou-use_image.png";
+import aboutHeroImage from "@/assets/home/hero_abou-use_image.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

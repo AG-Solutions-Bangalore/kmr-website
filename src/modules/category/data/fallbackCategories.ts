@@ -1,12 +1,12 @@
-import edibleOil from '@/assets/category/edible_oil_image.png';
-import coconutOil from '@/assets/category/coconut_oil_image.png';
-import pulses from '@/assets/category/pulses_image.png';
-import gnSeed from '@/assets/category/GN_Seed_image.png';
-import ricePaddy from '@/assets/category/richAndpaddy_image.png';
-import kirana from '@/assets/category/kirana_image.png';
-import spices from '@/assets/category/spices_image.png';
-import dryFruits from '@/assets/category/dryFruits_image.png';
-import arecanut from '@/assets/category/Arcanut_image.png';
+import edibleOil from '@/assets/category/edible_oil_image.webp';
+import coconutOil from '@/assets/category/coconut_oil_image.webp';
+import pulses from '@/assets/category/pulses_image.webp';
+import gnSeed from '@/assets/category/GN_Seed_image.webp';
+import ricePaddy from '@/assets/category/richAndpaddy_image.webp';
+import kirana from '@/assets/category/kirana_image.webp';
+import spices from '@/assets/category/spices_image.webp';
+import dryFruits from '@/assets/category/dryFruits_image.webp';
+import arecanut from '@/assets/category/Arcanut_image.webp';
 import type { Category } from '../types';
 
 /**

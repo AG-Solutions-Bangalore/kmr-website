@@ -6,8 +6,8 @@ import { useGSAP } from "@gsap/react";
 import { useRef } from "react";
 
 // Asset imports
-import leaf1 from "@/assets/category/leaf1.png";
-import leaf3 from "@/assets/category/leaf3.png";
+import leaf1 from "@/assets/category/leaf1.webp";
+import leaf3 from "@/assets/category/leaf3.webp";
 
 gsap.registerPlugin(ScrollTrigger);
 

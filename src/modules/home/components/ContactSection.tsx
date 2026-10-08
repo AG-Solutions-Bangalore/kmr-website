@@ -1,8 +1,8 @@
 import React, { useRef, useEffect } from "react";
 import gsap from "gsap";
 import { Phone, Mail, MapPin, Send } from "lucide-react";
-import leaf5 from "../../../assets/category/leaf5.png";
-import leaf6 from "../../../assets/category/leaf6.png";
+import leaf5 from "../../../assets/category/leaf5.webp";
+import leaf6 from "../../../assets/category/leaf6.webp";
 
 const ContactSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null);

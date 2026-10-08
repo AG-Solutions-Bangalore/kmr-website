@@ -3,7 +3,7 @@ import { Plus, ChevronUp } from 'lucide-react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { useGSAP } from '@gsap/react';
-import chatImage from '@/assets/home/3d_chat_image.png';
+import chatImage from '@/assets/home/3d_chat_image.webp';
 import { usePageFaqSlug, useFaqs } from '../hook/useFaqs';
 import { HOME_FALLBACK_FAQS } from '../data/fallbackFaqs';
 import type { Faq } from '../types';

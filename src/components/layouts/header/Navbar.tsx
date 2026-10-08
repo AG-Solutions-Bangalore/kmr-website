@@ -2,7 +2,7 @@ import { useRef, useState } from "react";
 import { Link, useLocation } from "react-router";
 import { Search, Download, Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logo from "@/assets/common/logo.png";
+import logo from "@/assets/common/logo.webp";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
