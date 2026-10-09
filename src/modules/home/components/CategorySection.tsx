@@ -143,23 +143,23 @@ export function CategorySection() {
         </div>
 
         {/* Grid Container */}
-        <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-4">
+        <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 sm:gap-5 lg:grid-cols-5">
           {isLoading
-            ? Array.from({ length: 8 }).map((_, idx) => (
+            ? Array.from({ length: 10 }).map((_, idx) => (
                 <div
                   key={`skeleton-${idx}`}
-                  className="category-card flex min-h-[130px] sm:min-h-[140px] flex-col items-center justify-center rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5"
+                  className="category-card flex min-h-[170px] sm:min-h-[210px] lg:min-h-[230px] flex-col items-center justify-center rounded-2xl border border-mist-100 bg-white px-4 py-6 sm:p-7"
                 >
-                  <div className="mb-2 h-[60px] sm:h-[70px] w-full max-w-[90px] animate-pulse rounded-xl bg-mist-100" />
+                  <div className="mb-3 h-[90px] sm:h-[120px] lg:h-[135px] w-full max-w-[140px] lg:max-w-[160px] animate-pulse rounded-xl bg-mist-100" />
                   <div className="h-3.5 w-2/3 animate-pulse rounded-full bg-mist-100" />
                 </div>
               ))
             : CATEGORIES.map((cat, idx) => (
             <div
               key={idx}
-              className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-2.5 py-4 sm:px-3 sm:py-5 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[130px] sm:min-h-[140px]"
+              className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-4 py-6 sm:p-7 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[170px] sm:min-h-[210px] lg:min-h-[230px]"
             >
-              <div className="relative mb-2 flex h-[60px] sm:h-[70px] w-full items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
+              <div className="relative mb-3 flex h-[90px] sm:h-[120px] lg:h-[135px] w-full max-w-[140px] lg:max-w-[160px] items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
                 <img
                   src={cat.image}
                   alt={cat.name}
@@ -168,7 +168,7 @@ export function CategorySection() {
                   className="max-h-full max-w-full object-contain"
                 />
               </div>
-              <h3 className="text-center text-[13px] sm:text-[14px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
+              <h3 className="text-center text-[13px] sm:text-[15px] lg:text-[16px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
                 {cat.name}
               </h3>
             </div>
