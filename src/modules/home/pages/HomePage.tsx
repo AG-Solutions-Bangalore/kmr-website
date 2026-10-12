@@ -1,4 +1,5 @@
 import HeroSection from "../components/HeroSection";
+import { useSEO } from "@/seo/seo";
 import { HeroAboutSection } from "../components/HeroAboutSection";
 import { CategorySection } from "../components/CategorySection";
 import { FeatureSection } from "../components/FeatureSection";
@@ -7,6 +8,7 @@ import { AppPromoSection } from "../components/AppPromoSection";
 import ContactSection from "../components/ContactSection";
 
 export function HomePage() {
+  useSEO("home");
   return (
     <>
       <HeroSection />

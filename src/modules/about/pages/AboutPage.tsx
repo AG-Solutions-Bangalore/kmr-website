@@ -7,6 +7,7 @@ import {
   COMPANY_FALLBACK,
 } from "@/modules/company";
 import { webImage } from "@/lib/web-images";
+import { useSEO } from "@/seo/seo";
 
 /**
  * /about — company profile, live from GET /getCompany.
@@ -14,6 +15,7 @@ import { webImage } from "@/lib/web-images";
  * last-known-good fallback while loading), never hardcoded.
  */
 export function AboutPage() {
+  useSEO("about");
   const { data: company = COMPANY_FALLBACK } = useCompany();
 
   const profileCards = [

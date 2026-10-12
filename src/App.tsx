@@ -1,7 +1,9 @@
 import { RouterProvider } from 'react-router';
 import { QueryClientProvider } from '@tanstack/react-query';
+import { HelmetProvider } from 'react-helmet-async';
 import { router } from './routes/router';
 import { queryClient } from './lib/query-client';
+import { SeoHost } from './seo/seo';
 import { ReactLenis, useLenis } from 'lenis/react';
 import { useEffect } from 'react';
 import gsap from 'gsap';
@@ -38,12 +40,15 @@ function GSAPSync() {
 
 function App() {
   return (
-    <QueryClientProvider client={queryClient}>
-      <ReactLenis root autoRaf={false}>
+    <HelmetProvider>
+      <QueryClientProvider client={queryClient}>
+        <SeoHost />
+        <ReactLenis root autoRaf={false}>
         <GSAPSync />
         <RouterProvider router={router} />
-      </ReactLenis>
-    </QueryClientProvider>
+        </ReactLenis>
+      </QueryClientProvider>
+    </HelmetProvider>
   );
 }
 

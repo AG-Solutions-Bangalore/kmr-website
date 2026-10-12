@@ -46,6 +46,11 @@ function Navbar() {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Portal target exists only in the browser — skip the drawer during SSG.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const lenis = useLenis();
   const { data: company = COMPANY_FALLBACK } = useCompany();
 
@@ -211,7 +216,8 @@ function Navbar() {
       </div>
 
       {/* Mobile Sidebar (slide-in drawer, rendered above all content) */}
-      {createPortal(
+      {mounted &&
+        createPortal(
         <div
           className={`md:hidden ${mobileMenuOpen ? "" : "pointer-events-none"}`}
           aria-hidden={!mobileMenuOpen}

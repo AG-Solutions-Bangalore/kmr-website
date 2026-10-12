@@ -4,6 +4,7 @@ import { useCompany, companyMapEmbedUrl, COMPANY_FALLBACK } from '@/modules/comp
 import { ContactForm } from '../components/ContactForm';
 import { ContactInfo } from '../components/ContactInfo';
 import { NewsletterForm } from '../components/NewsletterForm';
+import { useSEO } from '@/seo/seo';
 
 /**
  * /contact — full Contact page.
@@ -11,6 +12,7 @@ import { NewsletterForm } from '../components/NewsletterForm';
  * Map + company details come live from GET /getCompany.
  */
 export function ContactPage() {
+  useSEO('contact');
   const { data: company = COMPANY_FALLBACK } = useCompany();
   const mapSrc = companyMapEmbedUrl(company);
   return (
