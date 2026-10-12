@@ -7,6 +7,7 @@ import { webImage } from "@/lib/web-images";
 const appStoreIcon = webImage("icons/App_Store_(iOS).svg");
 const playStoreIcon = webImage("icons/playStore-logo.svg");
 import { NewsletterForm } from "../../../modules/contact/components/NewsletterForm";
+import { SITE_NAME } from "@/seo/schemas";
 
 // Logo served from `public/logo.webp` (stable URL, cached by the browser).
 const logo = "/logo.webp";
@@ -65,50 +66,50 @@ const Footer: React.FC = () => {
           {/* Column 1: Brand & About (Takes full width on small screens, 4 cols on lg) */}
           <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-4 flex flex-col items-start text-left">
             <div className="bg-white p-2 rounded-xl inline-block mb-4">
-              <img src={logo} alt="KMR LIVE Website Logo" title="KMR LIVE Website Logo" className="h-10 object-contain" />
+              <img src={logo} alt={`${SITE_NAME} Website Logo`} title={`${SITE_NAME} Website Logo`} className="h-10 object-contain" />
             </div>
             
             <p className="text-[13px] md:text-[14px] leading-relaxed text-blue-100 font-medium mb-6 max-w-xl lg:max-w-[320px]">
-              KMR LIVE provides real-time commodity market information, trends and insights to help you make smarter business decisions.
+              {SITE_NAME} provides real-time commodity market information, trends and insights to help you make smarter business decisions.
             </p>
 
             <div className="flex items-center gap-3">
               <a
                 href="#"
-                title="Follow KMR LIVE on Facebook"
-                aria-label="Follow KMR LIVE on Facebook"
+                title={`Follow ${SITE_NAME} on Facebook`}
+                aria-label={`Follow ${SITE_NAME} on Facebook`}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1877f2] transition-transform hover:-translate-y-1 text-white"
               >
                 <FacebookIcon />
               </a>
               <a
                 href="#"
-                title="Follow KMR LIVE on Twitter"
-                aria-label="Follow KMR LIVE on Twitter"
+                title={`Follow ${SITE_NAME} on Twitter`}
+                aria-label={`Follow ${SITE_NAME} on Twitter`}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform hover:-translate-y-1 text-white"
               >
                 <TwitterIcon />
               </a>
               <a
                 href="#"
-                title="Follow KMR LIVE on LinkedIn"
-                aria-label="Follow KMR LIVE on LinkedIn"
+                title={`Follow ${SITE_NAME} on LinkedIn`}
+                aria-label={`Follow ${SITE_NAME} on LinkedIn`}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0a66c2] transition-transform hover:-translate-y-1 text-white"
               >
                 <LinkedinIcon />
               </a>
               <a
                 href="#"
-                title="Follow KMR LIVE on YouTube"
-                aria-label="Follow KMR LIVE on YouTube"
+                title={`Follow ${SITE_NAME} on YouTube`}
+                aria-label={`Follow ${SITE_NAME} on YouTube`}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff0000] transition-transform hover:-translate-y-1 text-white"
               >
                 <YoutubeIcon />
               </a>
               <a
                 href="#"
-                title="Follow KMR LIVE on Instagram"
-                aria-label="Follow KMR LIVE on Instagram"
+                title={`Follow ${SITE_NAME} on Instagram`}
+                aria-label={`Follow ${SITE_NAME} on Instagram`}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] transition-transform hover:-translate-y-1 text-white"
               >
                 <InstagramIcon />
@@ -121,11 +122,11 @@ const Footer: React.FC = () => {
             <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
             <ul className="flex flex-col gap-1.5">
               {[
-                { label: 'Home', to: '/', title: 'KMR LIVE Home' },
-                { label: 'About Us', to: '/about', title: 'About KMR LIVE' },
-                { label: 'Category', to: '/#categories', title: 'Explore KMR LIVE Product Categories' },
-                { label: 'App', to: '/#app', title: 'Download the KMR LIVE App' },
-                { label: 'Contact Us', to: '/contact', title: 'Contact KMR LIVE' },
+                { label: 'Home', to: '/', title: `${SITE_NAME} Home` },
+                { label: 'About Us', to: '/about', title: `About ${SITE_NAME}` },
+                { label: 'Category', to: '/#categories', title: `Explore ${SITE_NAME} Product Categories` },
+                { label: 'App', to: '/#app', title: `Download the ${SITE_NAME} App` },
+                { label: 'Contact Us', to: '/contact', title: `Contact ${SITE_NAME}` },
               ].map((link) => (
                 <li key={link.label}>
                   <Link
@@ -184,13 +185,13 @@ const Footer: React.FC = () => {
               {/* App Store Button */}
               <button
                 type="button"
-                title="Download KMR LIVE on the Apple App Store"
-                aria-label="Download KMR LIVE on the Apple App Store"
+                title={`Download ${SITE_NAME} on the Apple App Store`}
+                aria-label={`Download ${SITE_NAME} on the Apple App Store`}
                 className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800"
               >
                 <img
                   src={appStoreIcon}
-                  alt="Download KMR LIVE on the Apple App Store"
+                  alt={`Download ${SITE_NAME} on the Apple App Store`}
                   title="Download on the Apple App Store"
                   className="h-6 w-6"
                 />
@@ -205,13 +206,13 @@ const Footer: React.FC = () => {
                 href="https://play.google.com/store/apps/details?id=com.kmr.agsolutions&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
-                title="Download KMR LIVE on Google Play"
-                aria-label="Download KMR LIVE on Google Play"
+                title={`Download ${SITE_NAME} on Google Play`}
+                aria-label={`Download ${SITE_NAME} on Google Play`}
                 className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800"
               >
                 <img
                   src={playStoreIcon}
-                  alt="Download KMR LIVE on Google Play"
+                  alt={`Download ${SITE_NAME} on Google Play`}
                   title="Download on Google Play"
                   className="h-5 w-5"
                 />
@@ -226,7 +227,7 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-blue-800/50 flex flex-col sm:flex-row items-center sm:justify-between gap-4 text-center sm:text-left text-blue-200 text-[13px]">
-          <p>© {new Date().getFullYear()} KMR LIVE. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
           <div className="flex items-center gap-6">
             <a href="#" title="Privacy Policy" aria-label="Privacy Policy" className="hover:text-white transition-colors">Privacy Policy</a>
             <a href="#" title="Terms of Service" aria-label="Terms of Service" className="hover:text-white transition-colors">Terms of Service</a>

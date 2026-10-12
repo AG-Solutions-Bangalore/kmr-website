@@ -72,6 +72,7 @@ export function BlogDetailPage() {
   useSEO('blog', {
     title: blog ? `${blog.title} | ${SITE_NAME} Blog` : undefined,
     description: blog ? blog.excerpt || undefined : undefined,
+    keywords: blog ? `${blog.title}, ${SITE_NAME} blog, commodity market India` : undefined,
     path: blog ? `/blog/${blog.slug}` : '/blog',
   });
   const [copied, setCopied] = useState(false);

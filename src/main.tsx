@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { queryClient } from './lib/query-client'
-import { injectOrganizationSchema } from './seo/seo'
+import { injectOrganizationSchema, initRouteSeoSync } from './seo/seo'
 
 // Restore SSG query cache so the client starts with prerendered data.
 function rehydrateSsgState(): void {
@@ -26,6 +26,7 @@ function rehydrateSsgState(): void {
 
 rehydrateSsgState();
 injectOrganizationSchema();
+initRouteSeoSync();
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>

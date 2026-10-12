@@ -7,6 +7,7 @@ const heroBanner = webImage("home/hero_banner_with_phone.webp");
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { TRUST_ITEMS } from "../data";
+import { SITE_NAME } from "@/seo/schemas";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -110,8 +111,8 @@ function HeroSection() {
             <Button size="lg" asChild className="group rounded-full w-full sm:w-auto justify-center">
               <Link
                 to="/#categories"
-                title="Explore KMR LIVE Product Categories"
-                aria-label="Explore KMR LIVE Product Categories"
+                title={`Explore ${SITE_NAME} Product Categories`}
+                aria-label={`Explore ${SITE_NAME} Product Categories`}
               >
                 Explore Categories
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
@@ -120,8 +121,8 @@ function HeroSection() {
             <Button size="lg" variant="outline" asChild className="group rounded-full w-full sm:w-auto justify-center">
               <Link
                 to="/#app"
-                title="Download the KMR LIVE App"
-                aria-label="Download the KMR LIVE App"
+                title={`Download the ${SITE_NAME} App`}
+                aria-label={`Download the ${SITE_NAME} App`}
               >
                 Download App
                 <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />

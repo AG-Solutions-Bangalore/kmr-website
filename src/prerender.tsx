@@ -151,9 +151,11 @@ function buildHeadElements(
   canonical: string,
   schemas: Thing[],
   queryState: string | null,
+  keywords?: string,
 ) {
   const elements: HeadElement[] = [
     { type: "meta", props: { name: "description", content: desc } },
+    ...(keywords ? [{ type: "meta", props: { name: "keywords", content: keywords } }] : []),
     { type: "meta", props: { name: "robots", content: "index, follow" } },
     { type: "meta", props: { name: "author", content: SITE_AUTHOR } },
     { type: "meta", props: { name: "publisher", content: SITE_PUBLISHER } },
@@ -227,6 +229,7 @@ export async function prerender(data: { url: string }) {
 
   let title = SEO_CONFIG.home.title;
   let description = SEO_CONFIG.home.description;
+  let keywords = SEO_CONFIG.home.keywords;
   let canonicalPath = "/";
   const schemas: Thing[] = [];
 
@@ -248,6 +251,7 @@ export async function prerender(data: { url: string }) {
         post.excerpt || stripHtml(post.description).slice(0, 160) || post.title;
       title = `${post.title} | ${SITE_NAME} Blog`;
       description = postDesc;
+      keywords = `${post.title}, ${SITE_NAME} blog, commodity updates India`;
 
       schemas.push(
         organizationSchema(),
@@ -272,11 +276,13 @@ export async function prerender(data: { url: string }) {
     } else {
       title = SEO_CONFIG.blog.title;
       description = SEO_CONFIG.blog.description;
+      keywords = SEO_CONFIG.blog.keywords;
     }
   } else if (staticRoute) {
     const cfg = SEO_CONFIG[staticRoute.key];
     title = cfg.title;
     description = cfg.description;
+    keywords = cfg.keywords;
     canonicalPath = cfg.path;
 
     const [{ faqs, slug: faqSlug }, testiRes] = await Promise.all([
@@ -348,6 +354,7 @@ export async function prerender(data: { url: string }) {
         getCanonicalUrl(canonicalPath),
         schemas,
         queryState,
+        keywords,
       ),
     },
     links,
