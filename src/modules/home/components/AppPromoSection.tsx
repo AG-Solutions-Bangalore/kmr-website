@@ -1,4 +1,5 @@
 import { webImage } from "@/lib/web-images";
+import { SITE_NAME } from "@/seo/schemas";
 
 // App banner served from `web_images/` (same folder structure as local).
 const appBanner = webImage("home/kmr_live_app_banner.webp");
@@ -102,7 +103,8 @@ export function AppPromoSection() {
       <div className="absolute inset-0 z-0">
         <img
           src={appBanner}
-          alt="KMR Live App"
+          alt={`Download the ${SITE_NAME} App`}
+          title={`${SITE_NAME} Mobile Application Banner`}
           className="w-full h-full object-cover object-center"
         />
         {/* Strong white gradient overlay on the left to ensure text readability */}
@@ -113,7 +115,8 @@ export function AppPromoSection() {
         {/* Decorative Leaf on the left */}
         <img
           src={leaf4}
-          alt=""
+          alt="Decorative Green Leaf Illustration"
+          title="Decorative Green Leaf Illustration"
           loading="lazy"
           decoding="async"
           className="promo-leaf absolute -left-12 bottom-0 h-auto w-32 md:w-48 lg:w-56 object-contain mix-blend-multiply pointer-events-none blur-[0.5px]"
@@ -126,7 +129,7 @@ export function AppPromoSection() {
           <div className="flex w-full lg:w-[45%] flex-col items-start">
             <div className="promo-element mb-3 flex items-center gap-2 rounded-full border border-teal-200/50 bg-teal-500/10 px-2.5 py-1 text-[9px] font-bold uppercase tracking-[0.15em] text-teal-700">
               <span className="h-1 w-1 rounded-full bg-teal-500"></span>
-              KMR LIVE APP
+              {SITE_NAME} APP
             </div>
 
             <h2 className="promo-element mb-2 text-2xl sm:text-[28px] font-extrabold tracking-tight text-navy-900 lg:text-[2.2rem] leading-[1.15] lg:leading-[1.1]">
@@ -163,10 +166,16 @@ export function AppPromoSection() {
 
             <div className="promo-element flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
               {/* App Store Button */}
-              <button className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto">
+              <button
+                type="button"
+                title={`Download ${SITE_NAME} on the Apple App Store`}
+                aria-label={`Download ${SITE_NAME} on the Apple App Store`}
+                className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto"
+              >
                 <img
                   src={appStoreIcon}
-                  alt="Apple Logo"
+                  alt={`Download ${SITE_NAME} on the Apple App Store`}
+                  title="Download on the Apple App Store"
                   className="h-6 w-6 object-contain"
                 />
                 <div className="flex flex-col items-start text-left">
@@ -184,11 +193,14 @@ export function AppPromoSection() {
                 href="https://play.google.com/store/apps/details?id=com.kmr.agsolutions&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
+                title={`Download ${SITE_NAME} on Google Play`}
+                aria-label={`Download ${SITE_NAME} on Google Play`}
                 className="flex items-center justify-center gap-2 rounded-[10px] bg-black px-4 py-2.5 sm:py-2 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-black/20 active:scale-95 w-full sm:w-auto"
               >
                 <img
                   src={playStoreIcon}
-                  alt="Google Play Logo"
+                  alt={`Get ${SITE_NAME} on Google Play`}
+                  title="Download on Google Play"
                   className="h-6 w-6 object-contain"
                 />
                 <div className="flex flex-col items-start text-left">

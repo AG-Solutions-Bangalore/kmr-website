@@ -4,7 +4,6 @@ import { useCompany, companyMapEmbedUrl, COMPANY_FALLBACK } from '@/modules/comp
 import { ContactForm } from '../components/ContactForm';
 import { ContactInfo } from '../components/ContactInfo';
 import { NewsletterForm } from '../components/NewsletterForm';
-import { useSEO } from '@/seo/seo';
 
 /**
  * /contact — full Contact page.
@@ -12,7 +11,6 @@ import { useSEO } from '@/seo/seo';
  * Map + company details come live from GET /getCompany.
  */
 export function ContactPage() {
-  useSEO('contact');
   const { data: company = COMPANY_FALLBACK } = useCompany();
   const mapSrc = companyMapEmbedUrl(company);
   return (
@@ -23,7 +21,12 @@ export function ContactPage() {
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-success-100 blur-3xl opacity-50" />
         <div className="container relative py-10 sm:py-14">
           <nav className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.12em] text-muted-500">
-            <Link to="/" className="hover:text-primary-600 transition-colors">
+            <Link
+              to="/"
+              title="KMR LIVE Home"
+              aria-label="KMR LIVE Home"
+              className="hover:text-primary-600 transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />

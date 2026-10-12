@@ -129,14 +129,16 @@ export function MarketInsightsSection() {
       {/* User mentioned "bottom left", but arrow points right. I'll add subtle leaves to both sides for balance */}
       <img
         src={leaf3}
-        alt=""
+        alt="Decorative Leaf Graphic"
+        title="Decorative Leaf Graphic"
         loading="lazy"
         decoding="async"
         className="insight-leaf absolute -left-28 top-10 h-auto w-48 object-contain mix-blend-multiply md:w-64 lg:w-80 pointer-events-none blur-[0.5px]"
       />
       <img
         src={leaf1}
-        alt=""
+        alt="Decorative Green Leaf"
+        title="Decorative Green Leaf"
         loading="lazy"
         decoding="async"
         className="insight-leaf absolute -right-20 -bottom-10 h-auto w-52 object-contain mix-blend-multiply md:w-64 lg:w-80 pointer-events-none blur-[1px]"

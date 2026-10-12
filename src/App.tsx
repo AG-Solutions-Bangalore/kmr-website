@@ -3,7 +3,7 @@ import { QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { router } from './routes/router';
 import { queryClient } from './lib/query-client';
-import { SeoHost } from './seo/seo';
+import { AutoSeo } from './seo/seo';
 import { ReactLenis, useLenis } from 'lenis/react';
 import { useEffect } from 'react';
 import gsap from 'gsap';
@@ -42,7 +42,7 @@ function App() {
   return (
     <HelmetProvider>
       <QueryClientProvider client={queryClient}>
-        <SeoHost />
+        <AutoSeo />
         <ReactLenis root autoRaf={false}>
         <GSAPSync />
         <RouterProvider router={router} />

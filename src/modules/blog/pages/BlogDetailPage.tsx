@@ -13,7 +13,7 @@ import {
   Plus,
 } from 'lucide-react';
 import { useBlogBySlug } from '../hooks/useBlogs';
-import { useSEO } from '@/seo/seo';
+import { useSEO, SITE_NAME } from '@/seo/seo';
 import { groupFaqsByHeading, shouldShowFaqHeadings } from '@/modules/faq/utils/faqGroups';
 import { BlogCard } from '../components/BlogCard';
 import { getInitials, getReadTimeMinutes } from '../utils';
@@ -70,7 +70,7 @@ export function BlogDetailPage() {
   const { slug } = useParams<{ slug: string }>();
   const { data: blog, isLoading, isError } = useBlogBySlug(slug);
   useSEO('blog', {
-    title: blog ? `${blog.title} | KMR LIVE Blog` : undefined,
+    title: blog ? `${blog.title} | ${SITE_NAME} Blog` : undefined,
     description: blog ? blog.excerpt || undefined : undefined,
     path: blog ? `/blog/${blog.slug}` : '/blog',
   });

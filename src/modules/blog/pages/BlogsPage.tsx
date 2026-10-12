@@ -11,7 +11,6 @@ import {
   X,
 } from 'lucide-react';
 import { useBlogs } from '../hooks/useBlogs';
-import { useSEO } from '@/seo/seo';
 import { BlogCard } from '../components/BlogCard';
 import { getInitials, getReadTimeMinutes } from '../utils';
 import type { Blog } from '../types';
@@ -27,7 +26,6 @@ function matchesQuery(blog: Blog, query: string): boolean {
 
 /** Full blog listing — GET /getBlogs, with search + category filter. */
 export function BlogsPage() {
-  useSEO('blog');
   const { data, isLoading, isError } = useBlogs();
   const [query, setQuery] = useState('');
   const [activeCategory, setActiveCategory] = useState('All');

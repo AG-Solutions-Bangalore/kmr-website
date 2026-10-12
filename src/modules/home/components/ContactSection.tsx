@@ -7,6 +7,7 @@ import {
   COMPANY_FALLBACK,
 } from "@/modules/company";
 import { webImage } from "@/lib/web-images";
+import { SITE_NAME } from "@/seo/schemas";
 
 // Remote decorative assets (web_images/).
 const leaf5 = webImage("category/leaf5.webp");
@@ -76,7 +77,8 @@ const ContactSection: React.FC = () => {
       <img
         ref={leftLeafRef}
         src={leaf5}
-        alt="Decorative Leaf"
+        alt="Decorative Leaf Illustration"
+        title="Decorative Leaf Illustration"
         loading="lazy"
         decoding="async"
         className="pointer-events-none absolute left-0 bottom-0 w-28 sm:w-32 md:w-48 lg:w-64 z-10 translate-y-1/3 -translate-x-1/4 drop-shadow-2xl"
@@ -84,7 +86,8 @@ const ContactSection: React.FC = () => {
       <img
         ref={rightLeafRef}
         src={leaf6}
-        alt="Decorative Spices"
+        alt="Decorative Spice and Leaf Illustration"
+        title="Decorative Spice and Leaf Illustration"
         loading="lazy"
         decoding="async"
         className="pointer-events-none absolute right-0 bottom-0 w-32 sm:w-40 md:w-56 lg:w-80 z-10 translate-y-[20%] translate-x-1/4 drop-shadow-2xl"
@@ -119,12 +122,15 @@ const ContactSection: React.FC = () => {
                     Call Us
                   </h4>
                   {company.phones.map((phone) => (
-                    <p
+                    <a
                       key={phone}
-                      className="text-[12px] text-muted-500 font-medium whitespace-nowrap"
+                      href={`tel:${phone.replace(/\D/g, "")}`}
+                      title={`Call ${SITE_NAME} Support: ${formatIndianMobile(phone)}`}
+                      aria-label={`Call ${SITE_NAME} Support: ${formatIndianMobile(phone)}`}
+                      className="block text-[12px] text-muted-500 hover:text-[#145eb5] transition-colors font-medium whitespace-nowrap"
                     >
                       {formatIndianMobile(phone)}
-                    </p>
+                    </a>
                   ))}
                 </div>
               </div>
@@ -138,9 +144,14 @@ const ContactSection: React.FC = () => {
                   <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
                     Email Us
                   </h4>
-                  <p className="text-[12px] text-muted-500 font-medium break-all">
+                  <a
+                    href={`mailto:${company.email}`}
+                    title={`Email ${SITE_NAME} Support`}
+                    aria-label={`Email ${SITE_NAME} Support`}
+                    className="block text-[12px] text-muted-500 hover:text-[#145eb5] transition-colors font-medium break-all"
+                  >
                     {company.email}
-                  </p>
+                  </a>
                 </div>
               </div>
 
@@ -195,6 +206,8 @@ const ContactSection: React.FC = () => {
                 <div className="mt-2 flex justify-end">
                   <button
                     type="button"
+                    title="Send Message"
+                    aria-label="Send Message"
                     className="group relative flex items-center justify-center gap-2 overflow-hidden rounded-xl bg-[#145eb5] px-8 py-3.5 font-bold text-white transition-transform hover:-translate-y-1 hover:shadow-lg hover:shadow-[#145eb5]/30 w-full sm:w-auto"
                   >
                     <span className="relative z-10">Send Message</span>

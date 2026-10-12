@@ -5,10 +5,15 @@ import Navbar from "./header/Navbar";
 import Footer from "./footer/Footer";
 import { TestimonialSection } from "@/modules/testimonial";
 import { FaqSection } from "@/modules/faq";
+import { updateSeoForPath } from "@/seo/seo";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
   const lenis = useLenis();
+
+  useEffect(() => {
+    updateSeoForPath(pathname);
+  }, [pathname]);
 
   useEffect(() => {
     const scrollToHashTarget = () => {

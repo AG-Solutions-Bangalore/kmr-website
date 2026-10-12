@@ -11,8 +11,10 @@ import type {
   WebSite,
 } from "schema-dts";
 
-export const SITE_ORIGIN = "https://kmrlive.in";
+export const SITE_ORIGIN = "https://wa.kmrlive.in";
 export const SITE_NAME = "KMR LIVE";
+export const SITE_AUTHOR = SITE_NAME;
+export const SITE_PUBLISHER = SITE_NAME;
 export const SITE_LOGO = `${SITE_ORIGIN}/logo.webp`;
 
 const ORG_ID = `${SITE_ORIGIN}/#organization`;
@@ -61,7 +63,7 @@ export function organizationSchema(
     url: `${SITE_ORIGIN}/`,
     logo: SITE_LOGO,
     description:
-      "KMR LIVE (Karnataka Market Reports) provides real-time commodity market information, price trends and insights on edible oils, coconuts, pulses, spices, provisions and cashew across India.",
+      `${SITE_NAME} (Karnataka Market Reports) provides real-time commodity market information, price trends and insights on edible oils, coconuts, pulses, spices, provisions and cashew across India.`,
     email: "info@kmrlive.in",
     telephone: ["+91-9092346999", "+91-9042028585"],
     address: {

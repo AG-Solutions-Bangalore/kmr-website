@@ -27,7 +27,10 @@ function FaqAccordionRow({
   return (
     <div className={wrapperClassName}>
       <button
+        type="button"
         onClick={onToggle}
+        aria-expanded={isOpen}
+        aria-label={faq.question}
         className="group flex w-full cursor-pointer items-center justify-between gap-4 text-left outline-none transition-colors"
       >
         <span
@@ -172,7 +175,8 @@ export function FaqSection({
             <img
               ref={imageRef}
               src={chatImage}
-              alt="FAQ 3D Chat"
+              alt="KMR LIVE FAQ Chat Illustration"
+              title="KMR LIVE Frequently Asked Questions"
               loading="lazy"
               decoding="async"
               className="w-full h-auto max-w-[200px] lg:max-w-none drop-shadow-xl"

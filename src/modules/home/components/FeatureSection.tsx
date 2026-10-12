@@ -95,7 +95,8 @@ export function FeatureSection() {
       <div className="absolute inset-0 z-0">
         <img
           src={featureBanner}
-          alt="Features Background"
+          alt="Explore KMR LIVE Features"
+          title="KMR LIVE Platform Features Banner"
           className="w-full h-full object-cover object-right"
         />
         {/* Pure white overlay on the left fading to transparent on the right */}

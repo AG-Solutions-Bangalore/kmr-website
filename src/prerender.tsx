@@ -1,26 +1,30 @@
-import { renderToString } from 'react-dom/server';
-import { QueryClient, QueryClientProvider, dehydrate } from '@tanstack/react-query';
-import { StaticRouter } from 'react-router';
-import { Route, Routes } from 'react-router';
-import type { Thing } from 'schema-dts';
+import { renderToString } from "react-dom/server";
+import {
+  QueryClient,
+  QueryClientProvider,
+  dehydrate,
+} from "@tanstack/react-query";
+import { StaticRouter } from "react-router";
+import { Route, Routes } from "react-router";
+import type { Thing } from "schema-dts";
 
-import { MainLayout } from './components/layouts/MainLayout';
-import { HomePage } from './modules/home/pages/HomePage';
-import { AboutPage } from './modules/about/pages/AboutPage';
-import { ContactPage } from './modules/contact/pages/ContactPage';
-import { BlogDetailPage, BlogsPage } from './modules/blog';
+import { MainLayout } from "./components/layouts/MainLayout";
+import { HomePage } from "./modules/home/pages/HomePage";
+import { AboutPage } from "./modules/about/pages/AboutPage";
+import { ContactPage } from "./modules/contact/pages/ContactPage";
+import { BlogDetailPage, BlogsPage } from "./modules/blog";
 
-import { getBlogs, getBlogBySlug } from './modules/blog/api/blog.api';
-import { blogKeys } from './modules/blog/hooks/useBlogs';
-import { getFaqs } from './modules/faq/api/faq.api';
-import { faqKeys } from './modules/faq/hook/useFaqs';
-import { getTestimonials } from './modules/testimonial/api/testimonial.api';
-import { testimonialKeys } from './modules/testimonial/hook/useTestimonials';
-import { getCompany } from './modules/company/api/company.api';
-import { companyKeys } from './modules/company/hooks/useCompany';
-import type { Testimonial } from './modules/testimonial/types';
+import { getBlogs, getBlogBySlug } from "./modules/blog/api/blog.api";
+import { blogKeys } from "./modules/blog/hooks/useBlogs";
+import { getFaqs } from "./modules/faq/api/faq.api";
+import { faqKeys } from "./modules/faq/hook/useFaqs";
+import { getTestimonials } from "./modules/testimonial/api/testimonial.api";
+import { testimonialKeys } from "./modules/testimonial/hook/useTestimonials";
+import { getCompany } from "./modules/company/api/company.api";
+import { companyKeys } from "./modules/company/hooks/useCompany";
+import type { Testimonial } from "./modules/testimonial/types";
 
-import { SEO_CONFIG, getCanonicalUrl, type SeoKey } from './seo/seo';
+import { SEO_CONFIG, getCanonicalUrl, type SeoKey } from "./seo/seo";
 import {
   blogPostingSchema,
   breadcrumbSchema,
@@ -29,16 +33,23 @@ import {
   itemListSchema,
   organizationSchema,
   reviewSchema,
+  SITE_NAME,
+  SITE_AUTHOR,
+  SITE_PUBLISHER,
   stripHtml,
   webPageSchema,
   websiteSchema,
-} from './seo/schemas';
+} from "./seo/schemas";
 
 const dataCache = new Map<string, unknown>();
 
-async function cached<T>(key: readonly unknown[], fn: () => Promise<T>): Promise<T | null> {
+async function cached<T>(
+  key: readonly unknown[],
+  fn: () => Promise<T>,
+): Promise<T | null> {
   const cacheKey = JSON.stringify(key);
-  if (dataCache.has(cacheKey)) return (dataCache.get(cacheKey) ?? null) as T | null;
+  if (dataCache.has(cacheKey))
+    return (dataCache.get(cacheKey) ?? null) as T | null;
   try {
     const data = await fn();
     dataCache.set(cacheKey, data);
@@ -49,7 +60,11 @@ async function cached<T>(key: readonly unknown[], fn: () => Promise<T>): Promise
   }
 }
 
-function seed<T>(client: QueryClient, key: readonly unknown[], data: T | null): void {
+function seed<T>(
+  client: QueryClient,
+  key: readonly unknown[],
+  data: T | null,
+): void {
   if (data !== null && data !== undefined) {
     client.setQueryData(key, data);
   }
@@ -73,11 +88,15 @@ function parseReviews(rows: Testimonial[]) {
     }))
     .filter((r) => r.name.length > 0 && r.body.length > 0);
   const avg = list.length
-    ? Math.round((list.reduce((sum, r) => sum + r.rating, 0) / list.length) * 10) / 10
+    ? Math.round(
+        (list.reduce((sum, r) => sum + r.rating, 0) / list.length) * 10,
+      ) / 10
     : 0;
   return {
     list,
-    aggregate: list.length ? { ratingValue: avg, reviewCount: list.length } : undefined,
+    aggregate: list.length
+      ? { ratingValue: avg, reviewCount: list.length }
+      : undefined,
   };
 }
 
@@ -90,13 +109,41 @@ interface StaticRouteDef {
 }
 
 const STATIC_ROUTES: StaticRouteDef[] = [
-  { path: '/', key: 'home', label: 'Home', faqSlugs: ['home'], testiSlug: 'home' },
-  { path: '/about', key: 'about', label: 'About Us', faqSlugs: ['about-us', 'about'], testiSlug: 'about' },
-  { path: '/contact', key: 'contact', label: 'Contact Us', faqSlugs: ['contacts', 'contact-us', 'contact'], testiSlug: 'contact' },
-  { path: '/blog', key: 'blog', label: 'Blog', faqSlugs: ['blog', 'blogs'], testiSlug: 'blog' },
+  {
+    path: "/",
+    key: "home",
+    label: "Home",
+    faqSlugs: ["home"],
+    testiSlug: "home",
+  },
+  {
+    path: "/about",
+    key: "about",
+    label: "About Us",
+    faqSlugs: ["about-us", "about"],
+    testiSlug: "about",
+  },
+  {
+    path: "/contact",
+    key: "contact",
+    label: "Contact Us",
+    faqSlugs: ["contacts", "contact-us", "contact"],
+    testiSlug: "contact",
+  },
+  {
+    path: "/blog",
+    key: "blog",
+    label: "Blog",
+    faqSlugs: ["blog", "blogs"],
+    testiSlug: "blog",
+  },
 ];
 
-type HeadElement = { type: string; props: Record<string, string>; children?: string };
+type HeadElement = {
+  type: string;
+  props: Record<string, string>;
+  children?: string;
+};
 
 function buildHeadElements(
   title: string,
@@ -106,31 +153,36 @@ function buildHeadElements(
   queryState: string | null,
 ) {
   const elements: HeadElement[] = [
-    { type: 'title', props: {}, children: title },
-    { type: 'meta', props: { name: 'description', content: desc } },
-    { type: 'meta', props: { name: 'robots', content: 'index, follow' } },
-    { type: 'link', props: { rel: 'canonical', href: canonical } },
-    { type: 'meta', props: { property: 'og:type', content: 'website' } },
-    { type: 'meta', props: { property: 'og:title', content: title } },
-    { type: 'meta', props: { property: 'og:description', content: desc } },
-    { type: 'meta', props: { property: 'og:url', content: canonical } },
-    { type: 'meta', props: { name: 'twitter:card', content: 'summary_large_image' } },
-    { type: 'meta', props: { name: 'twitter:title', content: title } },
-    { type: 'meta', props: { name: 'twitter:description', content: desc } },
+    { type: "meta", props: { name: "description", content: desc } },
+    { type: "meta", props: { name: "robots", content: "index, follow" } },
+    { type: "meta", props: { name: "author", content: SITE_AUTHOR } },
+    { type: "meta", props: { name: "publisher", content: SITE_PUBLISHER } },
+    { type: "link", props: { rel: "canonical", href: canonical } },
+    { type: "meta", props: { property: "og:type", content: "website" } },
+    { type: "meta", props: { property: "og:site_name", content: SITE_NAME } },
+    { type: "meta", props: { property: "og:title", content: title } },
+    { type: "meta", props: { property: "og:description", content: desc } },
+    { type: "meta", props: { property: "og:url", content: canonical } },
+    {
+      type: "meta",
+      props: { name: "twitter:card", content: "summary_large_image" },
+    },
+    { type: "meta", props: { name: "twitter:title", content: title } },
+    { type: "meta", props: { name: "twitter:description", content: desc } },
   ];
 
   if (queryState) {
     elements.push({
-      type: 'script',
-      props: { id: 'kmr-query-state', type: 'application/json' },
+      type: "script",
+      props: { id: "kmr-query-state", type: "application/json" },
       children: queryState,
     });
   }
 
   if (schemas.length > 0) {
     elements.push({
-      type: 'script',
-      props: { type: 'application/ld+json', id: 'kmr-rich-results' },
+      type: "script",
+      props: { type: "application/ld+json", id: "kmr-rich-results" },
       children: JSON.stringify(createCompositeGraph(schemas)),
     });
   }
@@ -157,14 +209,17 @@ function renderRouteHtml(url: string, client: QueryClient): string {
       </QueryClientProvider>,
     );
   } catch (err) {
-    console.warn(`[SSG] render failed for ${url}:`, (err as Error)?.message ?? err);
-    return '';
+    console.warn(
+      `[SSG] render failed for ${url}:`,
+      (err as Error)?.message ?? err,
+    );
+    return "";
   }
 }
 
 export async function prerender(data: { url: string }) {
-  const url = data.url || '/';
-  const cleanPath = url.split('?')[0].split('#')[0].replace(/\/$/, '') || '/';
+  const url = data.url || "/";
+  const cleanPath = url.split("?")[0].split("#")[0].replace(/\/$/, "") || "/";
 
   const client = new QueryClient({
     defaultOptions: { queries: { retry: false, staleTime: Infinity } },
@@ -172,7 +227,7 @@ export async function prerender(data: { url: string }) {
 
   let title = SEO_CONFIG.home.title;
   let description = SEO_CONFIG.home.description;
-  let canonicalPath = '/';
+  let canonicalPath = "/";
   const schemas: Thing[] = [];
 
   const blogMatch = cleanPath.match(/^\/blog\/([^/]+)$/);
@@ -189,16 +244,17 @@ export async function prerender(data: { url: string }) {
     seed(client, blogKeys.bySlug(slug), post);
 
     if (post) {
-      const postDesc = post.excerpt || stripHtml(post.description).slice(0, 160) || post.title;
-      title = `${post.title} | KMR LIVE Blog`;
+      const postDesc =
+        post.excerpt || stripHtml(post.description).slice(0, 160) || post.title;
+      title = `${post.title} | ${SITE_NAME} Blog`;
       description = postDesc;
 
       schemas.push(
         organizationSchema(),
         webPageSchema(canonicalPath, title, postDesc),
         breadcrumbSchema([
-          { name: 'Home', path: '/' },
-          { name: 'Blog', path: '/blog' },
+          { name: "Home", path: "/" },
+          { name: "Blog", path: "/blog" },
           { name: post.title, path: canonicalPath },
         ]),
         blogPostingSchema({
@@ -238,15 +294,15 @@ export async function prerender(data: { url: string }) {
       reviewSchema({ name: r.name, body: r.body, rating: r.rating }),
     );
 
-    const isHome = staticRoute.path === '/';
+    const isHome = staticRoute.path === "/";
     schemas.push(
       organizationSchema(aggregate, reviewNodes),
       webPageSchema(canonicalPath, title, description),
       breadcrumbSchema(
         isHome
-          ? [{ name: 'Home', path: '/' }]
+          ? [{ name: "Home", path: "/" }]
           : [
-              { name: 'Home', path: '/' },
+              { name: "Home", path: "/" },
               { name: staticRoute.label, path: staticRoute.path },
             ],
       ),
@@ -254,10 +310,13 @@ export async function prerender(data: { url: string }) {
 
     if (isHome) schemas.push(websiteSchema());
 
-    if (staticRoute.path === '/blog') {
+    if (staticRoute.path === "/blog") {
       const allBlogs = await cached(blogKeys.list(), getBlogs);
       seed(client, blogKeys.list(), allBlogs ?? []);
-      const items = (allBlogs ?? []).map((b) => ({ name: b.title, path: `/blog/${b.slug}` }));
+      const items = (allBlogs ?? []).map((b) => ({
+        name: b.title,
+        path: `/blog/${b.slug}`,
+      }));
       if (items.length > 0) schemas.push(itemListSchema(items));
     }
 
@@ -267,7 +326,7 @@ export async function prerender(data: { url: string }) {
 
   const html = renderRouteHtml(url, client);
 
-  const dehydrated = JSON.stringify(dehydrate(client)).replace(/</g, '\\u003c');
+  const dehydrated = JSON.stringify(dehydrate(client)).replace(/</g, "\\u003c");
   const queryState = dehydrated.includes('"queries":[]') ? null : dehydrated;
   client.clear();
 
@@ -281,7 +340,7 @@ export async function prerender(data: { url: string }) {
   return {
     html,
     head: {
-      lang: 'en',
+      lang: "en",
       title,
       elements: buildHeadElements(
         title,

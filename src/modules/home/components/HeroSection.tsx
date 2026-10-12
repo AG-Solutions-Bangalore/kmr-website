@@ -108,13 +108,21 @@ function HeroSection() {
           {/* CTA buttons */}
           <div className="hero-item mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Button size="lg" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <Link to="/#categories">
+              <Link
+                to="/#categories"
+                title="Explore KMR LIVE Product Categories"
+                aria-label="Explore KMR LIVE Product Categories"
+              >
                 Explore Categories
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <Link to="/#app">
+              <Link
+                to="/#app"
+                title="Download the KMR LIVE App"
+                aria-label="Download the KMR LIVE App"
+              >
                 Download App
                 <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />
               </Link>
