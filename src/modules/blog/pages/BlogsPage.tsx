@@ -108,9 +108,11 @@ export function BlogsPage() {
                   <button
                     type="button"
                     onClick={() => setQuery('')}
+                    title="Clear search"
                     aria-label="Clear search"
                     className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-mist-100 text-muted-500 transition-colors hover:bg-mist-200 hover:text-navy-900"
                   >
+                    <span className="sr-only">Clear search</span>
                     <X className="h-3.5 w-3.5" strokeWidth={2.5} />
                   </button>
                 )}

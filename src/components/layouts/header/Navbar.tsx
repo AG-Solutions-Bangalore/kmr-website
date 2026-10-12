@@ -214,9 +214,11 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            title="Toggle navigation menu"
             aria-label="Toggle navigation menu"
             className="flex md:hidden items-center justify-center p-2 rounded-lg text-navy-800 hover:bg-mist-100 hover:text-primary-600 transition-colors"
           >
+            <span className="sr-only">Toggle navigation menu</span>
             {mobileMenuOpen ? (
               <X className="h-6 w-6" strokeWidth={2.5} />
             ) : (
@@ -256,10 +258,12 @@ function Navbar() {
               <button
                 type="button"
                 onClick={closeMenu}
+                title="Close navigation menu"
                 aria-label="Close navigation menu"
                 tabIndex={mobileMenuOpen ? 0 : -1}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-mist-100 text-navy-800 transition-colors hover:bg-mist-200"
               >
+                <span className="sr-only">Close navigation menu</span>
                 <X className="h-5 w-5" strokeWidth={2.5} />
               </button>
             </div>

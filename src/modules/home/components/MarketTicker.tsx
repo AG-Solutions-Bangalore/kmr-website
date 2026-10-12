@@ -94,7 +94,13 @@ export function MarketTicker() {
       {/* Right Action */}
       <div className="z-10 ml-auto flex shrink-0 items-center pl-2 sm:pl-3 bg-navy-800 relative">
         <div className="absolute left-0 top-0 bottom-0 w-6 sm:w-8 bg-gradient-to-l from-navy-800 to-transparent -translate-x-full pointer-events-none" />
-        <button className="group flex h-[26px] w-[26px] sm:h-[28px] sm:w-[28px] items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20">
+        <button
+          type="button"
+          title="View Today's Market Highlights"
+          aria-label="View Today's Market Highlights"
+          className="group flex h-[26px] w-[26px] sm:h-[28px] sm:w-[28px] items-center justify-center rounded-full bg-white/10 transition-colors hover:bg-white/20"
+        >
+          <span className="sr-only">View Today's Market Highlights</span>
           <ArrowRight className="h-3 w-3 sm:h-3.5 sm:w-3.5 text-white transition-transform group-hover:translate-x-0.5" />
         </button>
       </div>
