@@ -118,9 +118,9 @@ const ContactSection: React.FC = () => {
                   <Phone className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                  <h3 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
                     Call Us
-                  </h4>
+                  </h3>
                   {company.phones.map((phone) => (
                     <a
                       key={phone}
@@ -141,9 +141,9 @@ const ContactSection: React.FC = () => {
                   <Mail className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                  <h3 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
                     Email Us
-                  </h4>
+                  </h3>
                   <a
                     href={`mailto:${company.email}`}
                     title={`Email ${SITE_NAME} Support`}
@@ -161,9 +161,9 @@ const ContactSection: React.FC = () => {
                   <MapPin className="h-5 w-5" fill="currentColor" />
                 </div>
                 <div>
-                  <h4 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
+                  <h3 className="text-[14px] font-bold text-navy-900 mb-0.5 sm:mb-1">
                     Our Office
-                  </h4>
+                  </h3>
                   <p className="text-[12px] text-muted-500 font-medium">
                     {company.address}
                   </p>
@@ -212,7 +212,7 @@ const ContactSection: React.FC = () => {
                   >
                     <span className="relative z-10">Send Message</span>
                     <Send className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-500 group-hover:translate-x-[100%]"></div>
+                    <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-500 group-hover:translate-x-[100%]"></span>
                   </button>
                 </div>
               </form>

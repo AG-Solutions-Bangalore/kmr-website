@@ -213,7 +213,7 @@ export function ContactForm() {
                   <Send className="relative z-10 h-4 w-4 transition-transform group-hover:translate-x-1" />
                 </>
               )}
-              <div className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-500 group-hover:translate-x-[100%]" />
+              <span className="absolute inset-0 z-0 bg-gradient-to-r from-transparent via-white/20 to-transparent translate-x-[-100%] transition-transform duration-500 group-hover:translate-x-[100%]" />
             </button>
           </div>
         </form>

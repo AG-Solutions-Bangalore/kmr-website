@@ -178,14 +178,14 @@ export function AppPromoSection() {
                   title="Download on the Apple App Store"
                   className="h-6 w-6 object-contain"
                 />
-                <div className="flex flex-col items-start text-left">
+                <span className="flex flex-col items-start text-left">
                   <span className="text-[8px] font-medium tracking-wide leading-[1] text-white/80">
                     Download on the
                   </span>
                   <span className="text-[15px] font-semibold leading-[1.1]">
                     App Store
                   </span>
-                </div>
+                </span>
               </button>
 
               {/* Google Play Button */}
@@ -203,14 +203,14 @@ export function AppPromoSection() {
                   title="Download on Google Play"
                   className="h-6 w-6 object-contain"
                 />
-                <div className="flex flex-col items-start text-left">
+                <span className="flex flex-col items-start text-left">
                   <span className="text-[8px] font-medium tracking-wide leading-[1] text-white/80">
                     GET IT ON
                   </span>
                   <span className="text-[15px] font-semibold leading-[1.1]">
                     Google Play
                   </span>
-                </div>
+                </span>
               </a>
             </div>
           </div>

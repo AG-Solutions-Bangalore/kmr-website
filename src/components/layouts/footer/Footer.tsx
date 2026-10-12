@@ -52,7 +52,7 @@ const Footer: React.FC = () => {
               <BellRing className="h-5 w-5" />
             </span>
             <div>
-              <h4 className="text-[16px] font-bold text-white">Stay updated with daily market prices</h4>
+              <h3 className="text-[16px] font-bold text-white">Stay updated with daily market prices</h3>
               <p className="mt-1 max-w-md text-[13px] font-medium leading-relaxed text-blue-200">
                 Join 10,000+ traders getting price trends and insights every morning. No spam, unsubscribe anytime.
               </p>
@@ -119,7 +119,7 @@ const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links (Takes 1 col, 2 cols on lg) */}
           <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h3>
             <ul className="flex flex-col gap-1.5">
               {[
                 { label: 'Home', to: '/', title: `${SITE_NAME} Home` },
@@ -144,7 +144,7 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Categories (Takes 1 col, 3 cols on lg) */}
           <div className="col-span-1 lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Categories</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Categories</h3>
             <div className="flex gap-6 sm:gap-10 text-left">
               <ul className="flex flex-col gap-1.5">
                 {['Edible Oil', 'Coconut Oil', 'Pulses', 'GN Seed', 'Rice & Paddy', 'Kirana'].map((cat) => (
@@ -179,7 +179,7 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Download App (Takes full width on small screens, 3 cols on lg) */}
           <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Download App</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Download App</h3>
             
             <div className="flex flex-row flex-wrap sm:flex-col gap-3 w-full max-w-sm lg:max-w-[180px]">
               {/* App Store Button */}
@@ -195,10 +195,10 @@ const Footer: React.FC = () => {
                   title="Download on the Apple App Store"
                   className="h-6 w-6"
                 />
-                <div className="flex flex-col items-start leading-none">
+                <span className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">Download on the</span>
                   <span className="text-[14px] font-semibold">App Store</span>
-                </div>
+                </span>
               </button>
 
               {/* Play Store Button */}
@@ -216,10 +216,10 @@ const Footer: React.FC = () => {
                   title="Download on Google Play"
                   className="h-5 w-5"
                 />
-                <div className="flex flex-col items-start leading-none">
+                <span className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">GET IT ON</span>
                   <span className="text-[14px] font-semibold">Google Play</span>
-                </div>
+                </span>
               </a>
             </div>
           </div>

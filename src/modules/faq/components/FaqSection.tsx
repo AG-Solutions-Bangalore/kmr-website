@@ -38,7 +38,7 @@ function FaqAccordionRow({
         >
           {faq.question}
         </span>
-        <div
+        <span
           className={`flex shrink-0 items-center justify-center transition-colors duration-300 ${isOpen ? 'text-[#145eb5]' : 'text-navy-900 group-hover:text-[#145eb5]'}`}
         >
           {isOpen ? (
@@ -46,7 +46,7 @@ function FaqAccordionRow({
           ) : (
             <Plus className="h-5 w-5" strokeWidth={2.5} />
           )}
-        </div>
+        </span>
       </button>
 
       <div

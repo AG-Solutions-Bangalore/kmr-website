@@ -18,7 +18,7 @@ interface TestimonialSectionProps {
 
 function Stars({ rating }: { rating: number }) {
   return (
-    <div className="flex items-center gap-1" aria-label={`${rating} out of 5 stars`}>
+    <div role="img" className="flex items-center gap-1" aria-label={`${rating} out of 5 stars`}>
       {Array.from({ length: 5 }, (_, i) => (
         <Star
           key={i}
@@ -67,7 +67,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
         <blockquote className="mt-3 line-clamp-3 text-[14px] font-medium leading-[1.7] text-navy-800 sm:text-[15px]">
           &ldquo;{testimonial.message}&rdquo;
         </blockquote>
-        <figcaption className="mt-4 flex items-center gap-3 border-t border-gray-100 pt-4">
+        <div className="mt-4 flex items-center gap-3 border-t border-gray-100 pt-4">
           <Avatar testimonial={testimonial} />
           <div className="min-w-0 text-left">
             <p className="flex items-center gap-1.5 truncate text-[14px] font-extrabold text-navy-900">
@@ -83,7 +83,7 @@ function TestimonialCard({ testimonial }: { testimonial: Testimonial }) {
               </p>
             )}
           </div>
-        </figcaption>
+        </div>
       </div>
     </figure>
   );

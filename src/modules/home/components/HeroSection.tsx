@@ -131,24 +131,24 @@ function HeroSection() {
           </div>
 
           {/* trust icons row */}
-          <dl className="mt-8 sm:mt-10 grid max-w-lg grid-cols-4 gap-1.5 sm:gap-4">
+          <div className="mt-8 sm:mt-10 grid max-w-lg grid-cols-4 gap-1.5 sm:gap-4">
             {TRUST_ITEMS.map((item) => (
               <div
                 key={item.label}
                 className="hero-icon-item flex flex-col items-center gap-2 sm:gap-3 text-center"
               >
-                <dt className="sr-only">{item.label}</dt>
                 <span
+                  aria-hidden="true"
                   className={`flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full shadow-sm md:h-[52px] md:w-[52px] ${item.bgClass} ${item.colorClass}`}
                 >
                   {item.icon}
                 </span>
-                <dd className="text-[9px] font-semibold leading-tight text-navy-800 sm:text-[11px]">
+                <span className="text-[9px] font-semibold leading-tight text-navy-800 sm:text-[11px]">
                   {item.label}
-                </dd>
+                </span>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     </section>

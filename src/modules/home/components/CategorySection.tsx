@@ -166,7 +166,6 @@ export function CategorySection() {
                   <div
                     key={idx}
                     title={categoryTitle}
-                    aria-label={categoryTitle}
                     className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-4 py-6 sm:p-7 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[170px] sm:min-h-[210px] lg:min-h-[230px]"
                   >
                     <div className="relative mb-3 flex h-[90px] sm:h-[120px] lg:h-[135px] w-full max-w-[140px] lg:max-w-[160px] items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">

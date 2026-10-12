@@ -155,7 +155,8 @@ export function BlogsPage() {
       </section>
 
       {/* Content */}
-      <section className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <div className="mx-auto w-full max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+        <h2 className="sr-only">Latest Market Insights &amp; Articles</h2>
         {isLoading && <BlogsSkeleton />}
 
         {!isLoading && (isError || blogs.length === 0) && (
@@ -229,7 +230,7 @@ export function BlogsPage() {
             )}
           </>
         )}
-      </section>
+      </div>
     </>
   );
 }

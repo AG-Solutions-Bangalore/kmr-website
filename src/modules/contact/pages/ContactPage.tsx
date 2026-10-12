@@ -92,7 +92,7 @@ export function ContactPage() {
       </section>
 
       {/* Map embed */}
-      <section className="container pb-12 sm:pb-16">
+      <div className="container pb-12 sm:pb-16">
         <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
           <iframe
             title={`${company.name} — ${company.place} office map`}
@@ -102,7 +102,7 @@ export function ContactPage() {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-      </section>
+      </div>
     </>
   );
 }
