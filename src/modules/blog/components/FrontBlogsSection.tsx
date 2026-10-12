@@ -107,6 +107,7 @@ export function FrontBlogsSection({
       <img
         src={leaf3}
         alt=""
+        title="Decorative Leaf Graphic"
         aria-hidden="true"
         loading="lazy"
         decoding="async"
@@ -115,6 +116,7 @@ export function FrontBlogsSection({
       <img
         src={leaf1}
         alt=""
+        title="Decorative Green Leaf"
         aria-hidden="true"
         loading="lazy"
         decoding="async"
@@ -138,6 +140,8 @@ export function FrontBlogsSection({
 
           <Link
             to="/blog"
+            title="Explore KMR LIVE Market Insights"
+            aria-label="Explore KMR LIVE Market Insights"
             className="front-blog-header group hidden h-[42px] items-center rounded-lg border border-[#145eb5]/30 bg-white px-6 text-sm font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:inline-flex"
           >
             View All Insights
@@ -153,6 +157,8 @@ export function FrontBlogsSection({
 
         <Link
           to="/blog"
+          title="Explore KMR LIVE Market Insights"
+          aria-label="Explore KMR LIVE Market Insights"
           className="group mt-8 inline-flex h-[46px] w-full items-center justify-center rounded-lg border border-[#145eb5] bg-white font-bold text-[#145eb5] shadow-sm transition-all duration-300 hover:bg-[#145eb5] hover:text-white md:hidden"
         >
           View All Insights

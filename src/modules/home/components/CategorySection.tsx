@@ -104,21 +104,24 @@ export function CategorySection() {
       {/* Decorative Leaves - Flushed to corners with blur layering */}
       <img
         src={leaf3}
-        alt=""
+        alt="Decorative Leaf Graphic"
+        title="Decorative Leaf Graphic"
         loading="lazy"
         decoding="async"
         className="category-leaf absolute -left-28 blur-[0.5px] bottom-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf2}
-        alt=""
+        alt="Decorative Leaf Element"
+        title="Decorative Leaf Element"
         loading="lazy"
         decoding="async"
         className="category-leaf absolute -left-20 blur-[0.1px] top-0 h-auto w-32 object-contain object-left-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
       />
       <img
         src={leaf1}
-        alt=""
+        alt="Decorative Green Leaf"
+        title="Decorative Green Leaf"
         loading="lazy"
         decoding="async"
         className="category-leaf absolute right-0 blur-[0.2px] top-0 h-auto w-52 object-contain object-right-top mix-blend-multiply md:w-48 lg:w-64 xl:w-80 pointer-events-none"
@@ -154,25 +157,33 @@ export function CategorySection() {
                   <div className="h-3.5 w-2/3 animate-pulse rounded-full bg-mist-100" />
                 </div>
               ))
-            : CATEGORIES.map((cat, idx) => (
-            <div
-              key={idx}
-              className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-4 py-6 sm:p-7 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[170px] sm:min-h-[210px] lg:min-h-[230px]"
-            >
-              <div className="relative mb-3 flex h-[90px] sm:h-[120px] lg:h-[135px] w-full max-w-[140px] lg:max-w-[160px] items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
-                <img
-                  src={cat.image}
-                  alt={cat.name}
-                  loading="lazy"
-                  decoding="async"
-                  className="max-h-full max-w-full object-contain"
-                />
-              </div>
-              <h3 className="text-center text-[13px] sm:text-[15px] lg:text-[16px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
-                {cat.name}
-              </h3>
-            </div>
-          ))}
+            : CATEGORIES.map((cat, idx) => {
+                const categoryAlt = cat.name.toLowerCase().includes("category")
+                  ? cat.name
+                  : `${cat.name} Category`;
+                const categoryTitle = `Explore ${cat.name} Products`;
+                return (
+                  <div
+                    key={idx}
+                    title={categoryTitle}
+                    className="category-card group relative flex cursor-pointer flex-col items-center justify-center overflow-hidden rounded-2xl border border-mist-100 bg-white px-4 py-6 sm:p-7 transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] hover:-translate-y-2 hover:border-blue-200 hover:shadow-[0_12px_40px_rgb(0,0,0,0.08)] min-h-[170px] sm:min-h-[210px] lg:min-h-[230px]"
+                  >
+                    <div className="relative mb-3 flex h-[90px] sm:h-[120px] lg:h-[135px] w-full max-w-[140px] lg:max-w-[160px] items-center justify-center transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-110">
+                      <img
+                        src={cat.image}
+                        alt={categoryAlt}
+                        title={categoryTitle}
+                        loading="lazy"
+                        decoding="async"
+                        className="max-h-full max-w-full object-contain"
+                      />
+                    </div>
+                    <h3 className="text-center text-[13px] sm:text-[15px] lg:text-[16px] font-bold text-navy-900 transition-colors duration-300 group-hover:text-[#145eb5]">
+                      {cat.name}
+                    </h3>
+                  </div>
+                );
+              })}
         </div>
       </div>
     </section>

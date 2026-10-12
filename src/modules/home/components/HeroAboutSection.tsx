@@ -1,3 +1,4 @@
+import { Link } from "react-router";
 import { MarketTicker } from "./MarketTicker";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Target, Lightbulb, Handshake } from "lucide-react";
@@ -98,7 +99,8 @@ export function HeroAboutSection() {
       <div className="about-image absolute -right-6 -top-2.5 h-full w-full max-w-[32%] z-0 flex items-start justify-end pointer-events-none hidden md:flex">
         <img
           src={aboutHeroImage}
-          alt="Empowering Markets Enriching Lives"
+          alt="Empowering Markets and Enriching Lives"
+          title="KMR LIVE Empowering Markets and Enriching Lives"
           className="h-full w-auto object-contain object-right-top"
         />
       </div>
@@ -130,11 +132,19 @@ export function HeroAboutSection() {
           </p>
 
           <Button
+            asChild
             size="lg"
             className="group bg-[#145eb5] hover:bg-[#145eb5]/90 text-white font-bold px-7 h-[46px] rounded-lg shadow-md transition-all w-full sm:w-auto justify-center"
           >
-            Know More About Us
-            <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
+            <Link
+              to="/about"
+              title="About KMR LIVE"
+              aria-label="About KMR LIVE"
+              className="flex items-center justify-center"
+            >
+              Know More About Us
+              <ArrowRight className="ml-2 h-4 w-4 transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
+            </Link>
           </Button>
         </div>
 

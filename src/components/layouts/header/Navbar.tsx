@@ -16,6 +16,7 @@ import {
 import { useLenis } from "lenis/react";
 import { Button } from "@/components/ui/button";
 import { useCompany, formatIndianMobile, COMPANY_FALLBACK } from "@/modules/company";
+import { SITE_NAME } from "@/seo/schemas";
 // Logo served from `public/logo.webp` (stable URL, cached by the browser).
 const logo = "/logo.webp";
 import gsap from "gsap";
@@ -24,11 +25,11 @@ import { useGSAP } from "@gsap/react";
 gsap.registerPlugin(useGSAP);
 
 const NAV_LINKS = [
-  { label: "Home", to: "/", icon: Home },
-  { label: "About Us", to: "/about", icon: Users },
-  { label: "Category", to: "/#categories", icon: LayoutGrid },
-  { label: "App", to: "/#app", icon: Smartphone },
-  { label: "Contact Us", to: "/contact", icon: Mail },
+  { label: "Home", to: "/", icon: Home, title: `${SITE_NAME} Home` },
+  { label: "About Us", to: "/about", icon: Users, title: `About ${SITE_NAME}` },
+  { label: "Category", to: "/#categories", icon: LayoutGrid, title: `Explore ${SITE_NAME} Product Categories` },
+  { label: "App", to: "/#app", icon: Smartphone, title: `Download the ${SITE_NAME} App` },
+  { label: "Contact Us", to: "/contact", icon: Mail, title: `Contact ${SITE_NAME}` },
 ];
 
 function isLinkActive(pathname: string, hash: string, to: string) {
@@ -46,6 +47,11 @@ function Navbar() {
   const location = useLocation();
   const navRef = useRef<HTMLElement>(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  // Portal target exists only in the browser — skip the drawer during SSG.
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => {
+    setMounted(true);
+  }, []);
   const lenis = useLenis();
   const { data: company = COMPANY_FALLBACK } = useCompany();
 
@@ -148,10 +154,13 @@ function Navbar() {
             to="/"
             className="nav-logo flex-shrink-0"
             onClick={() => setMobileMenuOpen(false)}
+            title={`${SITE_NAME} Home`}
+            aria-label={`${SITE_NAME} Home`}
           >
             <img
               src={logo}
-              alt="KMR LIVE"
+              alt={`${SITE_NAME} Official Logo`}
+              title={`${SITE_NAME} Logo`}
               className="h-9 sm:h-10 w-auto object-contain"
             />
           </Link>
@@ -170,6 +179,8 @@ function Navbar() {
               <Link
                 key={link.label}
                 to={link.to}
+                title={link.title}
+                aria-label={link.title}
                 className={`nav-link relative flex h-full items-center px-4 text-[13px] font-bold tracking-wide transition-colors lg:px-5 ${
                   isActive
                     ? "text-primary-600"
@@ -188,7 +199,12 @@ function Navbar() {
             asChild
             className="hidden sm:flex h-[42px] px-6 text-sm font-bold bg-[#145eb5] hover:bg-[#145eb5]/90 text-white shadow-md rounded-full"
           >
-            <Link to="/#app" className="flex items-center">
+            <Link
+              to="/#app"
+              className="flex items-center"
+              title={`Download the ${SITE_NAME} App`}
+              aria-label={`Download the ${SITE_NAME} App`}
+            >
               Download App
               <Download className="ml-2 h-[18px] w-[18px]" strokeWidth={2.5} />
             </Link>
@@ -198,9 +214,11 @@ function Navbar() {
           <button
             type="button"
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            title="Toggle navigation menu"
             aria-label="Toggle navigation menu"
             className="flex md:hidden items-center justify-center p-2 rounded-lg text-navy-800 hover:bg-mist-100 hover:text-primary-600 transition-colors"
           >
+            <span className="sr-only">Toggle navigation menu</span>
             {mobileMenuOpen ? (
               <X className="h-6 w-6" strokeWidth={2.5} />
             ) : (
@@ -211,7 +229,8 @@ function Navbar() {
       </div>
 
       {/* Mobile Sidebar (slide-in drawer, rendered above all content) */}
-      {createPortal(
+      {mounted &&
+        createPortal(
         <div
           className={`md:hidden ${mobileMenuOpen ? "" : "pointer-events-none"}`}
           aria-hidden={!mobileMenuOpen}
@@ -233,14 +252,18 @@ function Navbar() {
           >
             {/* Header */}
             <div className="flex items-center justify-between px-5 py-4">
-              <img src={logo} alt="KMR LIVE" className="h-8 w-auto object-contain" />
+              <Link to="/" onClick={closeMenu} title={`${SITE_NAME} Home`} aria-label={`${SITE_NAME} Home`}>
+                <img src={logo} alt={`${SITE_NAME} Official Logo`} title={`${SITE_NAME} Logo`} className="h-8 w-auto object-contain" />
+              </Link>
               <button
                 type="button"
                 onClick={closeMenu}
+                title="Close navigation menu"
                 aria-label="Close navigation menu"
                 tabIndex={mobileMenuOpen ? 0 : -1}
                 className="flex h-9 w-9 items-center justify-center rounded-full bg-mist-100 text-navy-800 transition-colors hover:bg-mist-200"
               >
+                <span className="sr-only">Close navigation menu</span>
                 <X className="h-5 w-5" strokeWidth={2.5} />
               </button>
             </div>
@@ -260,6 +283,8 @@ function Navbar() {
                     to={link.to}
                     onClick={closeMenu}
                     tabIndex={mobileMenuOpen ? 0 : -1}
+                    title={link.title}
+                    aria-label={link.title}
                     style={{
                       transitionDelay: mobileMenuOpen ? `${120 + i * 60}ms` : "0ms",
                     }}
@@ -299,6 +324,8 @@ function Navbar() {
                 <Link
                   to="/#app"
                   onClick={closeMenu}
+                  title={`Download the ${SITE_NAME} App`}
+                  aria-label={`Download the ${SITE_NAME} App`}
                   className="flex items-center justify-center"
                 >
                   Download App
@@ -310,7 +337,9 @@ function Navbar() {
                   <a
                     key={phone}
                     href={`tel:${phone.replace(/\D/g, "")}`}
-                    className="flex items-center gap-2.5 text-[13px] font-bold text-navy-800"
+                    title={`Call ${SITE_NAME} Support`}
+                    aria-label={`Call ${SITE_NAME} Support`}
+                    className="flex items-center gap-2.5 text-[13px] font-bold text-navy-800 hover:text-[#145eb5] transition-colors"
                   >
                     <Phone className="h-4 w-4 text-[#145eb5]" strokeWidth={2.5} />
                     {formatIndianMobile(phone)}
@@ -318,7 +347,9 @@ function Navbar() {
                 ))}
                 <a
                   href={`mailto:${company.email}`}
-                  className="flex items-center gap-2.5 text-[13px] font-bold text-navy-800"
+                  title={`Email ${SITE_NAME} Support`}
+                  aria-label={`Email ${SITE_NAME} Support`}
+                  className="flex items-center gap-2.5 text-[13px] font-bold text-navy-800 hover:text-[#145eb5] transition-colors"
                 >
                   <Mail className="h-4 w-4 text-[#145eb5]" strokeWidth={2.5} />
                   {company.email}

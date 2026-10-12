@@ -7,6 +7,7 @@ import { webImage } from "@/lib/web-images";
 const appStoreIcon = webImage("icons/App_Store_(iOS).svg");
 const playStoreIcon = webImage("icons/playStore-logo.svg");
 import { NewsletterForm } from "../../../modules/contact/components/NewsletterForm";
+import { SITE_NAME } from "@/seo/schemas";
 
 // Logo served from `public/logo.webp` (stable URL, cached by the browser).
 const logo = "/logo.webp";
@@ -51,7 +52,7 @@ const Footer: React.FC = () => {
               <BellRing className="h-5 w-5" />
             </span>
             <div>
-              <h4 className="text-[16px] font-bold text-white">Stay updated with daily market prices</h4>
+              <h3 className="text-[16px] font-bold text-white">Stay updated with daily market prices</h3>
               <p className="mt-1 max-w-md text-[13px] font-medium leading-relaxed text-blue-200">
                 Join 10,000+ traders getting price trends and insights every morning. No spam, unsubscribe anytime.
               </p>
@@ -65,27 +66,52 @@ const Footer: React.FC = () => {
           {/* Column 1: Brand & About (Takes full width on small screens, 4 cols on lg) */}
           <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-4 flex flex-col items-start text-left">
             <div className="bg-white p-2 rounded-xl inline-block mb-4">
-              <img src={logo} alt="KMR LIVE Logo" className="h-10 object-contain" />
+              <img src={logo} alt={`${SITE_NAME} Website Logo`} title={`${SITE_NAME} Website Logo`} className="h-10 object-contain" />
             </div>
             
             <p className="text-[13px] md:text-[14px] leading-relaxed text-blue-100 font-medium mb-6 max-w-xl lg:max-w-[320px]">
-              KMR LIVE provides real-time commodity market information, trends and insights to help you make smarter business decisions.
+              {SITE_NAME} provides real-time commodity market information, trends and insights to help you make smarter business decisions.
             </p>
 
             <div className="flex items-center gap-3">
-              <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1877f2] transition-transform hover:-translate-y-1 text-white">
+              <a
+                href="#"
+                title={`Follow ${SITE_NAME} on Facebook`}
+                aria-label={`Follow ${SITE_NAME} on Facebook`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#1877f2] transition-transform hover:-translate-y-1 text-white"
+              >
                 <FacebookIcon />
               </a>
-              <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform hover:-translate-y-1 text-white">
+              <a
+                href="#"
+                title={`Follow ${SITE_NAME} on Twitter`}
+                aria-label={`Follow ${SITE_NAME} on Twitter`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-black transition-transform hover:-translate-y-1 text-white"
+              >
                 <TwitterIcon />
               </a>
-              <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0a66c2] transition-transform hover:-translate-y-1 text-white">
+              <a
+                href="#"
+                title={`Follow ${SITE_NAME} on LinkedIn`}
+                aria-label={`Follow ${SITE_NAME} on LinkedIn`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#0a66c2] transition-transform hover:-translate-y-1 text-white"
+              >
                 <LinkedinIcon />
               </a>
-              <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff0000] transition-transform hover:-translate-y-1 text-white">
+              <a
+                href="#"
+                title={`Follow ${SITE_NAME} on YouTube`}
+                aria-label={`Follow ${SITE_NAME} on YouTube`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-[#ff0000] transition-transform hover:-translate-y-1 text-white"
+              >
                 <YoutubeIcon />
               </a>
-              <a href="#" className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] transition-transform hover:-translate-y-1 text-white">
+              <a
+                href="#"
+                title={`Follow ${SITE_NAME} on Instagram`}
+                aria-label={`Follow ${SITE_NAME} on Instagram`}
+                className="flex h-9 w-9 items-center justify-center rounded-full bg-gradient-to-tr from-[#f09433] via-[#e6683c] to-[#bc1888] transition-transform hover:-translate-y-1 text-white"
+              >
                 <InstagramIcon />
               </a>
             </div>
@@ -93,17 +119,22 @@ const Footer: React.FC = () => {
 
           {/* Column 2: Quick Links (Takes 1 col, 2 cols on lg) */}
           <div className="col-span-1 lg:col-span-2 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Quick Links</h3>
             <ul className="flex flex-col gap-1.5">
               {[
-                { label: 'Home', to: '/' },
-                { label: 'About Us', to: '/about' },
-                { label: 'Category', to: '/#categories' },
-                { label: 'App', to: '/#app' },
-                { label: 'Contact Us', to: '/contact' },
+                { label: 'Home', to: '/', title: `${SITE_NAME} Home` },
+                { label: 'About Us', to: '/about', title: `About ${SITE_NAME}` },
+                { label: 'Category', to: '/#categories', title: `Explore ${SITE_NAME} Product Categories` },
+                { label: 'App', to: '/#app', title: `Download the ${SITE_NAME} App` },
+                { label: 'Contact Us', to: '/contact', title: `Contact ${SITE_NAME}` },
               ].map((link) => (
                 <li key={link.label}>
-                  <Link to={link.to} className="text-[14px] text-blue-200 hover:text-white transition-colors">
+                  <Link
+                    to={link.to}
+                    title={link.title}
+                    aria-label={link.title}
+                    className="text-[14px] text-blue-200 hover:text-white transition-colors"
+                  >
                     {link.label}
                   </Link>
                 </li>
@@ -113,23 +144,33 @@ const Footer: React.FC = () => {
 
           {/* Column 3: Categories (Takes 1 col, 3 cols on lg) */}
           <div className="col-span-1 lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Categories</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Categories</h3>
             <div className="flex gap-6 sm:gap-10 text-left">
               <ul className="flex flex-col gap-1.5">
                 {['Edible Oil', 'Coconut Oil', 'Pulses', 'GN Seed', 'Rice & Paddy', 'Kirana'].map((cat) => (
                   <li key={cat}>
-                    <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
+                    <Link
+                      to="/#categories"
+                      title={`Explore ${cat} Category`}
+                      aria-label={`Explore ${cat} Category`}
+                      className="text-[14px] text-blue-200 hover:text-white transition-colors"
+                    >
                       {cat}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
               <ul className="flex flex-col gap-1.5">
                 {['Spices', 'Dry Fruits', 'Arecanut', 'Jaggery'].map((cat) => (
                   <li key={cat}>
-                    <a href="#" className="text-[14px] text-blue-200 hover:text-white transition-colors">
+                    <Link
+                      to="/#categories"
+                      title={`Explore ${cat} Category`}
+                      aria-label={`Explore ${cat} Category`}
+                      className="text-[14px] text-blue-200 hover:text-white transition-colors"
+                    >
                       {cat}
-                    </a>
+                    </Link>
                   </li>
                 ))}
               </ul>
@@ -138,16 +179,26 @@ const Footer: React.FC = () => {
 
           {/* Column 4: Download App (Takes full width on small screens, 3 cols on lg) */}
           <div className="col-span-1 min-[420px]:col-span-2 lg:col-span-3 flex flex-col items-start text-left">
-            <h4 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Download App</h4>
+            <h3 className="text-[16px] font-bold text-white mb-4 sm:mb-5">Download App</h3>
             
             <div className="flex flex-row flex-wrap sm:flex-col gap-3 w-full max-w-sm lg:max-w-[180px]">
               {/* App Store Button */}
-              <button className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800">
-                <img src={appStoreIcon} alt="App Store" className="h-6 w-6" />
-                <div className="flex flex-col items-start leading-none">
+              <button
+                type="button"
+                title={`Download ${SITE_NAME} on the Apple App Store`}
+                aria-label={`Download ${SITE_NAME} on the Apple App Store`}
+                className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800"
+              >
+                <img
+                  src={appStoreIcon}
+                  alt={`Download ${SITE_NAME} on the Apple App Store`}
+                  title="Download on the Apple App Store"
+                  className="h-6 w-6"
+                />
+                <span className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">Download on the</span>
                   <span className="text-[14px] font-semibold">App Store</span>
-                </div>
+                </span>
               </button>
 
               {/* Play Store Button */}
@@ -155,13 +206,20 @@ const Footer: React.FC = () => {
                 href="https://play.google.com/store/apps/details?id=com.kmr.agsolutions&pcampaignid=web_share"
                 target="_blank"
                 rel="noopener noreferrer"
+                title={`Download ${SITE_NAME} on Google Play`}
+                aria-label={`Download ${SITE_NAME} on Google Play`}
                 className="flex items-center justify-center gap-3 rounded-xl bg-black px-4 py-2.5 text-white hover:bg-gray-900 transition-colors border border-gray-800"
               >
-                <img src={playStoreIcon} alt="Google Play" className="h-5 w-5" />
-                <div className="flex flex-col items-start leading-none">
+                <img
+                  src={playStoreIcon}
+                  alt={`Download ${SITE_NAME} on Google Play`}
+                  title="Download on Google Play"
+                  className="h-5 w-5"
+                />
+                <span className="flex flex-col items-start leading-none">
                   <span className="text-[10px] text-gray-300">GET IT ON</span>
                   <span className="text-[14px] font-semibold">Google Play</span>
-                </div>
+                </span>
               </a>
             </div>
           </div>
@@ -169,10 +227,10 @@ const Footer: React.FC = () => {
         </div>
 
         <div className="mt-10 sm:mt-12 pt-6 sm:pt-8 border-t border-blue-800/50 flex flex-col sm:flex-row items-center sm:justify-between gap-4 text-center sm:text-left text-blue-200 text-[13px]">
-          <p>© {new Date().getFullYear()} KMR LIVE. All rights reserved.</p>
+          <p>© {new Date().getFullYear()} {SITE_NAME}. All rights reserved.</p>
           <div className="flex items-center gap-6">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" title="Privacy Policy" aria-label="Privacy Policy" className="hover:text-white transition-colors">Privacy Policy</a>
+            <a href="#" title="Terms of Service" aria-label="Terms of Service" className="hover:text-white transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

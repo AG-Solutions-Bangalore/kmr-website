@@ -7,6 +7,7 @@ const heroBanner = webImage("home/hero_banner_with_phone.webp");
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Download } from "lucide-react";
 import { TRUST_ITEMS } from "../data";
+import { SITE_NAME } from "@/seo/schemas";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
 
@@ -108,13 +109,21 @@ function HeroSection() {
           {/* CTA buttons */}
           <div className="hero-item mt-6 flex flex-col sm:flex-row items-stretch sm:items-center gap-3 w-full sm:w-auto">
             <Button size="lg" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <Link to="/#categories">
+              <Link
+                to="/#categories"
+                title={`Explore ${SITE_NAME} Product Categories`}
+                aria-label={`Explore ${SITE_NAME} Product Categories`}
+              >
                 Explore Categories
                 <ArrowRight className="transition-transform duration-300 ease-out group-hover:translate-x-1.5" />
               </Link>
             </Button>
             <Button size="lg" variant="outline" asChild className="group rounded-full w-full sm:w-auto justify-center">
-              <Link to="/#app">
+              <Link
+                to="/#app"
+                title={`Download the ${SITE_NAME} App`}
+                aria-label={`Download the ${SITE_NAME} App`}
+              >
                 Download App
                 <Download className="transition-transform duration-300 ease-out group-hover:-translate-y-1" />
               </Link>
@@ -122,24 +131,24 @@ function HeroSection() {
           </div>
 
           {/* trust icons row */}
-          <dl className="mt-8 sm:mt-10 grid max-w-lg grid-cols-4 gap-1.5 sm:gap-4">
+          <div className="mt-8 sm:mt-10 grid max-w-lg grid-cols-4 gap-1.5 sm:gap-4">
             {TRUST_ITEMS.map((item) => (
               <div
                 key={item.label}
                 className="hero-icon-item flex flex-col items-center gap-2 sm:gap-3 text-center"
               >
-                <dt className="sr-only">{item.label}</dt>
                 <span
+                  aria-hidden="true"
                   className={`flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-full shadow-sm md:h-[52px] md:w-[52px] ${item.bgClass} ${item.colorClass}`}
                 >
                   {item.icon}
                 </span>
-                <dd className="text-[9px] font-semibold leading-tight text-navy-800 sm:text-[11px]">
+                <span className="text-[9px] font-semibold leading-tight text-navy-800 sm:text-[11px]">
                   {item.label}
-                </dd>
+                </span>
               </div>
             ))}
-          </dl>
+          </div>
         </div>
       </div>
     </section>

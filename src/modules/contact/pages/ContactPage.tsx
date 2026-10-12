@@ -21,7 +21,12 @@ export function ContactPage() {
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-success-100 blur-3xl opacity-50" />
         <div className="container relative py-10 sm:py-14">
           <nav className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.12em] text-muted-500">
-            <Link to="/" className="hover:text-primary-600 transition-colors">
+            <Link
+              to="/"
+              title="KMR LIVE Home"
+              aria-label="KMR LIVE Home"
+              className="hover:text-primary-600 transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
@@ -87,7 +92,7 @@ export function ContactPage() {
       </section>
 
       {/* Map embed */}
-      <section className="container pb-12 sm:pb-16">
+      <div className="container pb-12 sm:pb-16">
         <div className="overflow-hidden rounded-2xl border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.06)]">
           <iframe
             title={`${company.name} — ${company.place} office map`}
@@ -97,7 +102,7 @@ export function ContactPage() {
             referrerPolicy="no-referrer-when-downgrade"
           />
         </div>
-      </section>
+      </div>
     </>
   );
 }

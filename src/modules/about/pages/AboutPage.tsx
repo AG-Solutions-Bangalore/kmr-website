@@ -24,6 +24,8 @@ export function AboutPage() {
         <a
           key={phone}
           href={`tel:${indianMobileTelHref(phone)}`}
+          title={`Call KMR LIVE Support: ${formatIndianMobile(phone)}`}
+          aria-label={`Call KMR LIVE Support: ${formatIndianMobile(phone)}`}
           className="block text-[14px] font-medium text-muted-500 transition-colors hover:text-primary-600"
         >
           {formatIndianMobile(phone)}
@@ -36,6 +38,8 @@ export function AboutPage() {
       body: (
         <a
           href={`mailto:${company.email}`}
+          title="Email KMR LIVE Support"
+          aria-label="Email KMR LIVE Support"
           className="block break-all text-[14px] font-medium text-muted-500 transition-colors hover:text-primary-600"
         >
           {company.email}
@@ -76,7 +80,12 @@ export function AboutPage() {
         <div className="absolute -bottom-24 -left-24 h-72 w-72 rounded-full bg-success-100 blur-3xl opacity-50" />
         <div className="container relative py-10 sm:py-14">
           <nav className="flex items-center gap-1.5 text-[12px] font-bold uppercase tracking-[0.12em] text-muted-500">
-            <Link to="/" className="hover:text-primary-600 transition-colors">
+            <Link
+              to="/"
+              title="KMR LIVE Home"
+              aria-label="KMR LIVE Home"
+              className="hover:text-primary-600 transition-colors"
+            >
               Home
             </Link>
             <ChevronRight className="h-3.5 w-3.5" />
@@ -154,6 +163,7 @@ export function AboutPage() {
                 <img
                   src={webImage("home/hero_abou-use_image.webp")}
                   alt="KMR commodity market"
+                  title="KMR LIVE Commodity Market Overview"
                   loading="lazy"
                   decoding="async"
                   className="aspect-square h-auto max-h-[560px] w-full object-cover lg:aspect-auto lg:h-full lg:max-h-none"

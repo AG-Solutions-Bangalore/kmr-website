@@ -1,0 +1,24 @@
+# KMR LIVE
+
+> Karnataka Market Reports (KMR LIVE) is South India's premier commodity market reporting and intelligence platform, delivering verified daily mandi rates, price movements, and agricultural trends.
+
+KMR LIVE connects farmers, traders, brokers, processors, wholesalers, and retail businesses with real-time price updates across edible oils, coconut products, pulses, grains, spices, and groceries.
+
+## Main Pages
+
+- [Home](https://wa.kmrlive.in/): Real-time commodity market highlights, product categories, daily price trends, and mobile app download.
+- [About Us](https://wa.kmrlive.in/about): Background, history, mission, and trusted market reporting coverage across South India.
+- [Contact Us](https://wa.kmrlive.in/contact): Customer support, trade enquiries, office contact details, and partnership requests.
+- [Market Insights & Blog](https://wa.kmrlive.in/blog): Daily commodity price analysis, mandi rate trends, and agricultural trade news.
+
+## Key Commodity Categories
+
+- [Edible Oil](https://wa.kmrlive.in/#categories): Spot rates for Sunflower Oil, Palm Oil, Mustard Oil, Rice Bran Oil, and Groundnut Oil.
+- [Coconut & Coconut Oil](https://wa.kmrlive.in/#categories): Daily rates for Copra, Raw Coconut, and Coconut Oil.
+- [Pulses](https://wa.kmrlive.in/#categories): Wholesale prices for Tur Dal, Urad Dal, Moong Dal, Gram Dal, and Chana.
+- [Rice & Paddy](https://wa.kmrlive.in/#categories): Mandi prices for Sona Masoori, Basmati, and regional varieties.
+- [Spices & Dry Fruits](https://wa.kmrlive.in/#categories): Arecanut (Betel Nut), Black Pepper, Cardamom, Cashew, and Jaggery.
+
+## Optional
+
+- [Full Site Reference](https://wa.kmrlive.in/llms-full.txt): Comprehensive platform documentation, service details, and technical overview for AI agents.

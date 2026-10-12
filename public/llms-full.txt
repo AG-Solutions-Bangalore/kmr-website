@@ -1,0 +1,26 @@
+# KMR LIVE — Full Documentation
+
+> Complete guide to Karnataka Market Reports (KMR LIVE) for AI models, agents, and researchers.
+
+## About KMR LIVE
+Karnataka Market Reports (KMR LIVE) is a trusted commodity information platform operating from Bangalore, Karnataka, India. Founded to bridge the information gap in agricultural and wholesale markets, KMR provides timely, accurate spot prices and market movement reports to over 10,000 active trade professionals daily.
+
+## Platform Capabilities
+- **Daily Price Reporting**: Spot rates and arrivals from major APMC mandis and trading hubs across Karnataka and South India.
+- **WhatsApp & Mobile App Delivery**: Real-time rate broadcasts and push alerts via Android and iOS apps.
+- **Brand Promotion**: Enabling manufacturers and millers to publish certified wholesale prices.
+- **Market Analysis**: Deep dives on supply-demand dynamics, weather impacts, and policy updates affecting commodity markets.
+
+## Key URLs
+- [Home](https://wa.kmrlive.in/): Primary landing page with live ticker, categories, testimonials, and FAQs.
+- [About Us](https://wa.kmrlive.in/about): Detailed company background, history, and South India market presence.
+- [Contact Us](https://wa.kmrlive.in/contact): Support hotline, email enquiry form, and office address.
+- [Blog & Analysis](https://wa.kmrlive.in/blog): Articles, commentary, and market intelligence reports.
+- [Mobile App](https://wa.kmrlive.in/#app): Android (Google Play) and iOS (App Store) mobile application download.
+
+## Supported Commodities
+1. **Edible Oils**: Sunflower Oil, Palm Oil (Palmolein), Mustard Oil, Groundnut (GN) Oil, Cottonseed Oil, Rice Bran Oil.
+2. **Coconut Products**: Milling Copra, Edible Copra, Coconut Oil, Raw Coconuts.
+3. **Pulses & Grains**: Tur / Arhar, Urad, Moong, Masoor, Chana, Bengal Gram, Green Gram.
+4. **Plantation & Spices**: Arecanut (Chali, Rashi, Bette), Pepper, Cardamom, Ginger, Turmeric, Cumin, Coriander.
+5. **Sweeteners & Kirana**: Jaggery (Gur), Sugar, Dry Fruits, Cashew Nuts, Almonds.
